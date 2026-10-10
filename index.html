@@ -1,0 +1,687 @@
+```html
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>না বলা কথা — আপনার কথার ঠিকানা</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #faf7f1;
+      --cream: #f3ede4;
+      --brown: #49372e;
+      --text: #352a25;
+      --muted: #88776c;
+      --border: #e5d7c8;
+      --accent: #a87959;
+      --white: #fffdf9;
+    }
+
+    body {
+      font-family: "Noto Serif Bengali", serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    button, input, textarea, select {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 8%;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--brown);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 90px 20px 100px;
+      background: var(--cream);
+    }
+
+    .hero .tag {
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .hero .description {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 620px;
+      margin: 0 auto 28px;
+    }
+
+    .primary-btn {
+      border: 0;
+      border-radius: 30px;
+      background: var(--brown);
+      color: white;
+      padding: 13px 25px;
+      transition: background .2s;
+    }
+
+    .primary-btn:hover {
+      background: #60483b;
+    }
+
+    .primary-btn:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .letters {
+      padding: 65px 8%;
+    }
+
+    .section-heading {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .category-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .category-btn {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 8px 17px;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: var(--brown);
+      color: white;
+      border-color: var(--brown);
+    }
+
+    .letter-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .letter {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 25px;
+      overflow-wrap: anywhere;
+    }
+
+    .letter .category {
+      color: var(--accent);
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .letter h3 {
+      font-size: 21px;
+      margin-bottom: 15px;
+    }
+
+    .letter p {
+      color: #76675e;
+      font-size: 15px;
+      line-height: 2;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 35px 15px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    .about {
+      text-align: center;
+      padding: 70px 20px;
+      background: var(--white);
+    }
+
+    .about h2 {
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    .about p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 25px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 15px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    /* চিঠি লেখার পপ-আপ */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(30, 22, 18, .65);
+      padding: 18px;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+    }
+
+    .modal-content {
+      position: relative;
+      background: var(--bg);
+      width: 100%;
+      max-width: 560px;
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 15px 50px rgba(0,0,0,.15);
+    }
+
+    .close {
+      position: absolute;
+      right: 17px;
+      top: 10px;
+      border: 0;
+      background: transparent;
+      color: var(--brown);
+      font-size: 30px;
+    }
+
+    .modal-content h2 {
+      margin: 12px 0 5px;
+      font-size: 25px;
+    }
+
+    .notice {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 17px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--white);
+      color: var(--text);
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-message {
+      margin: 12px 0;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .form-message.error {
+      color: #b42318;
+    }
+
+    .form-message.success {
+      color: #287747;
+    }
+
+    @media (max-width: 900px) {
+      .letter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      header {
+        padding: 18px 5%;
+      }
+
+      .letters {
+        padding: 50px 5%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        gap: 12px;
+        font-size: 14px;
+      }
+
+      .hero {
+        padding: 65px 18px;
+      }
+
+      .hero .description {
+        font-size: 16px;
+      }
+
+      .letter-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        font-size: 25px;
+      }
+
+      .modal-content {
+        padding: 25px 19px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">না বলা <span>কথা।</span></div>
+
+    <nav>
+      <a href="#home">প্রচ্ছদ</a>
+      <a href="#letters">চিঠি</a>
+      <a href="#about">আমাদের কথা</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <p class="tag">কিছু কথা শুধু অনুভবের</p>
+
+    <h1>আপনার না-বলা কথারও<br>একটা ঠিকানা আছে।</h1>
+
+    <p class="description">
+      কিছু অনুভূতি কাউকে বলা হয় না, কিছু চিঠি কখনো পাঠানো হয় না।
+      আপনার সেই না-বলা কথাগুলো এখানে লিখে রাখতে পারেন।
+    </p>
+
+    <button type="button" class="primary-btn" onclick="openForm()">
+      একটি চিঠি লিখুন ↗
+    </button>
+  </section>
+
+  <section class="letters" id="letters">
+    <h2 class="section-heading">অচেনা মানুষের চিঠি</h2>
+
+    <p class="subtitle">
+      হয়তো কোনো একটি চিঠিতে নিজের গল্প খুঁজে পাবেন।
+    </p>
+
+    <div class="category-list" id="categoryList">
+      <button type="button" class="category-btn active" data-category="সব চিঠি">সব চিঠি</button>
+      <button type="button" class="category-btn" data-category="ভালোবাসা">ভালোবাসা</button>
+      <button type="button" class="category-btn" data-category="পরিবার">পরিবার</button>
+      <button type="button" class="category-btn" data-category="স্মৃতি">স্মৃতি</button>
+      <button type="button" class="category-btn" data-category="নিজের সঙ্গে">নিজের সঙ্গে</button>
+      <button type="button" class="category-btn" data-category="না-পাঠানো চিঠি">না-পাঠানো চিঠি</button>
+    </div>
+
+    <div class="letter-grid" id="letterGrid">
+      <div class="empty">চিঠি লোড হচ্ছে...</div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h2>কিছু কথা শুধু নিজের কাছে রাখতে নেই।</h2>
+
+    <p>
+      হয়তো কেউ আপনার পরিচয় জানবে না। তবু আপনার কথাগুলো
+      কারও একাকিত্বের সঙ্গী হতে পারে।
+    </p>
+
+    <button type="button" class="primary-btn" onclick="openForm()">
+      আপনার কথাটি লিখুন ↗
+    </button>
+  </section>
+
+  <footer>
+    <p><strong>না বলা কথা।</strong></p>
+    <p>যা বলা হয়নি, তা লিখে যান।</p>
+    <p>© 2026 না বলা কথা</p>
+  </footer>
+
+  <!-- চিঠি লেখার ফর্ম -->
+  <div class="modal" id="letterModal">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+
+      <button type="button" class="close" onclick="closeForm()" aria-label="বন্ধ করুন">×</button>
+
+      <h2 id="formTitle">আপনার মনের কথা লিখুন</h2>
+
+      <p class="notice">
+        অনুগ্রহ করে ব্যক্তিগত পরিচয়, ফোন নম্বর বা ঠিকানা লিখবেন না।
+        এই পরীক্ষামূলক সংস্করণে জমা দেওয়া চিঠি প্রকাশ্যে দেখা যেতে পারে।
+      </p>
+
+      <form id="letterForm">
+        <div class="form-group">
+          <label for="letterTitle">চিঠির শিরোনাম</label>
+          <input
+            type="text"
+            id="letterTitle"
+            maxlength="150"
+            placeholder="যেমন: তোমাকে বলা হয়নি"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="letterCategory">চিঠির বিভাগ</label>
+          <select id="letterCategory" required>
+            <option value="">বিভাগ নির্বাচন করুন</option>
+            <option value="ভালোবাসা">ভালোবাসা</option>
+            <option value="পরিবার">পরিবার</option>
+            <option value="স্মৃতি">স্মৃতি</option>
+            <option value="নিজের সঙ্গে">নিজের সঙ্গে</option>
+            <option value="না-পাঠানো চিঠি">না-পাঠানো চিঠি</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="letterBody">আপনার চিঠি</label>
+          <textarea
+            id="letterBody"
+            maxlength="10000"
+            placeholder="মনের কথাগুলো লিখুন..."
+            required
+          ></textarea>
+        </div>
+
+        <p id="formStatus" class="form-message" role="status" aria-live="polite"></p>
+
+        <button type="submit" class="primary-btn" id="submitBtn">
+          চিঠি জমা দিন
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Supabase library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    "use strict";
+
+    // আপনার Supabase project information
+    const SUPABASE_URL = "https://clkvnvmzcgtqdcjdfiqw.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_8FKVJGeWp8IxSmv1aTM8Tg_2NnWmMkY";
+
+    let db = null;
+    let allLetters = [];
+    let activeCategory = "সব চিঠি";
+
+    const modal = document.getElementById("letterModal");
+    const form = document.getElementById("letterForm");
+    const formStatus = document.getElementById("formStatus");
+    const submitBtn = document.getElementById("submitBtn");
+    const letterGrid = document.getElementById("letterGrid");
+
+    function openForm() {
+      formStatus.textContent = "";
+      formStatus.className = "form-message";
+      modal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeForm() {
+      modal.style.display = "none";
+      document.body.style.overflow = "";
+    }
+
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        closeForm();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeForm();
+      }
+    });
+
+    function showStatus(message, type) {
+      formStatus.textContent = message;
+      formStatus.className = "form-message " + type;
+    }
+
+    function renderLetters() {
+      letterGrid.replaceChildren();
+
+      const filtered = activeCategory === "সব চিঠি"
+        ? allLetters
+        : allLetters.filter(function (letter) {
+            return letter.category === activeCategory;
+          });
+
+      if (filtered.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = allLetters.length === 0
+          ? "এখনো কোনো চিঠি প্রকাশিত হয়নি। প্রথম চিঠিটি আপনিই লিখুন।"
+          : "এই বিভাগে এখনো কোনো চিঠি নেই।";
+        letterGrid.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach(function (letter) {
+        const card = document.createElement("article");
+        card.className = "letter";
+
+        const category = document.createElement("div");
+        category.className = "category";
+        category.textContent = letter.category || "অন্যান্য";
+
+        const title = document.createElement("h3");
+        title.textContent = letter.title || "শিরোনামহীন চিঠি";
+
+        const body = document.createElement("p");
+        body.textContent = letter.body || "";
+
+        card.append(category, title, body);
+        letterGrid.appendChild(card);
+      });
+    }
+
+    document.getElementById("categoryList").addEventListener("click", function (event) {
+      const button = event.target.closest("button[data-category]");
+
+      if (!button) return;
+
+      activeCategory = button.dataset.category;
+
+      document.querySelectorAll(".category-btn").forEach(function (item) {
+        item.classList.toggle("active", item === button);
+      });
+
+      renderLetters();
+    });
+
+    async function loadLetters() {
+      if (!db) {
+        letterGrid.innerHTML = '<div class="empty">Supabase সংযোগ করা হয়নি। Publishable Key পরীক্ষা করুন।</div>';
+        return;
+      }
+
+      letterGrid.innerHTML = '<div class="empty">চিঠি লোড হচ্ছে...</div>';
+
+      try {
+        const { data, error } = await db
+          .from("letters")
+          .select("id, title, body, category, created_at")
+          .order("created_at", { ascending: false })
+          .limit(100);
+
+        if (error) throw error;
+
+        allLetters = data || [];
+        renderLetters();
+
+      } catch (error) {
+        console.error("চিঠি লোড করার সমস্যা:", error);
+
+        letterGrid.innerHTML =
+          '<div class="empty">চিঠি লোড করা যায়নি। Supabase-এর URL, Key এবং SELECT policy পরীক্ষা করুন।</div>';
+      }
+    }
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      if (!db) {
+        showStatus("Supabase সংযোগ নেই। Publishable Key বসান।", "error");
+        return;
+      }
+
+      const title = document.getElementById("letterTitle").value.trim();
+      const category = document.getElementById("letterCategory").value;
+      const body = document.getElementById("letterBody").value.trim();
+
+      if (!title || !category || !body) {
+        showStatus("সব ঘর পূরণ করুন।", "error");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "জমা হচ্ছে...";
+      showStatus("আপনার চিঠি জমা দেওয়া হচ্ছে...", "");
+
+      try {
+        const { error } = await db
+          .from("letters")
+          .insert([{ title: title, body: body, category: category }]);
+
+        if (error) throw error;
+
+        showStatus("চিঠি সফলভাবে জমা হয়েছে।", "success");
+        form.reset();
+
+        await loadLetters();
+
+        setTimeout(function () {
+          closeForm();
+        }, 1200);
+
+      } catch (error) {
+        console.error("চিঠি জমা দেওয়ার সমস্যা:", error);
+
+        showStatus(
+          "চিঠি জমা হয়নি। Supabase-এর INSERT policy ও Publishable Key পরীক্ষা করুন।",
+          "error"
+        );
+
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "চিঠি জমা দিন";
+      }
+    });
+
+    // Supabase চালু করা
+    try {
+      if (
+        window.supabase &&
+        SUPABASE_URL.startsWith("https://") &&
+        SUPABASE_KEY.startsWith("sb_publishable_") &&
+        !SUPABASE_KEY.includes("এখানে")
+      ) {
+        db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      }
+    } catch (error) {
+      console.error("Supabase চালু করা যায়নি:", error);
+    }
+
+    // ওয়েবসাইট খোলার পর চিঠি লোড হবে
+    loadLetters();
+  </script>
+
+</body>
+</html>
+```
