@@ -4,11 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta name="theme-color" content="#E9EEE8">
-  <meta name="description" content="আপনার না-বলা কথারও একটা ঠিকানা আছে। মনের কথা লিখুন, অন্যের অনুভূতির সঙ্গী হোন।">
+  <meta name="description" content="চিঠিঘর — যে চিঠি পাঠানো হয়নি, তারও একটা ঘর আছে।">
 
-  <title>না বলা কথা — আপনার কথার ঠিকানা</title>
+  <title>চিঠিঘর — CHITHIGHOR</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,13 +26,13 @@
       --white: #FFFFFF;
       --danger: #A63F3F;
       --success: #287747;
-      --shadow: 0 12px 35px rgba(41, 60, 52, .07);
+      --shadow: 0 12px 35px rgba(41, 60, 52, .08);
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html {
@@ -65,8 +64,10 @@
       color: inherit;
     }
 
-    button:focus-visible, a:focus-visible,
-    input:focus-visible, textarea:focus-visible,
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
     select:focus-visible {
       outline: 3px solid #8EAA91;
       outline-offset: 3px;
@@ -77,34 +78,55 @@
       margin: 0 auto;
     }
 
-    /* Navigation */
+    /* HEADER */
 
     header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(248, 250, 246, .94);
+      background: rgba(248, 250, 246, .96);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-inner {
-      min-height: 76px;
+      min-height: 78px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 25px;
+      gap: 24px;
     }
 
-    .logo {
-      font-size: 25px;
-      font-weight: 700;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       text-decoration: none;
-      white-space: nowrap;
-      letter-spacing: -.5px;
+      color: var(--green);
     }
 
-    .logo span {
+    .brand-icon {
+      width: 35px;
+      height: 35px;
+      flex-shrink: 0;
+      color: var(--green-2);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.45;
+    }
+
+    .brand-name {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .brand-english {
+      font-family: Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 3px;
       color: var(--olive);
     }
 
@@ -119,14 +141,13 @@
       text-decoration: none;
       color: var(--muted);
       font-size: 14px;
-      transition: color .2s;
     }
 
     nav a:hover {
       color: var(--green);
     }
 
-    /* Buttons */
+    /* BUTTONS */
 
     .btn {
       display: inline-flex;
@@ -165,13 +186,13 @@
       background: var(--surface-2);
     }
 
-    /* Hero */
+    /* HERO */
 
     .hero {
       position: relative;
       isolation: isolate;
       overflow: hidden;
-      padding: 105px 0 110px;
+      padding: 85px 0 95px;
       text-align: center;
       background:
         radial-gradient(ellipse at 8% 15%, rgba(184, 201, 184, .43), transparent 38%),
@@ -184,55 +205,73 @@
       position: absolute;
       z-index: -1;
       right: 5%;
-      top: 5%;
-      font-size: clamp(100px, 20vw, 230px);
+      top: 4%;
+      font-size: clamp(100px, 20vw, 220px);
       line-height: 1;
       color: rgba(101, 123, 108, .10);
       transform: rotate(-18deg);
     }
 
-    .eyebrow {
-      color: var(--olive);
-      font-size: 14px;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
+    .hero-logo {
+      width: 68px;
+      height: 68px;
+      color: var(--green-2);
+      margin: 0 auto 12px;
     }
 
-    h1 {
-      max-width: 850px;
-      margin: 0 auto 23px;
-      font-size: clamp(34px, 5.3vw, 61px);
+    .hero-brand {
+      font-size: clamp(39px, 7vw, 57px);
       font-weight: 700;
       line-height: 1.55;
-      letter-spacing: -1px;
+      margin-bottom: 0;
+    }
+
+    .hero-english {
+      font-family: Arial, sans-serif;
+      color: var(--olive);
+      letter-spacing: 6px;
+      font-size: 14px;
+      margin-bottom: 26px;
+    }
+
+    .hero-divider {
+      width: min(330px, 75%);
+      height: 1px;
+      margin: 0 auto 25px;
+      background: var(--border);
+    }
+
+    .hero h1 {
+      font-size: clamp(25px, 4.5vw, 35px);
+      line-height: 1.75;
+      margin-bottom: 12px;
     }
 
     .hero-description {
-      max-width: 630px;
-      margin: 0 auto 32px;
+      max-width: 650px;
+      margin: 0 auto 28px;
       color: var(--muted);
-      font-size: clamp(15px, 2vw, 18px);
+      font-size: 16px;
       line-height: 2;
     }
 
     .hero-actions {
       display: flex;
       justify-content: center;
-      align-items: center;
       flex-wrap: wrap;
       gap: 12px;
     }
 
     .hero-note {
-      margin-top: 25px;
-      font-size: 13px;
+      margin-top: 22px;
       color: var(--muted);
+      font-size: 13px;
     }
 
-    /* Letters */
+    /* LETTERS */
 
     .letters-section {
-      padding: 85px 0 95px;
+      padding: 75px 0 90px;
       background: var(--surface);
     }
 
@@ -260,7 +299,7 @@
       border: 1px solid var(--border);
       background: transparent;
       color: var(--muted);
-      padding: 9px 18px;
+      padding: 9px 17px;
       border-radius: 999px;
       white-space: nowrap;
       transition: .2s;
@@ -284,10 +323,8 @@
     }
 
     .letter-card {
-      display: flex;
-      flex-direction: column;
       min-width: 0;
-      padding: 26px;
+      padding: 25px;
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 17px;
@@ -303,8 +340,7 @@
 
     .letter-category {
       display: inline-block;
-      align-self: flex-start;
-      margin-bottom: 15px;
+      margin-bottom: 14px;
       padding: 4px 11px;
       border-radius: 999px;
       background: var(--surface-2);
@@ -337,17 +373,17 @@
       background: var(--bg);
     }
 
-    .empty-state .empty-symbol {
+    .empty-symbol {
       display: block;
       font-size: 34px;
       margin-bottom: 10px;
       color: var(--olive);
     }
 
-    /* About */
+    /* ABOUT */
 
     .about {
-      padding: 85px 0;
+      padding: 80px 0;
       text-align: center;
       background: var(--surface-2);
     }
@@ -355,6 +391,12 @@
     .about-inner {
       max-width: 760px;
       margin: 0 auto;
+    }
+
+    .eyebrow {
+      color: var(--olive);
+      font-size: 14px;
+      margin-bottom: 13px;
     }
 
     .about h2 {
@@ -370,7 +412,7 @@
       line-height: 2;
     }
 
-    /* Footer */
+    /* FOOTER */
 
     footer {
       padding: 35px 0;
@@ -393,10 +435,10 @@
     .footer-bottom {
       margin-top: 17px;
       padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,.13);
+      border-top: 1px solid rgba(255, 255, 255, .13);
     }
 
-    /* Modal */
+    /* MODAL */
 
     .modal {
       display: none;
@@ -523,15 +565,13 @@
       width: 100%;
     }
 
-    /* Responsive */
-
     @media (max-width: 900px) {
       .letter-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .hero {
-        padding: 85px 0;
+        padding: 70px 0 80px;
       }
     }
 
@@ -548,13 +588,13 @@
         gap: 11px;
       }
 
-      .logo {
+      .brand-name {
         font-size: 23px;
       }
 
       nav {
         width: 100%;
-        gap: 17px;
+        gap: 18px;
       }
 
       nav a {
@@ -562,7 +602,7 @@
       }
 
       .hero {
-        padding: 70px 0 75px;
+        padding: 60px 0 68px;
       }
 
       .hero::before {
@@ -570,9 +610,22 @@
         top: 2%;
       }
 
-      h1 {
-        font-size: clamp(31px, 8vw, 42px);
-        letter-spacing: 0;
+      .hero-logo {
+        width: 58px;
+        height: 58px;
+      }
+
+      .hero-brand {
+        font-size: 42px;
+      }
+
+      .hero-english {
+        letter-spacing: 5px;
+        font-size: 12px;
+      }
+
+      .hero h1 {
+        font-size: 25px;
       }
 
       .hero-description {
@@ -590,7 +643,7 @@
 
       .letters-section,
       .about {
-        padding: 60px 0;
+        padding: 55px 0;
       }
 
       .section-heading {
@@ -625,7 +678,6 @@
 
       .modal {
         padding: 10px;
-        align-items: center;
       }
 
       .modal-content {
@@ -649,6 +701,15 @@
         transition: none !important;
       }
     }
+
+    .letter-preview {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
   </style>
 </head>
 
@@ -656,42 +717,75 @@
 
   <header>
     <div class="container nav-inner">
-      <a class="logo" href="#home">না বলা <span>কথা।</span></a>
+
+      <a class="brand" href="#home" aria-label="চিঠিঘর হোম">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.6"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="m3 7 9 6 9-6"/>
+        </svg>
+
+        <span class="brand-text">
+          <span class="brand-name">চিঠিঘর</span>
+          <span class="brand-english">CHITHIGHOR</span>
+        </span>
+      </a>
 
       <nav aria-label="প্রধান নেভিগেশন">
         <a href="#home">প্রচ্ছদ</a>
         <a href="#letters">চিঠি</a>
         <a href="#about">আমাদের কথা</a>
       </nav>
+
     </div>
   </header>
 
   <main>
+
     <section class="hero" id="home">
       <div class="container">
-        <p class="eyebrow">কিছু কথা শুধু অনুভবের</p>
 
-        <h1>আপনার না-বলা কথারও<br>একটা ঠিকানা আছে।</h1>
+        <svg class="hero-logo" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.5"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="m3 7 9 6 9-6"/>
+        </svg>
+
+        <p class="hero-brand">চিঠিঘর</p>
+        <p class="hero-english">CHITHIGHOR</p>
+
+        <div class="hero-divider"></div>
+
+        <h1>যে চিঠি পাঠানো হয়নি,<br>তারও একটা ঘর আছে।</h1>
 
         <p class="hero-description">
           কিছু অনুভূতি কাউকে বলা হয় না, কিছু চিঠি কখনো পাঠানো হয় না।
-          আপনার সেই না-বলা কথাগুলো এখানে লিখে রাখতে পারেন।
+          আপনার সেই না-বলা কথাগুলোর
+          জন্যই এই ছোট্ট ঠিকানা।
         </p>
 
         <div class="hero-actions">
           <button type="button" class="btn" onclick="openForm()">
-            একটি চিঠি লিখুন <span aria-hidden="true">↗</span>
+            একটি চিঠি লিখুন ↗
           </button>
 
-          <a class="btn btn-outline" href="#letters">চিঠিগুলো পড়ুন ↓</a>
+          <a class="btn btn-outline" href="#letters">
+            চিঠিগুলো পড়ুন ↓
+          </a>
         </div>
 
         <p class="hero-note">আপনার অনুভূতি, আপনার ভাষায়।</p>
+
       </div>
     </section>
 
     <section class="letters-section" id="letters">
       <div class="container">
+
         <h2 class="section-heading">অচেনা মানুষের চিঠি</h2>
 
         <p class="section-description">
@@ -700,22 +794,40 @@
         </p>
 
         <div class="category-list" id="categoryList" aria-label="চিঠির বিভাগ">
-          <button type="button" class="category-btn active" data-category="সব চিঠি" aria-pressed="true">সব চিঠি</button>
-          <button type="button" class="category-btn" data-category="ভালোবাসা" aria-pressed="false">ভালোবাসা</button>
-          <button type="button" class="category-btn" data-category="পরিবার" aria-pressed="false">পরিবার</button>
-          <button type="button" class="category-btn" data-category="স্মৃতি" aria-pressed="false">স্মৃতি</button>
-          <button type="button" class="category-btn" data-category="নিজের সঙ্গে" aria-pressed="false">নিজের সঙ্গে</button>
-          <button type="button" class="category-btn" data-category="না-পাঠানো চিঠি" aria-pressed="false">না-পাঠানো চিঠি</button>
+          <button type="button" class="category-btn active"
+                  data-category="সব চিঠি" aria-pressed="true">সব চিঠি</button>
+
+                  <button type="button" class="category-btn"
+                  data-category="না-পাঠানো চিঠি" aria-pressed="false">বন্ধু</button>
+
+          <button type="button" class="category-btn"
+                  data-category="ভালোবাসা" aria-pressed="false">ভালোবাসা</button>
+
+          <button type="button" class="category-btn"
+                  data-category="পরিবার" aria-pressed="false">পরিবার</button>
+
+          <button type="button" class="category-btn"
+                  data-category="স্মৃতি" aria-pressed="false">স্মৃতি</button>
+
+          <button type="button" class="category-btn"
+                  data-category="নিজের সঙ্গে" aria-pressed="false">নিজের সঙ্গে</button>
+
+          <button type="button" class="category-btn"
+                  data-category="না-পাঠানো চিঠি" aria-pressed="false">না-পাঠানো চিঠি</button>
+                  
+          
         </div>
 
         <div class="letter-grid" id="letterGrid" aria-live="polite">
           <div class="empty-state">চিঠি লোড হচ্ছে...</div>
         </div>
+
       </div>
     </section>
 
     <section class="about" id="about">
       <div class="container about-inner">
+
         <p class="eyebrow">আপনার অনুভূতির ঠিকানা</p>
 
         <h2>কিছু কথা শুধু নিজের কাছে রাখতে নেই।</h2>
@@ -729,43 +841,46 @@
         <button type="button" class="btn" onclick="openForm()">
           আপনার কথাটি লিখুন ↗
         </button>
+
       </div>
     </section>
+
   </main>
 
   <footer>
     <div class="container">
-      <div class="footer-logo">না বলা কথা।</div>
-      <p>যা বলা হয়নি, তা লিখে যান।</p>
+      <div class="footer-logo">চিঠিঘর</div>
+      <p>CHITHIGHOR — যে কথাগুলো বলা হয়নি, তাদের জন্যও একটা ঘর থাকুক।</p> 
+
       <div class="footer-bottom">
-        <p>© 2026 না বলা কথা</p>
+        <p>© 2026 চিঠিঘর</p>
       </div>
     </div>
   </footer>
 
   <!-- চিঠি লেখার ফর্ম -->
+
   <div class="modal" id="letterModal" aria-hidden="true">
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="formTitle">
-      <button type="button" class="close-btn" id="closeModalBtn" aria-label="বন্ধ করুন">×</button>
+    <div class="modal-content" role="dialog" aria-modal="true"
+         aria-labelledby="formTitle">
+
+      <button type="button" class="close-btn" id="closeModalBtn"
+              aria-label="বন্ধ করুন">×</button>
 
       <h2 id="formTitle">আপনার মনের কথা লিখুন</h2>
 
       <p class="notice">
         অনুগ্রহ করে নিজের নাম, ফোন নম্বর, ঠিকানা বা অন্য ব্যক্তির
-        ব্যক্তিগত তথ্য লিখবেন না। মনে রাখবেন, এই সংস্করণে জমা দেওয়া
-        চিঠি প্রকাশ্যে দেখা যেতে পারে।
+        ব্যক্তিগত তথ্য লিখবেন না। এই সংস্করণে জমা দেওয়া চিঠি
+        প্রকাশ্যে দেখা যেতে পারে।
       </p>
 
       <form id="letterForm">
+
         <div class="form-group">
           <label for="letterTitle">চিঠির শিরোনাম</label>
-          <input
-            type="text"
-            id="letterTitle"
-            maxlength="150"
-            placeholder="যেমন: তোমাকে বলা হয়নি"
-            required
-          >
+          <input type="text" id="letterTitle" maxlength="150"
+                 placeholder="যেমন: তোমাকে বলা হয়নি" required>
         </div>
 
         <div class="form-group">
@@ -782,19 +897,17 @@
 
         <div class="form-group">
           <label for="letterBody">আপনার চিঠি</label>
-          <textarea
-            id="letterBody"
-            maxlength="10000"
-            placeholder="মনের কথাগুলো লিখুন..."
-            required
-          ></textarea>
+          <textarea id="letterBody" maxlength="10000"
+                    placeholder="মনের কথাগুলো লিখুন..." required></textarea>
         </div>
 
-        <p id="formStatus" class="form-message" role="status" aria-live="polite"></p>
+        <p id="formStatus" class="form-message"
+           role="status" aria-live="polite"></p>
 
         <button type="submit" class="btn submit-btn" id="submitBtn">
           চিঠি জমা দিন
         </button>
+
       </form>
     </div>
   </div>
@@ -842,7 +955,8 @@
       }
     }
 
-    document.getElementById("closeModalBtn").addEventListener("click", closeForm);
+    document.getElementById("closeModalBtn")
+      .addEventListener("click", closeForm);
 
     modal.addEventListener("click", function(event) {
       if (event.target === modal) {
@@ -858,7 +972,26 @@
 
     function showStatus(message, type) {
       formStatus.textContent = message;
-      formStatus.className = "form-message" + (type ? " " + type : "");
+      formStatus.className =
+        "form-message" + (type ? " " + type : "");
+    }
+
+    function showEmptyState(message) {
+      letterGrid.replaceChildren();
+
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+
+      const symbol = document.createElement("span");
+      symbol.className = "empty-symbol";
+      symbol.setAttribute("aria-hidden", "true");
+      symbol.textContent = "❧";
+
+      const text = document.createElement("p");
+      text.textContent = message;
+
+      empty.append(symbol, text);
+      letterGrid.appendChild(empty);
     }
 
     function renderLetters() {
@@ -871,21 +1004,11 @@
           });
 
       if (filtered.length === 0) {
-        const empty = document.createElement("div");
-        empty.className = "empty-state";
-
-        const symbol = document.createElement("span");
-        symbol.className = "empty-symbol";
-        symbol.setAttribute("aria-hidden", "true");
-        symbol.textContent = "❧";
-
-        const message = document.createElement("p");
-        message.textContent = allLetters.length === 0
-          ? "এখনো কোনো চিঠি নেই। প্রথম চিঠিটি আপনিই লিখুন।"
-          : "এই বিভাগে এখনো কোনো চিঠি নেই।";
-
-        empty.append(symbol, message);
-        letterGrid.appendChild(empty);
+        showEmptyState(
+          allLetters.length === 0
+            ? "এখনো কোনো চিঠি নেই। প্রথম চিঠিটি আপনিই লিখুন।"
+            : "এই বিভাগে এখনো কোনো চিঠি নেই।"
+        );
         return;
       }
 
@@ -903,41 +1026,92 @@
 
         const body = document.createElement("p");
         body.className = "letter-body";
-        body.textContent = letter.body || "";
+       body.textContent = letter.body || "";
+body.classList.add("letter-preview");
 
         card.append(category, title, body);
+        card.addEventListener("click", function () {
+  const overlay = document.createElement("div");
+  overlay.style.cssText = `
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 9999;
+  `;
+
+  const modal = document.createElement("div");
+  modal.style.cssText = `
+    background: var(--surface, #F8FAF6);
+    color: var(--green, #293C34);
+    max-width: 700px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 28px;
+    border-radius: 18px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    position: relative;
+  `;
+
+  const close = document.createElement("button");
+  close.textContent = "✕ বন্ধ করুন";
+  close.style.cssText = `
+    display: block;
+    margin: 0 0 20px auto;
+    padding: 10px 16px;
+    cursor: pointer;
+  `;
+
+  const heading = document.createElement("h2");
+  heading.textContent = letter.title || "শিরোনামহীন চিঠি";
+
+  const fullBody = document.createElement("p");
+  fullBody.textContent = letter.body || "";
+
+  modal.append(close, heading, fullBody);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+
+  close.addEventListener("click", () => overlay.remove());
+
+  overlay.addEventListener("click", function (event) {
+    if (event.target === overlay) overlay.remove();
+  });
+});
         letterGrid.appendChild(card);
       });
     }
 
-    document.getElementById("categoryList").addEventListener("click", function(event) {
-      const button = event.target.closest("button[data-category]");
-      if (!button) return;
+    document.getElementById("categoryList")
+      .addEventListener("click", function(event) {
+        const button = event.target.closest("button[data-category]");
+        if (!button) return;
 
-      activeCategory = button.dataset.category;
+        activeCategory = button.dataset.category;
 
-      document.querySelectorAll(".category-btn").forEach(function(item) {
-        const selected = item === button;
-        item.classList.toggle("active", selected);
-        item.setAttribute("aria-pressed", String(selected));
+        document.querySelectorAll(".category-btn").forEach(function(item) {
+          const selected = item === button;
+          item.classList.toggle("active", selected);
+          item.setAttribute("aria-pressed", String(selected));
+        });
+
+        renderLetters();
       });
-
-      renderLetters();
-    });
 
     async function loadLetters() {
       if (!db) {
-        letterGrid.innerHTML = "";
-
-        const message = document.createElement("div");
-        message.className = "empty-state";
-        message.textContent = "Supabase সংযোগ করা যায়নি। URL ও Publishable Key পরীক্ষা করুন।";
-
-        letterGrid.appendChild(message);
+        showEmptyState(
+          "Supabase সংযোগ করা যায়নি। URL ও Publishable Key পরীক্ষা করুন।"
+        );
         return;
       }
 
-      letterGrid.innerHTML = '<div class="empty-state">চিঠি লোড হচ্ছে...</div>';
+      showEmptyState("চিঠি লোড হচ্ছে...");
 
       try {
         const { data, error } = await db
@@ -954,13 +1128,9 @@
       } catch (error) {
         console.error("চিঠি লোড করার সমস্যা:", error);
 
-        letterGrid.innerHTML = "";
-
-        const message = document.createElement("div");
-        message.className = "empty-state";
-        message.textContent = "চিঠি লোড করা যায়নি। ইন্টারনেট ও Supabase SELECT policy পরীক্ষা করুন।";
-
-        letterGrid.appendChild(message);
+        showEmptyState(
+          "চিঠি লোড করা যায়নি। ইন্টারনেট ও Supabase SELECT policy পরীক্ষা করুন।"
+        );
       }
     }
 
@@ -968,7 +1138,7 @@
       event.preventDefault();
 
       if (!db) {
-        showStatus("Supabase সংযোগ নেই। Publishable Key পরীক্ষা করুন।", "error");
+        showStatus("Supabase সংযোগ নেই। Publishable Key পরীক্ষা করুন.", "error");
         return;
       }
 
@@ -1016,14 +1186,17 @@
       }
     });
 
-    // Supabase initialize
+    // Initialize Supabase
     try {
       if (
         window.supabase &&
         SUPABASE_URL.startsWith("https://") &&
         SUPABASE_KEY.startsWith("sb_publishable_")
       ) {
-        db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        db = window.supabase.createClient(
+          SUPABASE_URL,
+          SUPABASE_KEY
+        );
       }
     } catch (error) {
       console.error("Supabase চালু করা যায়নি:", error);
@@ -1034,4 +1207,3 @@
 
 </body>
 </html>
-```
