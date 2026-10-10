@@ -1,158 +1,280 @@
-```html
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#E9EEE8">
+  <meta name="description" content="আপনার না-বলা কথারও একটা ঠিকানা আছে। মনের কথা লিখুন, অন্যের অনুভূতির সঙ্গী হোন।">
+
   <title>না বলা কথা — আপনার কথার ঠিকানা</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg: #E9EEE8;
+      --surface: #F8FAF6;
+      --surface-2: #DFE8DD;
+      --green: #293C34;
+      --green-2: #435C4C;
+      --olive: #657B6C;
+      --muted: #718075;
+      --border: #CDD9CC;
+      --white: #FFFFFF;
+      --danger: #A63F3F;
+      --success: #287747;
+      --shadow: 0 12px 35px rgba(41, 60, 52, .07);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    :root {
-      --bg: #faf7f1;
-      --cream: #f3ede4;
-      --brown: #49372e;
-      --text: #352a25;
-      --muted: #88776c;
-      --border: #e5d7c8;
-      --accent: #a87959;
-      --white: #fffdf9;
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
     body {
       font-family: "Noto Serif Bengali", serif;
       background: var(--bg);
-      color: var(--text);
-      line-height: 1.8;
+      color: var(--green);
+      line-height: 1.85;
+      overflow-wrap: anywhere;
     }
 
     button, input, textarea, select {
-      font-family: inherit;
-      font-size: inherit;
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
     }
 
     button {
       cursor: pointer;
     }
 
+    a {
+      color: inherit;
+    }
+
+    button:focus-visible, a:focus-visible,
+    input:focus-visible, textarea:focus-visible,
+    select:focus-visible {
+      outline: 3px solid #8EAA91;
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    /* Navigation */
+
     header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(248, 250, 246, .94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 76px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
-      padding: 22px 8%;
-      border-bottom: 1px solid var(--border);
-      background: var(--bg);
+      gap: 25px;
     }
 
     .logo {
       font-size: 25px;
       font-weight: 700;
+      text-decoration: none;
       white-space: nowrap;
+      letter-spacing: -.5px;
     }
 
     .logo span {
-      color: var(--accent);
+      color: var(--olive);
     }
 
     nav {
       display: flex;
-      gap: 24px;
+      align-items: center;
       flex-wrap: wrap;
+      gap: 25px;
     }
 
     nav a {
       text-decoration: none;
       color: var(--muted);
+      font-size: 14px;
+      transition: color .2s;
     }
 
     nav a:hover {
-      color: var(--brown);
+      color: var(--green);
     }
+
+    /* Buttons */
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 12px 23px;
+      background: var(--green);
+      color: var(--white);
+      text-decoration: none;
+      transition: transform .2s, background .2s, box-shadow .2s;
+    }
+
+    .btn:hover {
+      background: var(--green-2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(41, 60, 52, .12);
+    }
+
+    .btn:disabled {
+      opacity: .6;
+      cursor: wait;
+      transform: none;
+    }
+
+    .btn-outline {
+      color: var(--green);
+      background: transparent;
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover {
+      color: var(--green);
+      background: var(--surface-2);
+    }
+
+    /* Hero */
 
     .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 105px 0 110px;
       text-align: center;
-      padding: 90px 20px 100px;
-      background: var(--cream);
+      background:
+        radial-gradient(ellipse at 8% 15%, rgba(184, 201, 184, .43), transparent 38%),
+        radial-gradient(ellipse at 92% 85%, rgba(184, 201, 184, .35), transparent 34%),
+        var(--bg);
     }
 
-    .hero .tag {
-      color: var(--accent);
-      margin-bottom: 18px;
+    .hero::before {
+      content: "❧";
+      position: absolute;
+      z-index: -1;
+      right: 5%;
+      top: 5%;
+      font-size: clamp(100px, 20vw, 230px);
+      line-height: 1;
+      color: rgba(101, 123, 108, .10);
+      transform: rotate(-18deg);
+    }
+
+    .eyebrow {
+      color: var(--olive);
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: clamp(32px, 5vw, 58px);
-      line-height: 1.5;
-      margin-bottom: 18px;
+      max-width: 850px;
+      margin: 0 auto 23px;
+      font-size: clamp(34px, 5.3vw, 61px);
+      font-weight: 700;
+      line-height: 1.55;
+      letter-spacing: -1px;
     }
 
-    .hero .description {
+    .hero-description {
+      max-width: 630px;
+      margin: 0 auto 32px;
       color: var(--muted);
-      font-size: 18px;
-      max-width: 620px;
-      margin: 0 auto 28px;
+      font-size: clamp(15px, 2vw, 18px);
+      line-height: 2;
     }
 
-    .primary-btn {
-      border: 0;
-      border-radius: 30px;
-      background: var(--brown);
-      color: white;
-      padding: 13px 25px;
-      transition: background .2s;
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    .primary-btn:hover {
-      background: #60483b;
+    .hero-note {
+      margin-top: 25px;
+      font-size: 13px;
+      color: var(--muted);
     }
 
-    .primary-btn:disabled {
-      opacity: .6;
-      cursor: wait;
-    }
+    /* Letters */
 
-    .letters {
-      padding: 65px 8%;
+    .letters-section {
+      padding: 85px 0 95px;
+      background: var(--surface);
     }
 
     .section-heading {
-      font-size: 30px;
-      margin-bottom: 10px;
+      font-size: clamp(27px, 4vw, 36px);
+      line-height: 1.6;
+      margin-bottom: 9px;
     }
 
-    .subtitle {
+    .section-description {
       color: var(--muted);
-      margin-bottom: 28px;
+      max-width: 700px;
+      margin-bottom: 30px;
+      font-size: 15px;
     }
 
     .category-list {
       display: flex;
-      flex-wrap: wrap;
       gap: 10px;
+      flex-wrap: wrap;
       margin-bottom: 30px;
     }
 
     .category-btn {
+      border: 1px solid var(--border);
       background: transparent;
       color: var(--muted);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 8px 17px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: .2s;
     }
 
-    .category-btn:hover,
+    .category-btn:hover {
+      background: var(--surface-2);
+      color: var(--green);
+    }
+
     .category-btn.active {
-      background: var(--brown);
-      color: white;
-      border-color: var(--brown);
+      background: var(--green);
+      color: var(--white);
+      border-color: var(--green);
     }
 
     .letter-grid {
@@ -161,201 +283,370 @@
       gap: 22px;
     }
 
-    .letter {
+    .letter-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 26px;
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 25px;
-      overflow-wrap: anywhere;
+      border-radius: 17px;
+      box-shadow: 0 4px 15px rgba(41, 60, 52, .025);
+      transition: transform .25s, box-shadow .25s, border-color .25s;
     }
 
-    .letter .category {
-      color: var(--accent);
-      font-size: 13px;
-      margin-bottom: 12px;
+    .letter-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      border-color: #A9BEAA;
     }
 
-    .letter h3 {
-      font-size: 21px;
+    .letter-category {
+      display: inline-block;
+      align-self: flex-start;
       margin-bottom: 15px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--green-2);
+      font-size: 12px;
     }
 
-    .letter p {
-      color: #76675e;
+    .letter-title {
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 1.7;
+      margin-bottom: 13px;
+    }
+
+    .letter-body {
+      color: #617065;
       font-size: 15px;
       line-height: 2;
       white-space: pre-wrap;
       overflow-wrap: anywhere;
     }
 
-    .empty {
-      text-align: center;
-      padding: 35px 15px;
-      color: var(--muted);
+    .empty-state {
       grid-column: 1 / -1;
+      padding: 45px 20px;
+      border: 1px dashed var(--border);
+      border-radius: 16px;
+      text-align: center;
+      color: var(--muted);
+      background: var(--bg);
     }
 
+    .empty-state .empty-symbol {
+      display: block;
+      font-size: 34px;
+      margin-bottom: 10px;
+      color: var(--olive);
+    }
+
+    /* About */
+
     .about {
+      padding: 85px 0;
       text-align: center;
-      padding: 70px 20px;
-      background: var(--white);
+      background: var(--surface-2);
+    }
+
+    .about-inner {
+      max-width: 760px;
+      margin: 0 auto;
     }
 
     .about h2 {
-      font-size: 28px;
-      margin-bottom: 18px;
+      font-size: clamp(26px, 4vw, 35px);
+      margin-bottom: 16px;
+      line-height: 1.65;
     }
 
     .about p {
-      color: var(--muted);
       max-width: 650px;
       margin: 0 auto 25px;
+      color: var(--muted);
+      line-height: 2;
     }
+
+    /* Footer */
 
     footer {
+      padding: 35px 0;
+      background: var(--green);
+      color: #E4EBE3;
       text-align: center;
-      padding: 28px 15px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
     }
 
-    /* চিঠি লেখার পপ-আপ */
+    .footer-logo {
+      font-size: 23px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: #C0CEC0;
+    }
+
+    .footer-bottom {
+      margin-top: 17px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,.13);
+    }
+
+    /* Modal */
+
     .modal {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(30, 22, 18, .65);
-      padding: 18px;
       align-items: center;
       justify-content: center;
-      overflow-y: auto;
+      padding: 18px;
+      background: rgba(22, 37, 28, .65);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal.open {
+      display: flex;
     }
 
     .modal-content {
       position: relative;
-      background: var(--bg);
       width: 100%;
-      max-width: 560px;
+      max-width: 570px;
       max-height: 92vh;
       overflow-y: auto;
-      padding: 30px;
-      border-radius: 18px;
-      box-shadow: 0 15px 50px rgba(0,0,0,.15);
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, .2);
     }
 
-    .close {
+    .close-btn {
       position: absolute;
+      top: 14px;
       right: 17px;
-      top: 10px;
-      border: 0;
+      display: grid;
+      place-items: center;
+      width: 39px;
+      height: 39px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
       background: transparent;
-      color: var(--brown);
-      font-size: 30px;
+      color: var(--green);
+      font-size: 26px;
+      line-height: 1;
     }
 
-    .modal-content h2 {
-      margin: 12px 0 5px;
-      font-size: 25px;
+    .close-btn:hover {
+      background: var(--surface-2);
+    }
+
+    .modal h2 {
+      padding-right: 35px;
+      font-size: 26px;
+      line-height: 1.7;
+      margin-bottom: 8px;
     }
 
     .notice {
       color: var(--muted);
       font-size: 13px;
-      margin-bottom: 20px;
+      line-height: 1.9;
+      margin-bottom: 23px;
     }
 
     .form-group {
-      margin-bottom: 17px;
+      margin-bottom: 19px;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 7px;
       font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 8px;
     }
 
     .form-group input,
-    .form-group textarea,
-    .form-group select {
+    .form-group select,
+    .form-group textarea {
       display: block;
       width: 100%;
-      padding: 12px;
+      padding: 13px 14px;
       border: 1px solid var(--border);
-      border-radius: 9px;
+      border-radius: 10px;
       background: var(--white);
-      color: var(--text);
+      color: var(--green);
       outline: none;
+      transition: border-color .2s, box-shadow .2s;
     }
 
     .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: var(--accent);
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--olive);
+      box-shadow: 0 0 0 3px rgba(101, 123, 108, .12);
     }
 
     .form-group textarea {
-      min-height: 150px;
+      min-height: 175px;
       resize: vertical;
+      line-height: 2;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #99A69B;
     }
 
     .form-message {
-      margin: 12px 0;
+      margin: 10px 0 15px;
       font-size: 14px;
+      line-height: 1.9;
       overflow-wrap: anywhere;
     }
 
     .form-message.error {
-      color: #b42318;
+      color: var(--danger);
     }
 
     .form-message.success {
-      color: #287747;
+      color: var(--success);
     }
+
+    .submit-btn {
+      width: 100%;
+    }
+
+    /* Responsive */
 
     @media (max-width: 900px) {
       .letter-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      header {
-        padding: 18px 5%;
-      }
-
-      .letters {
-        padding: 50px 5%;
+      .hero {
+        padding: 85px 0;
       }
     }
 
     @media (max-width: 600px) {
-      header {
+      .container {
+        width: 90%;
+      }
+
+      .nav-inner {
+        min-height: auto;
+        padding: 15px 0;
         align-items: flex-start;
         flex-direction: column;
+        gap: 11px;
+      }
+
+      .logo {
+        font-size: 23px;
       }
 
       nav {
-        gap: 12px;
-        font-size: 14px;
+        width: 100%;
+        gap: 17px;
+      }
+
+      nav a {
+        font-size: 13px;
       }
 
       .hero {
-        padding: 65px 18px;
+        padding: 70px 0 75px;
       }
 
-      .hero .description {
-        font-size: 16px;
+      .hero::before {
+        right: -10%;
+        top: 2%;
+      }
+
+      h1 {
+        font-size: clamp(31px, 8vw, 42px);
+        letter-spacing: 0;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .letters-section,
+      .about {
+        padding: 60px 0;
+      }
+
+      .section-heading {
+        font-size: 27px;
+      }
+
+      .category-list {
+        gap: 8px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 2px 1px 12px;
+        scrollbar-width: thin;
+      }
+
+      .category-btn {
+        padding: 8px 14px;
+        font-size: 13px;
       }
 
       .letter-grid {
         grid-template-columns: 1fr;
+        gap: 15px;
       }
 
-      .section-heading {
-        font-size: 25px;
+      .letter-card {
+        padding: 22px;
+      }
+
+      .letter-title {
+        font-size: 20px;
+      }
+
+      .modal {
+        padding: 10px;
+        align-items: center;
       }
 
       .modal-content {
-        padding: 25px 19px;
+        max-height: 94vh;
+        padding: 28px 20px 23px;
+        border-radius: 16px;
+      }
+
+      .modal h2 {
+        font-size: 23px;
+      }
+
+      footer {
+        padding: 30px 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
       }
     }
   </style>
@@ -364,81 +655,105 @@
 <body>
 
   <header>
-    <div class="logo">না বলা <span>কথা।</span></div>
+    <div class="container nav-inner">
+      <a class="logo" href="#home">না বলা <span>কথা।</span></a>
 
-    <nav>
-      <a href="#home">প্রচ্ছদ</a>
-      <a href="#letters">চিঠি</a>
-      <a href="#about">আমাদের কথা</a>
-    </nav>
+      <nav aria-label="প্রধান নেভিগেশন">
+        <a href="#home">প্রচ্ছদ</a>
+        <a href="#letters">চিঠি</a>
+        <a href="#about">আমাদের কথা</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="hero" id="home">
-    <p class="tag">কিছু কথা শুধু অনুভবের</p>
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <p class="eyebrow">কিছু কথা শুধু অনুভবের</p>
 
-    <h1>আপনার না-বলা কথারও<br>একটা ঠিকানা আছে।</h1>
+        <h1>আপনার না-বলা কথারও<br>একটা ঠিকানা আছে।</h1>
 
-    <p class="description">
-      কিছু অনুভূতি কাউকে বলা হয় না, কিছু চিঠি কখনো পাঠানো হয় না।
-      আপনার সেই না-বলা কথাগুলো এখানে লিখে রাখতে পারেন।
-    </p>
+        <p class="hero-description">
+          কিছু অনুভূতি কাউকে বলা হয় না, কিছু চিঠি কখনো পাঠানো হয় না।
+          আপনার সেই না-বলা কথাগুলো এখানে লিখে রাখতে পারেন।
+        </p>
 
-    <button type="button" class="primary-btn" onclick="openForm()">
-      একটি চিঠি লিখুন ↗
-    </button>
-  </section>
+        <div class="hero-actions">
+          <button type="button" class="btn" onclick="openForm()">
+            একটি চিঠি লিখুন <span aria-hidden="true">↗</span>
+          </button>
 
-  <section class="letters" id="letters">
-    <h2 class="section-heading">অচেনা মানুষের চিঠি</h2>
+          <a class="btn btn-outline" href="#letters">চিঠিগুলো পড়ুন ↓</a>
+        </div>
 
-    <p class="subtitle">
-      হয়তো কোনো একটি চিঠিতে নিজের গল্প খুঁজে পাবেন।
-    </p>
+        <p class="hero-note">আপনার অনুভূতি, আপনার ভাষায়।</p>
+      </div>
+    </section>
 
-    <div class="category-list" id="categoryList">
-      <button type="button" class="category-btn active" data-category="সব চিঠি">সব চিঠি</button>
-      <button type="button" class="category-btn" data-category="ভালোবাসা">ভালোবাসা</button>
-      <button type="button" class="category-btn" data-category="পরিবার">পরিবার</button>
-      <button type="button" class="category-btn" data-category="স্মৃতি">স্মৃতি</button>
-      <button type="button" class="category-btn" data-category="নিজের সঙ্গে">নিজের সঙ্গে</button>
-      <button type="button" class="category-btn" data-category="না-পাঠানো চিঠি">না-পাঠানো চিঠি</button>
-    </div>
+    <section class="letters-section" id="letters">
+      <div class="container">
+        <h2 class="section-heading">অচেনা মানুষের চিঠি</h2>
 
-    <div class="letter-grid" id="letterGrid">
-      <div class="empty">চিঠি লোড হচ্ছে...</div>
-    </div>
-  </section>
+        <p class="section-description">
+          হয়তো কোনো একটি চিঠিতে নিজের গল্প খুঁজে পাবেন।
+          হয়তো অপরিচিত কারও কথায় নিজের অনুভূতিকে চিনতে পারবেন।
+        </p>
 
-  <section class="about" id="about">
-    <h2>কিছু কথা শুধু নিজের কাছে রাখতে নেই।</h2>
+        <div class="category-list" id="categoryList" aria-label="চিঠির বিভাগ">
+          <button type="button" class="category-btn active" data-category="সব চিঠি" aria-pressed="true">সব চিঠি</button>
+          <button type="button" class="category-btn" data-category="ভালোবাসা" aria-pressed="false">ভালোবাসা</button>
+          <button type="button" class="category-btn" data-category="পরিবার" aria-pressed="false">পরিবার</button>
+          <button type="button" class="category-btn" data-category="স্মৃতি" aria-pressed="false">স্মৃতি</button>
+          <button type="button" class="category-btn" data-category="নিজের সঙ্গে" aria-pressed="false">নিজের সঙ্গে</button>
+          <button type="button" class="category-btn" data-category="না-পাঠানো চিঠি" aria-pressed="false">না-পাঠানো চিঠি</button>
+        </div>
 
-    <p>
-      হয়তো কেউ আপনার পরিচয় জানবে না। তবু আপনার কথাগুলো
-      কারও একাকিত্বের সঙ্গী হতে পারে।
-    </p>
+        <div class="letter-grid" id="letterGrid" aria-live="polite">
+          <div class="empty-state">চিঠি লোড হচ্ছে...</div>
+        </div>
+      </div>
+    </section>
 
-    <button type="button" class="primary-btn" onclick="openForm()">
-      আপনার কথাটি লিখুন ↗
-    </button>
-  </section>
+    <section class="about" id="about">
+      <div class="container about-inner">
+        <p class="eyebrow">আপনার অনুভূতির ঠিকানা</p>
+
+        <h2>কিছু কথা শুধু নিজের কাছে রাখতে নেই।</h2>
+
+        <p>
+          হয়তো কেউ আপনার পরিচয় জানবে না। তবু আপনার কথাগুলো
+          কারও একাকিত্বের সঙ্গী হতে পারে। কখনো কখনো অচেনা মানুষের
+          একটি চিঠিই মনে করিয়ে দেয়—আপনি একা নন।
+        </p>
+
+        <button type="button" class="btn" onclick="openForm()">
+          আপনার কথাটি লিখুন ↗
+        </button>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p><strong>না বলা কথা।</strong></p>
-    <p>যা বলা হয়নি, তা লিখে যান।</p>
-    <p>© 2026 না বলা কথা</p>
+    <div class="container">
+      <div class="footer-logo">না বলা কথা।</div>
+      <p>যা বলা হয়নি, তা লিখে যান।</p>
+      <div class="footer-bottom">
+        <p>© 2026 না বলা কথা</p>
+      </div>
+    </div>
   </footer>
 
   <!-- চিঠি লেখার ফর্ম -->
-  <div class="modal" id="letterModal">
+  <div class="modal" id="letterModal" aria-hidden="true">
     <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="formTitle">
-
-      <button type="button" class="close" onclick="closeForm()" aria-label="বন্ধ করুন">×</button>
+      <button type="button" class="close-btn" id="closeModalBtn" aria-label="বন্ধ করুন">×</button>
 
       <h2 id="formTitle">আপনার মনের কথা লিখুন</h2>
 
       <p class="notice">
-        অনুগ্রহ করে ব্যক্তিগত পরিচয়, ফোন নম্বর বা ঠিকানা লিখবেন না।
-        এই পরীক্ষামূলক সংস্করণে জমা দেওয়া চিঠি প্রকাশ্যে দেখা যেতে পারে।
+        অনুগ্রহ করে নিজের নাম, ফোন নম্বর, ঠিকানা বা অন্য ব্যক্তির
+        ব্যক্তিগত তথ্য লিখবেন না। মনে রাখবেন, এই সংস্করণে জমা দেওয়া
+        চিঠি প্রকাশ্যে দেখা যেতে পারে।
       </p>
 
       <form id="letterForm">
@@ -477,26 +792,26 @@
 
         <p id="formStatus" class="form-message" role="status" aria-live="polite"></p>
 
-        <button type="submit" class="primary-btn" id="submitBtn">
+        <button type="submit" class="btn submit-btn" id="submitBtn">
           চিঠি জমা দিন
         </button>
       </form>
     </div>
   </div>
 
-  <!-- Supabase library -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
     "use strict";
 
-    // আপনার Supabase project information
+    // Supabase project configuration
     const SUPABASE_URL = "https://clkvnvmzcgtqdcjdfiqw.supabase.co";
     const SUPABASE_KEY = "sb_publishable_8FKVJGeWp8IxSmv1aTM8Tg_2NnWmMkY";
 
     let db = null;
     let allLetters = [];
     let activeCategory = "সব চিঠি";
+    let previousFocus = null;
 
     const modal = document.getElementById("letterModal");
     const form = document.getElementById("letterForm");
@@ -505,32 +820,45 @@
     const letterGrid = document.getElementById("letterGrid");
 
     function openForm() {
+      previousFocus = document.activeElement;
+
       formStatus.textContent = "";
       formStatus.className = "form-message";
-      modal.style.display = "flex";
+
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
+
+      document.getElementById("letterTitle").focus();
     }
 
     function closeForm() {
-      modal.style.display = "none";
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
+
+      if (previousFocus && typeof previousFocus.focus === "function") {
+        previousFocus.focus();
+      }
     }
 
-    modal.addEventListener("click", function (event) {
+    document.getElementById("closeModalBtn").addEventListener("click", closeForm);
+
+    modal.addEventListener("click", function(event) {
       if (event.target === modal) {
         closeForm();
       }
     });
 
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") {
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape" && modal.classList.contains("open")) {
         closeForm();
       }
     });
 
     function showStatus(message, type) {
       formStatus.textContent = message;
-      formStatus.className = "form-message " + type;
+      formStatus.className = "form-message" + (type ? " " + type : "");
     }
 
     function renderLetters() {
@@ -538,32 +866,43 @@
 
       const filtered = activeCategory === "সব চিঠি"
         ? allLetters
-        : allLetters.filter(function (letter) {
+        : allLetters.filter(function(letter) {
             return letter.category === activeCategory;
           });
 
       if (filtered.length === 0) {
         const empty = document.createElement("div");
-        empty.className = "empty";
-        empty.textContent = allLetters.length === 0
-          ? "এখনো কোনো চিঠি প্রকাশিত হয়নি। প্রথম চিঠিটি আপনিই লিখুন।"
+        empty.className = "empty-state";
+
+        const symbol = document.createElement("span");
+        symbol.className = "empty-symbol";
+        symbol.setAttribute("aria-hidden", "true");
+        symbol.textContent = "❧";
+
+        const message = document.createElement("p");
+        message.textContent = allLetters.length === 0
+          ? "এখনো কোনো চিঠি নেই। প্রথম চিঠিটি আপনিই লিখুন।"
           : "এই বিভাগে এখনো কোনো চিঠি নেই।";
+
+        empty.append(symbol, message);
         letterGrid.appendChild(empty);
         return;
       }
 
-      filtered.forEach(function (letter) {
+      filtered.forEach(function(letter) {
         const card = document.createElement("article");
-        card.className = "letter";
+        card.className = "letter-card";
 
-        const category = document.createElement("div");
-        category.className = "category";
+        const category = document.createElement("span");
+        category.className = "letter-category";
         category.textContent = letter.category || "অন্যান্য";
 
         const title = document.createElement("h3");
+        title.className = "letter-title";
         title.textContent = letter.title || "শিরোনামহীন চিঠি";
 
         const body = document.createElement("p");
+        body.className = "letter-body";
         body.textContent = letter.body || "";
 
         card.append(category, title, body);
@@ -571,15 +910,16 @@
       });
     }
 
-    document.getElementById("categoryList").addEventListener("click", function (event) {
+    document.getElementById("categoryList").addEventListener("click", function(event) {
       const button = event.target.closest("button[data-category]");
-
       if (!button) return;
 
       activeCategory = button.dataset.category;
 
-      document.querySelectorAll(".category-btn").forEach(function (item) {
-        item.classList.toggle("active", item === button);
+      document.querySelectorAll(".category-btn").forEach(function(item) {
+        const selected = item === button;
+        item.classList.toggle("active", selected);
+        item.setAttribute("aria-pressed", String(selected));
       });
 
       renderLetters();
@@ -587,11 +927,17 @@
 
     async function loadLetters() {
       if (!db) {
-        letterGrid.innerHTML = '<div class="empty">Supabase সংযোগ করা হয়নি। Publishable Key পরীক্ষা করুন।</div>';
+        letterGrid.innerHTML = "";
+
+        const message = document.createElement("div");
+        message.className = "empty-state";
+        message.textContent = "Supabase সংযোগ করা যায়নি। URL ও Publishable Key পরীক্ষা করুন।";
+
+        letterGrid.appendChild(message);
         return;
       }
 
-      letterGrid.innerHTML = '<div class="empty">চিঠি লোড হচ্ছে...</div>';
+      letterGrid.innerHTML = '<div class="empty-state">চিঠি লোড হচ্ছে...</div>';
 
       try {
         const { data, error } = await db
@@ -608,16 +954,21 @@
       } catch (error) {
         console.error("চিঠি লোড করার সমস্যা:", error);
 
-        letterGrid.innerHTML =
-          '<div class="empty">চিঠি লোড করা যায়নি। Supabase-এর URL, Key এবং SELECT policy পরীক্ষা করুন।</div>';
+        letterGrid.innerHTML = "";
+
+        const message = document.createElement("div");
+        message.className = "empty-state";
+        message.textContent = "চিঠি লোড করা যায়নি। ইন্টারনেট ও Supabase SELECT policy পরীক্ষা করুন।";
+
+        letterGrid.appendChild(message);
       }
     }
 
-    form.addEventListener("submit", async function (event) {
+    form.addEventListener("submit", async function(event) {
       event.preventDefault();
 
       if (!db) {
-        showStatus("Supabase সংযোগ নেই। Publishable Key বসান।", "error");
+        showStatus("Supabase সংযোগ নেই। Publishable Key পরীক্ষা করুন।", "error");
         return;
       }
 
@@ -632,7 +983,7 @@
 
       submitBtn.disabled = true;
       submitBtn.textContent = "জমা হচ্ছে...";
-      showStatus("আপনার চিঠি জমা দেওয়া হচ্ছে...", "");
+      showStatus("আপনার চিঠি জমা দেওয়া হচ্ছে...");
 
       try {
         const { error } = await db
@@ -641,12 +992,13 @@
 
         if (error) throw error;
 
-        showStatus("চিঠি সফলভাবে জমা হয়েছে।", "success");
         form.reset();
 
         await loadLetters();
 
-        setTimeout(function () {
+        showStatus("আপনার চিঠি সফলভাবে জমা হয়েছে।", "success");
+
+        setTimeout(function() {
           closeForm();
         }, 1200);
 
@@ -654,7 +1006,7 @@
         console.error("চিঠি জমা দেওয়ার সমস্যা:", error);
 
         showStatus(
-          "চিঠি জমা হয়নি। Supabase-এর INSERT policy ও Publishable Key পরীক্ষা করুন।",
+          "চিঠি জমা হয়নি। ইন্টারনেট, Supabase Key এবং INSERT policy পরীক্ষা করুন।",
           "error"
         );
 
@@ -664,13 +1016,12 @@
       }
     });
 
-    // Supabase চালু করা
+    // Supabase initialize
     try {
       if (
         window.supabase &&
         SUPABASE_URL.startsWith("https://") &&
-        SUPABASE_KEY.startsWith("sb_publishable_") &&
-        !SUPABASE_KEY.includes("এখানে")
+        SUPABASE_KEY.startsWith("sb_publishable_")
       ) {
         db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       }
@@ -678,7 +1029,6 @@
       console.error("Supabase চালু করা যায়নি:", error);
     }
 
-    // ওয়েবসাইট খোলার পর চিঠি লোড হবে
     loadLetters();
   </script>
 
