@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -710,6 +709,66 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+
+    /* ---- নতুন: পড়ার ভিউ, প্রতিক্রিয়া, জমা-পরবর্তী অ্যানিমেশন ---- */
+    .letter-card { cursor: pointer; }
+    .letter-card:focus-visible { outline: 3px solid #8EAA91; outline-offset: 3px; }
+    .letter-more { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--olive); }
+    .letters-tools { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 22px; }
+    .btn-sm { padding: 9px 18px; font-size: 14px; }
+
+    .reader { max-width: 720px; padding: 38px 40px 32px; }
+    .reader-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 8px; padding-right: 44px; }
+    .reader-meta .letter-category { margin: 0; }
+    .reader-date { font-size: 13px; color: var(--muted); }
+    .reader h2 { font-size: clamp(24px, 4vw, 30px); margin-bottom: 18px; }
+    .reader-body { font-size: 17px; line-height: 2.15; white-space: pre-wrap; overflow-wrap: anywhere; color: #3A4F43; }
+    .reader-foot { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+    .reader-sign { color: var(--muted); font-size: 14px; }
+    .felt-btn.on { background: var(--surface-2); border-color: var(--olive); }
+    .felt-note { width: 100%; font-size: 12px; color: var(--muted); }
+
+    .sent { display: none; text-align: center; padding: 6px 0 4px; }
+    .modal-content.is-sent > *:not(.sent):not(.close-btn) { display: none; }
+    .modal-content.is-sent .sent { display: block; }
+    .sent-sea { position: relative; height: 130px; margin-bottom: 20px; overflow: hidden; border-radius: 14px; background: var(--surface-2); }
+    .sent-sea .wave { position: absolute; left: 0; bottom: 0; width: 200%; height: 46px; animation: wave 7s linear infinite; }
+    .sent-boat { position: absolute; bottom: 30px; left: -70px; width: 62px; animation: sail 5.5s ease-in-out .2s forwards; }
+    .sent-boat svg { display: block; width: 100%; animation: bob 1.5s ease-in-out infinite; }
+    .sent h2 { padding: 0; margin-bottom: 8px; }
+    .sent p { color: var(--muted); margin-bottom: 20px; }
+    @keyframes sail { to { left: 108%; } }
+    @keyframes bob { 50% { transform: translateY(-5px) rotate(3deg); } }
+    @keyframes wave { to { transform: translateX(-50%); } }
+    @media (max-width: 600px) { .reader { padding: 30px 20px 24px; } .reader-body { font-size: 16px; } }
+    @media (prefers-reduced-motion: reduce) { .sent-boat, .sent-boat svg, .sent-sea .wave { animation: none !important; } .sent-boat { left: 40%; } }
+
+    /* ---- নম্বর, সার্চ, প্রাপক ---- */
+    .search-wrap { flex: 1 1 260px; min-width: 0; }
+    .search-input { width: 100%; padding: 11px 18px; border: 1px solid var(--border); border-radius: 999px; background: var(--white); color: var(--green); font-size: 15px; outline: none; transition: border-color .2s, box-shadow .2s; }
+    .search-input:focus { border-color: var(--olive); box-shadow: 0 0 0 3px rgba(101, 123, 108, .12); }
+    .letter-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+    .letter-top .letter-category { margin: 0; }
+    .letter-no, .reader-no { font-size: 13px; color: var(--olive); white-space: nowrap; }
+    .other-field { display: none; margin-top: 10px; }
+    .other-field.on { display: block; }
+    .hint { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.8; }
+    .sent-no { font-size: 20px; font-weight: 700; color: var(--green-2); margin-bottom: 4px; }
+
+    /* ---- লিংক, শেয়ার-কার্ড, আজকের চিঠি ---- */
+    .hero-count { margin-top: 8px; color: var(--olive); font-size: 13px; }
+    .today { margin-bottom: 26px; }
+    .today-card { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: space-between; padding: 24px 26px; border: 1px solid var(--border); border-radius: 17px; background: var(--surface-2); }
+    .today-text { flex: 1 1 320px; min-width: 0; }
+    .today-label { font-size: 13px; color: var(--olive); margin-bottom: 2px; }
+    .today-title { font-size: 21px; font-weight: 600; line-height: 1.7; }
+    .today-preview { color: #4B5F53; font-size: 15px; line-height: 1.95; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .reader-actions { width: 100%; display: flex; flex-wrap: wrap; gap: 10px; }
+    .link-msg { width: 100%; font-size: 12px; color: var(--muted); word-break: break-all; }
+    .card-pop { max-width: 460px; text-align: center; padding: 30px 24px 24px; }
+    .card-pop img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 14px; }
+    .card-pop .row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .card-pop .hint { margin-top: 12px; }
   </style>
 </head>
 
@@ -779,6 +838,7 @@
         </div>
 
         <p class="hero-note">আপনার অনুভূতি, আপনার ভাষায়।</p>
+        <p class="hero-count" id="heroCount"></p>
 
       </div>
     </section>
@@ -793,29 +853,44 @@
           হয়তো অপরিচিত কারও কথায় নিজের অনুভূতিকে চিনতে পারবেন।
         </p>
 
+        <div class="today" id="todayBox"></div>
+
+
+        <div class="letters-tools">
+          <div class="search-wrap">
+            <input type="search" id="searchInput" class="search-input" inputmode="search"
+                   placeholder="চিঠির নম্বর বা শিরোনাম দিয়ে খুঁজুন" aria-label="চিঠি খুঁজুন">
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" id="randomBtn">একটি অচেনা চিঠি পড়ুন</button>
+        </div>
+
         <div class="category-list" id="categoryList" aria-label="চিঠির বিভাগ">
           <button type="button" class="category-btn active"
                   data-category="সব চিঠি" aria-pressed="true">সব চিঠি</button>
 
-                  <button type="button" class="category-btn"
-                  data-category="না-পাঠানো চিঠি" aria-pressed="false">বন্ধু</button>
+          <button type="button" class="category-btn"
+                  data-category="মা" aria-pressed="false">মা</button>
 
           <button type="button" class="category-btn"
-                  data-category="ভালোবাসা" aria-pressed="false">ভালোবাসা</button>
+                  data-category="বাবা" aria-pressed="false">বাবা</button>
 
           <button type="button" class="category-btn"
-                  data-category="পরিবার" aria-pressed="false">পরিবার</button>
+                  data-category="বন্ধু" aria-pressed="false">বন্ধু</button>
 
           <button type="button" class="category-btn"
-                  data-category="স্মৃতি" aria-pressed="false">স্মৃতি</button>
+                  data-category="প্রিয় মানুষ" aria-pressed="false">প্রিয় মানুষ</button>
 
           <button type="button" class="category-btn"
-                  data-category="নিজের সঙ্গে" aria-pressed="false">নিজের সঙ্গে</button>
+                  data-category="নিজেকে" aria-pressed="false">নিজেকে</button>
 
           <button type="button" class="category-btn"
-                  data-category="না-পাঠানো চিঠি" aria-pressed="false">না-পাঠানো চিঠি</button>
-                  
-          
+                  data-category="শৈশবের আমি" aria-pressed="false">শৈশবের আমি</button>
+
+          <button type="button" class="category-btn"
+                  data-category="যে চলে গেছে" aria-pressed="false">যে চলে গেছে</button>
+
+          <button type="button" class="category-btn"
+                  data-category="অন্য" aria-pressed="false">অন্য</button>
         </div>
 
         <div class="letter-grid" id="letterGrid" aria-live="polite">
@@ -884,15 +959,22 @@
         </div>
 
         <div class="form-group">
-          <label for="letterCategory">চিঠির বিভাগ</label>
-          <select id="letterCategory" required>
-            <option value="">বিভাগ নির্বাচন করুন</option>
-            <option value="ভালোবাসা">ভালোবাসা</option>
-            <option value="পরিবার">পরিবার</option>
-            <option value="স্মৃতি">স্মৃতি</option>
-            <option value="নিজের সঙ্গে">নিজের সঙ্গে</option>
-            <option value="না-পাঠানো চিঠি">না-পাঠানো চিঠি</option>
+          <label for="letterRecipient">কাকে লেখা?</label>
+          <select id="letterRecipient" required>
+            <option value="">প্রাপক নির্বাচন করুন</option>
+            <option value="মা">মা</option>
+            <option value="বাবা">বাবা</option>
+            <option value="বন্ধু">বন্ধু</option>
+            <option value="প্রিয় মানুষ">প্রিয় মানুষ</option>
+            <option value="নিজেকে">নিজেকে</option>
+            <option value="শৈশবের আমি">শৈশবের আমি</option>
+            <option value="যে চলে গেছে">যে চলে গেছে</option>
+            <option value="__other">অন্য</option>
           </select>
+          <div class="other-field" id="otherField">
+            <input type="text" id="otherRecipient" maxlength="40" placeholder="যেমন: আমার শিক্ষক">
+            <p class="hint">আসল নাম লিখবেন না, শুধু সম্পর্ক লিখুন।</p>
+          </div>
         </div>
 
         <div class="form-group">
@@ -900,6 +982,13 @@
           <textarea id="letterBody" maxlength="10000"
                     placeholder="মনের কথাগুলো লিখুন..." required></textarea>
         </div>
+
+        <div class="form-group">
+          <label for="letterAuthor">ছদ্মনাম <span style="font-weight:400;color:var(--muted)">(ঐচ্ছিক)</span></label>
+          <input type="text" id="letterAuthor" maxlength="30" placeholder="যেমন: ভোরের পাখি, বৃষ্টিবিলাসী">
+          <p class="hint">আসল নাম নয়, ডাকনাম বা ছদ্মনাম লিখুন। খালি রাখলে "একজন অচেনা মানুষ" দেখাবে।</p>
+        </div>
+
 
         <p id="formStatus" class="form-message"
            role="status" aria-live="polite"></p>
@@ -909,6 +998,55 @@
         </button>
 
       </form>
+
+      <div class="sent" id="sentBox" role="status">
+        <div class="sent-sea" aria-hidden="true">
+          <div class="sent-boat"><svg viewBox="0 0 80 56" aria-hidden="true"><polygon points="4,36 76,36 62,52 18,52" fill="#fff" stroke="#657B6C" stroke-width="1.2"/><polygon points="40,6 40,34 14,34" fill="#fff" stroke="#657B6C" stroke-width="1.2"/><polygon points="40,14 40,34 64,34" fill="#E9EEE8" stroke="#657B6C" stroke-width="1.2"/></svg></div>
+          <svg class="wave" viewBox="0 0 400 46" preserveAspectRatio="none"><path d="M0 18 Q25 4 50 18 T100 18 T150 18 T200 18 T250 18 T300 18 T350 18 T400 18 V46 H0Z" fill="#CDD9CC" opacity=".8"/></svg>
+        </div>
+        <h2>চিঠিটা ঘরে পৌঁছে গেছে।</h2>
+        <p class="sent-no" id="sentNo"></p>
+        <p id="sentText">কেউ একদিন হয়তো এটা পড়ে ভাববে, সে একা নয়।</p>
+        <button type="button" class="btn" id="sentCloseBtn">ঠিক আছে</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- চিঠি পড়ার ভিউ -->
+  <div class="modal" id="readerModal" aria-hidden="true">
+    <div class="modal-content reader" role="dialog" aria-modal="true" aria-labelledby="readerTitle">
+      <button type="button" class="close-btn" id="closeReaderBtn" aria-label="বন্ধ করুন">×</button>
+      <div class="reader-meta">
+        <span class="letter-category" id="readerCategory"></span>
+        <span class="reader-no" id="readerNo"></span>
+        <span class="reader-date" id="readerDate"></span>
+      </div>
+      <h2 id="readerTitle"></h2>
+      <div class="reader-body" id="readerBody"></div>
+      <div class="reader-foot">
+        <span class="reader-sign" id="readerSign">— একজন অচেনা মানুষ</span>
+        <button type="button" class="btn btn-outline btn-sm felt-btn" id="feltBtn" aria-pressed="false">আমিও এমন অনুভব করেছি</button>
+        <div class="reader-actions">
+          <button type="button" class="btn btn-outline btn-sm" id="copyLinkBtn">লিংক কপি করুন</button>
+          <button type="button" class="btn btn-outline btn-sm" id="cardBtn">শেয়ার-কার্ড বানান</button>
+        </div>
+        <span class="link-msg" id="linkMsg"></span>
+        <span class="felt-note" id="feltNote"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- শেয়ার-কার্ড -->
+  <div class="modal" id="cardModal" aria-hidden="true">
+    <div class="modal-content card-pop" role="dialog" aria-modal="true" aria-label="শেয়ার-কার্ড">
+      <button type="button" class="close-btn" id="closeCardBtn" aria-label="বন্ধ করুন">×</button>
+      <img id="cardImg" alt="চিঠির শেয়ার-কার্ড">
+      <div class="row">
+        <a class="btn btn-sm" id="cardDownload" download="chithighor.png">ছবি নামান</a>
+        <button type="button" class="btn btn-outline btn-sm" id="cardShare" hidden>শেয়ার করুন</button>
+      </div>
+      <p class="hint">ছবিতে লেখকের কোনো পরিচয় থাকে না। ফোনে ছবিটা চেপে ধরেও সেভ করা যায়।</p>
     </div>
   </div>
 
@@ -924,6 +1062,27 @@
     let db = null;
     let allLetters = [];
     let activeCategory = "সব চিঠি";
+    let searchQuery = "";
+    const RECIPIENTS = ["মা", "বাবা", "বন্ধু", "প্রিয় মানুষ", "নিজেকে", "শৈশবের আমি", "যে চলে গেছে"];
+
+    function bn(n) { return String(n).replace(/\d/g, function (d) { return "০১২৩৪৫৬৭৮৯"[d]; }); }
+    function normQuery(q) {
+      return q.trim().replace(/^(#|নং)\s*(?=[\d০-৯])/, "").replace(/[০-৯]/g, function (d) { return "০১২৩৪৫৬৭৮৯".indexOf(d); });
+    }
+    function recipientOf(l) { return l.recipient || l.category || "অন্য"; }
+    function noText(l) { return l.letter_no ? "নং " + bn(l.letter_no) : ""; }
+
+    function getFiltered() {
+      const q = normQuery(searchQuery);
+      return allLetters.filter(function (l) {
+        const r = l.recipient || l.category || "";
+        if (activeCategory === "অন্য") { if (RECIPIENTS.indexOf(r) !== -1) return false; }
+        else if (activeCategory !== "সব চিঠি" && r !== activeCategory) return false;
+        if (!q) return true;
+        if (/^\d+$/.test(q)) return String(l.letter_no || "").indexOf(q) === 0;
+        return (l.title || "").indexOf(q) !== -1 || r.indexOf(q) !== -1;
+      });
+    }
     let previousFocus = null;
 
     const modal = document.getElementById("letterModal");
@@ -937,6 +1096,7 @@
 
       formStatus.textContent = "";
       formStatus.className = "form-message";
+      modal.querySelector(".modal-content").classList.remove("is-sent");
 
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
@@ -970,6 +1130,266 @@
       }
     });
 
+
+    // ---- পড়ার ভিউ ----
+    const readerModal = document.getElementById("readerModal");
+    const feltBtn = document.getElementById("feltBtn");
+    let currentLetter = null;
+    let readerPrevFocus = null;
+
+    function getFelt() {
+      try { return JSON.parse(localStorage.getItem("chithighor_felt") || "[]"); }
+      catch (e) { return []; }
+    }
+    function setFelt(list) {
+      try { localStorage.setItem("chithighor_felt", JSON.stringify(list)); } catch (e) {}
+    }
+    function paintFelt() {
+      const on = currentLetter && getFelt().indexOf(currentLetter.id) !== -1;
+      feltBtn.classList.toggle("on", !!on);
+      feltBtn.setAttribute("aria-pressed", String(!!on));
+      feltBtn.textContent = on ? "আপনি এটা অনুভব করেছেন" : "আমিও এমন অনুভব করেছি";
+      document.getElementById("feltNote").textContent = on ? "আপনি একা নন।" : "";
+    }
+
+    function openReader(letter) {
+      currentLetter = letter;
+      readerPrevFocus = document.activeElement;
+
+      document.getElementById("readerCategory").textContent = "প্রতি: " + recipientOf(letter);
+      document.getElementById("readerNo").textContent = letter.letter_no ? "চিঠি নং " + bn(letter.letter_no) : "";
+      document.getElementById("readerSign").textContent = "— " + (letter.author_name || "একজন অচেনা মানুষ");
+      document.getElementById("readerTitle").textContent = letter.title || "শিরোনামহীন চিঠি";
+      document.getElementById("readerBody").textContent = letter.body || "";
+
+      let dateText = "";
+      if (letter.created_at) {
+        const d = new Date(letter.created_at);
+        if (!isNaN(d)) dateText = d.toLocaleDateString("bn-BD", { year: "numeric", month: "long", day: "numeric" });
+      }
+      document.getElementById("readerDate").textContent = dateText;
+
+      paintFelt();
+      readerModal.classList.add("open");
+      readerModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      readerModal.querySelector(".modal-content").scrollTop = 0;
+      document.getElementById("closeReaderBtn").focus();
+      document.getElementById("linkMsg").textContent = "";
+      if (letter.letter_no) { try { history.replaceState(null, "", "#" + letter.letter_no); } catch (e) {} }
+    }
+
+    function closeReader() {
+      readerModal.classList.remove("open");
+      readerModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+      if (readerPrevFocus && typeof readerPrevFocus.focus === "function") readerPrevFocus.focus();
+    }
+
+    document.getElementById("closeReaderBtn").addEventListener("click", closeReader);
+    readerModal.addEventListener("click", function (e) { if (e.target === readerModal) closeReader(); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && readerModal.classList.contains("open") && !cardModal.classList.contains("open")) closeReader();
+    });
+
+    feltBtn.addEventListener("click", function () {
+      if (!currentLetter) return;
+      const list = getFelt();
+      const i = list.indexOf(currentLetter.id);
+      if (i === -1) list.push(currentLetter.id); else list.splice(i, 1);
+      setFelt(list);
+      paintFelt();
+    });
+
+    document.getElementById("randomBtn").addEventListener("click", function () {
+      if (!allLetters.length) return;
+      let pick = allLetters[Math.floor(Math.random() * allLetters.length)];
+      if (allLetters.length > 1 && currentLetter && pick.id === currentLetter.id) {
+        pick = allLetters[(allLetters.indexOf(pick) + 1) % allLetters.length];
+      }
+      openReader(pick);
+    });
+
+    document.getElementById("sentCloseBtn").addEventListener("click", closeForm);
+
+    function showSent(no) {
+      const noEl = document.getElementById("sentNo");
+      noEl.textContent = no ? "আপনার চিঠির নম্বর: " + bn(no) : "";
+      document.getElementById("sentText").textContent = no
+        ? "নম্বরটা মনে রাখুন। সার্চ করে নিজের চিঠি আবার খুঁজে পাবেন।"
+        : "কেউ একদিন হয়তো এটা পড়ে ভাববে, সে একা নয়।";
+      const box = modal.querySelector(".modal-content");
+      box.classList.remove("is-sent");
+      void box.offsetWidth;
+      box.classList.add("is-sent");
+      document.getElementById("sentCloseBtn").focus();
+    }
+
+
+    // ---- লিংক, কার্ড, আজকের চিঠি ----
+    const cardModal = document.getElementById("cardModal");
+
+    function letterLink(l) { return location.href.split("#")[0] + "#" + l.letter_no; }
+
+    function openFromHash() {
+      const m = location.hash.match(/^#(\d{4,})$/);
+      if (!m) return;
+      const l = allLetters.find(function (x) { return String(x.letter_no) === m[1]; });
+      if (!l) return;
+      if (readerModal.classList.contains("open") && currentLetter && currentLetter.id === l.id) return;
+      openReader(l);
+    }
+    window.addEventListener("hashchange", openFromHash);
+
+    function renderToday() {
+      const box = document.getElementById("todayBox");
+      box.replaceChildren();
+      if (!allLetters.length) return;
+      const l = allLetters[Math.floor(Date.now() / 86400000) % allLetters.length];
+
+      const card = document.createElement("div");
+      card.className = "today-card";
+      const text = document.createElement("div");
+      text.className = "today-text";
+      const label = document.createElement("p");
+      label.className = "today-label";
+      label.textContent = "আজকের চিঠি" + (l.letter_no ? " · " + noText(l) : "");
+      const title = document.createElement("h3");
+      title.className = "today-title";
+      title.textContent = l.title || "শিরোনামহীন চিঠি";
+      const prev = document.createElement("p");
+      prev.className = "today-preview";
+      prev.textContent = l.body || "";
+      text.append(label, title, prev);
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "btn";
+      btn.textContent = "চিঠিটি পড়ুন";
+      btn.addEventListener("click", function () { openReader(l); });
+      card.append(text, btn);
+      box.appendChild(card);
+    }
+
+    const COUNTER_MIN = 100; // এর কম চিঠি থাকলে সংখ্যা দেখানো হবে না
+
+    async function updateCount() {
+      const c = document.getElementById("heroCount");
+      c.textContent = "";
+      if (!db || allLetters.length < COUNTER_MIN) return;
+      try {
+        const res = await db.from("letters").select("id", { count: "exact", head: true });
+        if (!res.error && res.count >= COUNTER_MIN) {
+          c.textContent = "এ পর্যন্ত " + bn(res.count) + "টি চিঠি এই ঘরে জমা হয়েছে।";
+        }
+      } catch (e) {}
+    }
+
+    function afterLoad() {
+      updateCount();
+      renderToday();
+      openFromHash();
+    }
+
+    document.getElementById("copyLinkBtn").addEventListener("click", function () {
+      if (!currentLetter || !currentLetter.letter_no) return;
+      const link = letterLink(currentLetter);
+      const msg = document.getElementById("linkMsg");
+      function shown() { msg.textContent = "লিংক কপি হয়েছে: " + link; }
+      function manual() { msg.textContent = "লিংকটা কপি করুন: " + link; }
+      try {
+        navigator.clipboard.writeText(link).then(shown, manual);
+      } catch (e) { manual(); }
+    });
+
+    function wrapText(g, text, maxW, maxLines) {
+      const words = text.replace(/\s+/g, " ").trim().split(" ");
+      const lines = [];
+      let cur = "";
+      for (let i = 0; i < words.length; i++) {
+        const t = cur ? cur + " " + words[i] : words[i];
+        if (g.measureText(t).width <= maxW || !cur) { cur = t; }
+        else { lines.push(cur); cur = words[i]; }
+      }
+      if (cur) lines.push(cur);
+      if (lines.length > maxLines) {
+        const cut = lines.slice(0, maxLines);
+        cut[maxLines - 1] = cut[maxLines - 1].replace(/\s+\S*$/, "") + "…";
+        return cut;
+      }
+      return lines;
+    }
+
+    async function buildCard(l) {
+      try {
+        await document.fonts.load('700 56px "Noto Serif Bengali"');
+        await document.fonts.load('600 50px "Noto Serif Bengali"');
+        await document.fonts.load('400 36px "Noto Serif Bengali"');
+      } catch (e) {}
+      const W = 1080, H = 1350;
+      const c = document.createElement("canvas");
+      c.width = W; c.height = H;
+      const g = c.getContext("2d");
+      const serif = '"Noto Serif Bengali", serif';
+
+      g.fillStyle = "#E9EEE8"; g.fillRect(0, 0, W, H);
+      g.fillStyle = "#F8FAF6"; g.strokeStyle = "#CDD9CC"; g.lineWidth = 3;
+      g.beginPath(); g.roundRect(60, 60, W - 120, H - 120, 36); g.fill(); g.stroke();
+
+      g.textAlign = "center"; g.textBaseline = "alphabetic";
+      g.fillStyle = "#293C34"; g.font = "700 60px " + serif; g.fillText("চিঠিঘর", W / 2, 190);
+      g.fillStyle = "#657B6C"; g.font = "22px Arial, sans-serif"; g.fillText("C H I T H I G H O R", W / 2, 236);
+      g.strokeStyle = "#CDD9CC"; g.beginPath(); g.moveTo(W / 2 - 150, 280); g.lineTo(W / 2 + 150, 280); g.stroke();
+
+      g.textAlign = "left";
+      g.fillStyle = "#435C4C"; g.font = "400 34px " + serif; g.fillText("প্রতি: " + recipientOf(l), 130, 370);
+
+      let y = 460;
+      g.fillStyle = "#293C34"; g.font = "600 52px " + serif;
+      wrapText(g, l.title || "শিরোনামহীন চিঠি", W - 260, 3).forEach(function (ln) { g.fillText(ln, 130, y); y += 86; });
+
+      y += 20;
+      g.fillStyle = "#4B5F53"; g.font = "400 38px " + serif;
+      wrapText(g, l.body || "", W - 260, 7).forEach(function (ln) { g.fillText(ln, 130, y); y += 70; });
+
+      g.textAlign = "center";
+      g.fillStyle = "#293C34"; g.font = "600 38px " + serif;
+      g.fillStyle = "#657B6C"; g.font = "400 32px " + serif;
+      g.fillText("— " + (l.author_name || "একজন অচেনা মানুষ"), W / 2, H - 275);
+      g.fillStyle = "#293C34"; g.font = "600 38px " + serif;
+      if (l.letter_no) g.fillText("চিঠি নং " + bn(l.letter_no), W / 2, H - 200);
+      g.fillStyle = "#657B6C"; g.font = "28px Arial, sans-serif";
+      g.fillText("chithighor.vercel.app", W / 2, H - 140);
+      return c.toDataURL("image/png");
+    }
+
+    document.getElementById("cardBtn").addEventListener("click", async function () {
+      if (!currentLetter) return;
+      const url = await buildCard(currentLetter);
+      document.getElementById("cardImg").src = url;
+      const dl = document.getElementById("cardDownload");
+      dl.href = url;
+      dl.download = "chithighor-" + (currentLetter.letter_no || "letter") + ".png";
+      const shareBtn = document.getElementById("cardShare");
+      shareBtn.hidden = !(navigator.share && navigator.canShare);
+      shareBtn.onclick = async function () {
+        try {
+          const blob = await (await fetch(url)).blob();
+          const file = new File([blob], dl.download, { type: "image/png" });
+          if (navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file], text: currentLetter.letter_no ? letterLink(currentLetter) : "" });
+          }
+        } catch (e) {}
+      };
+      cardModal.classList.add("open");
+      cardModal.setAttribute("aria-hidden", "false");
+      document.getElementById("closeCardBtn").focus();
+    });
+    function closeCard() { cardModal.classList.remove("open"); cardModal.setAttribute("aria-hidden", "true"); }
+    document.getElementById("closeCardBtn").addEventListener("click", closeCard);
+    cardModal.addEventListener("click", function (e) { if (e.target === cardModal) closeCard(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && cardModal.classList.contains("open")) closeCard(); });
+
     function showStatus(message, type) {
       formStatus.textContent = message;
       formStatus.className =
@@ -997,17 +1417,15 @@
     function renderLetters() {
       letterGrid.replaceChildren();
 
-      const filtered = activeCategory === "সব চিঠি"
-        ? allLetters
-        : allLetters.filter(function(letter) {
-            return letter.category === activeCategory;
-          });
+      const filtered = getFiltered();
 
       if (filtered.length === 0) {
         showEmptyState(
           allLetters.length === 0
             ? "এখনো কোনো চিঠি নেই। প্রথম চিঠিটি আপনিই লিখুন।"
-            : "এই বিভাগে এখনো কোনো চিঠি নেই।"
+            : searchQuery.trim()
+              ? "এই নম্বর বা শিরোনামে কোনো চিঠি পাওয়া যায়নি।"
+              : "এই প্রাপকের জন্য এখনো কোনো চিঠি নেই।"
         );
         return;
       }
@@ -1016,76 +1434,60 @@
         const card = document.createElement("article");
         card.className = "letter-card";
 
+        const top = document.createElement("div");
+        top.className = "letter-top";
+
         const category = document.createElement("span");
         category.className = "letter-category";
-        category.textContent = letter.category || "অন্যান্য";
+        category.textContent = "প্রতি: " + recipientOf(letter);
+
+        const no = document.createElement("span");
+        no.className = "letter-no";
+        no.textContent = noText(letter);
+
+        top.append(category, no);
 
         const title = document.createElement("h3");
         title.className = "letter-title";
         title.textContent = letter.title || "শিরোনামহীন চিঠি";
 
         const body = document.createElement("p");
-        body.className = "letter-body";
-       body.textContent = letter.body || "";
-body.classList.add("letter-preview");
+        body.className = "letter-body letter-preview";
+        body.textContent = letter.body || "";
 
-        card.append(category, title, body);
-        card.addEventListener("click", function () {
-  const overlay = document.createElement("div");
-  overlay.style.cssText = `
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.65);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    z-index: 9999;
-  `;
+        const more = document.createElement("span");
+        more.className = "letter-more";
+        more.textContent = "পুরো চিঠি পড়ুন";
 
-  const modal = document.createElement("div");
-  modal.style.cssText = `
-    background: var(--surface, #F8FAF6);
-    color: var(--green, #293C34);
-    max-width: 700px;
-    width: 100%;
-    max-height: 85vh;
-    overflow-y: auto;
-    padding: 28px;
-    border-radius: 18px;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    position: relative;
-  `;
-
-  const close = document.createElement("button");
-  close.textContent = "✕ বন্ধ করুন";
-  close.style.cssText = `
-    display: block;
-    margin: 0 0 20px auto;
-    padding: 10px 16px;
-    cursor: pointer;
-  `;
-
-  const heading = document.createElement("h2");
-  heading.textContent = letter.title || "শিরোনামহীন চিঠি";
-
-  const fullBody = document.createElement("p");
-  fullBody.textContent = letter.body || "";
-
-  modal.append(close, heading, fullBody);
-  overlay.appendChild(modal);
-  document.body.appendChild(overlay);
-
-  close.addEventListener("click", () => overlay.remove());
-
-  overlay.addEventListener("click", function (event) {
-    if (event.target === overlay) overlay.remove();
-  });
-});
+        card.append(top, title, body, more);
+        card.tabIndex = 0;
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-label", "চিঠি পড়ুন: " + (letter.title || "শিরোনামহীন চিঠি"));
+        card.addEventListener("click", function () { openReader(letter); });
+        card.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openReader(letter); }
+        });
         letterGrid.appendChild(card);
       });
     }
+
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("input", function () { searchQuery = searchInput.value; renderLetters(); });
+    searchInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        const list = getFiltered();
+        if (list.length === 1) openReader(list[0]);
+      }
+    });
+
+    const recipientSelect = document.getElementById("letterRecipient");
+    const otherField = document.getElementById("otherField");
+    function syncOther() {
+      const on = recipientSelect.value === "__other";
+      otherField.classList.toggle("on", on);
+      document.getElementById("otherRecipient").required = on;
+    }
+    recipientSelect.addEventListener("change", syncOther);
 
     document.getElementById("categoryList")
       .addEventListener("click", function(event) {
@@ -1116,7 +1518,7 @@ body.classList.add("letter-preview");
       try {
         const { data, error } = await db
           .from("letters")
-          .select("id, title, body, category, created_at")
+          .select("id, title, body, category, recipient, letter_no, author_name, created_at")
           .order("created_at", { ascending: false })
           .limit(100);
 
@@ -1124,6 +1526,7 @@ body.classList.add("letter-preview");
 
         allLetters = data || [];
         renderLetters();
+        afterLoad();
 
       } catch (error) {
         console.error("চিঠি লোড করার সমস্যা:", error);
@@ -1143,10 +1546,12 @@ body.classList.add("letter-preview");
       }
 
       const title = document.getElementById("letterTitle").value.trim();
-      const category = document.getElementById("letterCategory").value;
+      const author = document.getElementById("letterAuthor").value.trim();
+      let recipient = recipientSelect.value;
+      if (recipient === "__other") recipient = document.getElementById("otherRecipient").value.trim();
       const body = document.getElementById("letterBody").value.trim();
 
-      if (!title || !category || !body) {
+      if (!title || !recipient || !body) {
         showStatus("সব ঘর পূরণ করুন।", "error");
         return;
       }
@@ -1156,21 +1561,21 @@ body.classList.add("letter-preview");
       showStatus("আপনার চিঠি জমা দেওয়া হচ্ছে...");
 
       try {
-        const { error } = await db
+        const { data: saved, error } = await db
           .from("letters")
-          .insert([{ title: title, body: body, category: category }]);
+          .insert([{ title: title, body: body, recipient: recipient, author_name: author || null }])
+          .select("letter_no")
+          .single();
 
         if (error) throw error;
 
         form.reset();
+        syncOther();
 
         await loadLetters();
 
-        showStatus("আপনার চিঠি সফলভাবে জমা হয়েছে।", "success");
-
-        setTimeout(function() {
-          closeForm();
-        }, 1200);
+        showStatus("");
+        showSent(saved && saved.letter_no);
 
       } catch (error) {
         console.error("চিঠি জমা দেওয়ার সমস্যা:", error);
