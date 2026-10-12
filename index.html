@@ -1201,8 +1201,8 @@
     <div class="modal-content" role="dialog" aria-modal="true" aria-label="অ্যাডমিন লগইন" style="max-width:380px">
       <button type="button" class="close-btn" id="admLoginClose" aria-label="বন্ধ করুন">×</button>
       <h2>অ্যাডমিন লগইন</h2>
-      <p class="notice" id="admDemoNote" hidden>ডেমো: যেকোনো ৬ বা তার বেশি অঙ্কের কোড দিলেই ঢোকা যাবে।</p>
-      <div class="form-group"><label for="admCode">লগইন কোড</label><input id="admCode" type="password" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="20"></div>
+      <p class="notice" id="admDemoNote" hidden>ডেমো: যেকোনো ৬ বা তার বেশি অক্ষরের কোড দিলেই ঢোকা যাবে।</p>
+      <div class="form-group"><label for="admCode">লগইন কোড</label><input id="admCode" type="password" autocomplete="off" maxlength="40"></div>
       <p class="form-message error" id="admLoginMsg"></p>
       <button type="button" class="btn submit-btn" id="admLoginBtn">লগইন</button>
     </div>
@@ -2260,7 +2260,7 @@
         const msg = $("admLoginMsg");
         if (Date.now() < lockUntil) { msg.textContent = "অনেকবার ভুল হয়েছে। একটু পরে আবার চেষ্টা করুন।"; return; }
         const code = $("admCode").value.trim();
-        if (!/^\d{6,}$/.test(code)) { msg.textContent = "কোড শুধু সংখ্যা হতে হবে (অন্তত ৬ অঙ্ক)।"; return; }
+        if (code.length < 6) { msg.textContent = "কোড অন্তত ৬ অক্ষরের হতে হবে।"; return; }
         const r = await db.auth.signInWithPassword({ email: ADMIN_EMAIL, password: code });
         if (r.error) {
           fails++;
