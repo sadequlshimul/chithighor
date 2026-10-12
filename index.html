@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <script>(function(){try{var t=localStorage.getItem("chithighor_theme")||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <style>
     :root {
       --bg: #E9EEE8;
@@ -874,6 +875,54 @@
     .reader-body p { margin: 0 0 .85em; }
     .reader-body p:last-child { margin-bottom: 0; }
     .form-group textarea, .form-group textarea#letterBody, .cm-form textarea { line-height: 1.75; }
+
+    /* ---- প্রাপকের আইকন, কার্ডের আইকন-সারি, উক্তি-কার্ড ---- */
+    .ri { display: inline-flex; flex: none; }
+    .ri svg { width: 16px; height: 16px; }
+    .category-btn, .rcp, .letter-category { display: inline-flex; align-items: center; gap: 7px; }
+    .letter-meta { display: flex; align-items: center; gap: 14px; margin-top: 10px; font-size: 13px; color: var(--olive); }
+    .letter-meta .st { display: inline-flex; align-items: center; gap: 5px; }
+    .letter-meta svg { width: 16px; height: 16px; }
+    .letter-meta .sp { flex: 1; }
+    .card-save { all: unset; cursor: pointer; display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; color: var(--green); -webkit-tap-highlight-color: transparent; }
+    .card-save:hover { background: var(--surface-2); }
+    .card-save.on svg { fill: currentColor; }
+    .card-save:focus-visible, .card-open:focus-visible { outline: 3px solid #8EAA91; outline-offset: 2px; border-radius: 6px; }
+    .card-open { all: unset; cursor: pointer; }
+    .quote-section { padding: 6px 0 0; }
+    .quote-card { margin: 0; padding: 24px 26px 22px; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); text-align: center; }
+    .quote-card .qm { display: block; font-size: 54px; line-height: .6; height: 26px; color: var(--olive); opacity: .55; }
+    .quote-card blockquote { margin: 0; font-size: clamp(19px, 3.4vw, 25px); line-height: 1.75; color: var(--green); }
+    .quote-card figcaption { margin-top: 12px; color: var(--olive); font-size: 14px; }
+    .theme-btn { width: 38px; height: 38px; margin-left: 10px; border: 1px solid var(--border); border-radius: 50%; background: transparent; color: var(--green); display: inline-grid; place-items: center; cursor: pointer; vertical-align: middle; -webkit-tap-highlight-color: transparent; }
+    .theme-btn svg { width: 18px; height: 18px; }
+    .theme-btn .i-sun { display: none; }
+    :root[data-theme="dark"] .theme-btn .i-sun { display: block; }
+    :root[data-theme="dark"] .theme-btn .i-moon { display: none; }
+
+    /* ---- অন্ধকার মোড ---- */
+    :root[data-theme="dark"] {
+      --bg: #0F1A16; --surface: #16241F; --surface-2: #1E3029; --green: #E3EBE5; --green-2: #B9C9BE;
+      --olive: #8EAA91; --muted: #93A59A; --border: #2B4037; --white: #101D18; --danger: #E27C7C;
+      --success: #6CC28B; --shadow: 0 12px 35px rgba(0, 0, 0, .35); color-scheme: dark;
+    }
+    :root[data-theme="dark"] header { background: rgba(15, 26, 22, .98); }
+    :root[data-theme="dark"] .hero { background: radial-gradient(ellipse at 8% 15%, rgba(80, 120, 95, .18), transparent 55%), radial-gradient(ellipse at 92% 85%, rgba(80, 120, 95, .14), transparent 55%), var(--bg); }
+    :root[data-theme="dark"] .letter-body { color: var(--muted); }
+    :root[data-theme="dark"] .reader-body { color: #D3DED6; }
+    :root[data-theme="dark"] .today-preview { color: #B9C9BE; }
+    :root[data-theme="dark"] .letter-card:hover { border-color: #3E5A4D; }
+    :root[data-theme="dark"] footer { background: #0A130F; color: #E4EBE3; }
+    :root[data-theme="dark"] .adm-fab, :root[data-theme="dark"] .adm-tab.on,
+    :root[data-theme="dark"] .adm-btn:not(.o):not(.d), :root[data-theme="dark"] .rcp.on { color: #0F1A16; }
+    [hidden] { display: none !important; }
+
+    /* ---- রঙিন প্রাপক-চিপ ---- */
+    .tint { --ink: var(--c); background: color-mix(in srgb, var(--ink) 13%, transparent); border-color: color-mix(in srgb, var(--ink) 28%, transparent); }
+    :root[data-theme="dark"] .tint { --ink: color-mix(in srgb, var(--c) 55%, white); }
+    .tint .ri { color: var(--ink); }
+    .category-btn.tint.active, .rcp.tint.on { background: var(--green); border-color: var(--green); }
+    .category-btn.active .ri, .rcp.on .ri { color: inherit; }
   </style>
 </head>
 
@@ -901,6 +950,10 @@
         <a href="#home">প্রচ্ছদ</a>
         <a href="#letters">চিঠি</a>
         <a href="#about">আমাদের কথা</a>
+        <button type="button" class="theme-btn" id="themeBtn" aria-label="অন্ধকার/আলো মোড বদলান">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
       </nav>
 
     </div>
@@ -948,6 +1001,16 @@
       </div>
     </section>
 
+    <section class="quote-section" id="quoteSection" hidden>
+      <div class="container">
+        <figure class="quote-card">
+          <span class="qm" aria-hidden="true">“</span>
+          <blockquote id="quoteText"></blockquote>
+          <figcaption id="quoteWho"></figcaption>
+        </figure>
+      </div>
+    </section>
+
     <section class="letters-section" id="letters">
       <div class="container">
 
@@ -980,6 +1043,9 @@
 
           <button type="button" class="category-btn"
                   data-category="বাবা" aria-pressed="false">বাবা</button>
+
+          <button type="button" class="category-btn"
+                  data-category="পরিবার" aria-pressed="false">পরিবার</button>
 
           <button type="button" class="category-btn"
                   data-category="বন্ধু" aria-pressed="false">বন্ধু</button>
@@ -1065,6 +1131,7 @@
           <div class="rcp-chips" id="rcpChips" role="radiogroup" aria-labelledby="rcpLabel">
           <button type="button" class="rcp" role="radio" aria-checked="false" data-v="মা">মা</button>
           <button type="button" class="rcp" role="radio" aria-checked="false" data-v="বাবা">বাবা</button>
+          <button type="button" class="rcp" role="radio" aria-checked="false" data-v="পরিবার">পরিবার</button>
           <button type="button" class="rcp" role="radio" aria-checked="false" data-v="বন্ধু">বন্ধু</button>
           <button type="button" class="rcp" role="radio" aria-checked="false" data-v="প্রিয় মানুষ">প্রিয় মানুষ</button>
           <button type="button" class="rcp" role="radio" aria-checked="false" data-v="নিজেকে">নিজেকে</button>
@@ -1072,7 +1139,7 @@
           <button type="button" class="rcp" role="radio" aria-checked="false" data-v="যে চলে গেছে">যে চলে গেছে</button>
           <button type="button" class="rcp" role="radio" aria-checked="false" data-v="__other">অন্য</button>
           </div>
-          <select id="letterRecipient" hidden tabindex="-1" aria-hidden="true"><option value=""></option><option value="মা">মা</option><option value="বাবা">বাবা</option><option value="বন্ধু">বন্ধু</option><option value="প্রিয় মানুষ">প্রিয় মানুষ</option><option value="নিজেকে">নিজেকে</option><option value="শৈশবের আমি">শৈশবের আমি</option><option value="যে চলে গেছে">যে চলে গেছে</option><option value="__other">অন্য</option></select>
+          <select id="letterRecipient" hidden tabindex="-1" aria-hidden="true"><option value=""></option><option value="মা">মা</option><option value="বাবা">বাবা</option><option value="পরিবার">পরিবার</option><option value="বন্ধু">বন্ধু</option><option value="প্রিয় মানুষ">প্রিয় মানুষ</option><option value="নিজেকে">নিজেকে</option><option value="শৈশবের আমি">শৈশবের আমি</option><option value="যে চলে গেছে">যে চলে গেছে</option><option value="__other">অন্য</option></select>
           <div class="other-field" id="otherField">
             <input type="text" id="otherRecipient" maxlength="40" placeholder="যেমন: আমার শিক্ষক">
             <p class="hint">আসল নাম নয়, শুধু সম্পর্ক লিখুন।</p>
@@ -1238,7 +1305,7 @@
     let allLetters = [];
     let activeCategory = "সব চিঠি";
     let searchQuery = "";
-    const RECIPIENTS = ["মা", "বাবা", "বন্ধু", "প্রিয় মানুষ", "নিজেকে", "শৈশবের আমি", "যে চলে গেছে"];
+    const RECIPIENTS = ["মা", "বাবা", "পরিবার", "বন্ধু", "প্রিয় মানুষ", "নিজেকে", "শৈশবের আমি", "যে চলে গেছে"];
 
     function bn(n) { return String(n).replace(/\d/g, function (d) { return "০১২৩৪৫৬৭৮৯"[d]; }); }
     function normQuery(q) {
@@ -1324,16 +1391,7 @@
       try { localStorage.setItem(REACT_KEY, JSON.stringify(o)); } catch (e) {}
     }
 
-    function updateCardLine(l) {
-      if (!l._line) return;
-      const r = l.reactions || {};
-      const parts = [];
-      if (r.felt > 0) parts.push(bn(r.felt) + " জন এমন অনুভব করেছেন");
-      if (l.allow_comments) parts.push("মন্তব্য চালু");
-      l._line.textContent = parts.join(" · ");
-      l._line.style.display = parts.length ? "" : "none";
-    }
-
+    
     function paintReact() {
       const l = currentLetter;
       if (!l) return;
@@ -1569,11 +1627,11 @@
       currentLetter = letter;
       readerPrevFocus = document.activeElement;
 
-      document.getElementById("readerCategory").textContent = "প্রতি: " + recipientOf(letter);
+      setChip(document.getElementById("readerCategory"), "প্রাপক: " + recipientOf(letter), recipientOf(letter));
       document.getElementById("readerNo").textContent = letter.letter_no ? "চিঠি নং " + bn(letter.letter_no) : "";
       document.getElementById("readerSign").textContent = "— " + (letter.author_name || "একজন অচেনা মানুষ");
       document.getElementById("readerTitle").textContent = letter.title || "শিরোনামহীন চিঠি";
-      renderBody(letter.body || "");
+      renderBody(letter.body || ""); 
 
       let dateText = "";
       if (letter.created_at) {
@@ -1698,6 +1756,7 @@
       setSaved(list);
       paintSave();
       paintSaved();
+      updateCardLine(currentLetter);
     });
     document.getElementById("savedBtn").addEventListener("click", function () {
       showSaved = !showSaved;
@@ -1865,7 +1924,7 @@
       g.strokeStyle = "#CDD9CC"; g.beginPath(); g.moveTo(W / 2 - 150, 280); g.lineTo(W / 2 + 150, 280); g.stroke();
 
       g.textAlign = "left";
-      g.fillStyle = "#435C4C"; g.font = "400 34px " + serif; g.fillText("প্রতি: " + recipientOf(l), 130, 370);
+      g.fillStyle = "#435C4C"; g.font = "400 34px " + serif; g.fillText("প্রাপক: " + recipientOf(l), 130, 370);
 
       let y = 460;
       g.fillStyle = "#293C34"; g.font = "600 52px " + serif;
@@ -1999,7 +2058,7 @@
 
         const category = document.createElement("span");
         category.className = "letter-category";
-        category.textContent = "প্রতি: " + recipientOf(letter);
+        setChip(category, "প্রাপক: " + recipientOf(letter), recipientOf(letter));
 
         const no = document.createElement("span");
         no.className = "letter-no";
@@ -2009,7 +2068,11 @@
 
         const title = document.createElement("h3");
         title.className = "letter-title";
-        title.textContent = letter.title || "শিরোনামহীন চিঠি";
+        const tb = document.createElement("button");
+        tb.type = "button";
+        tb.className = "card-open";
+        tb.textContent = letter.title || "শিরোনামহীন চিঠি";
+        title.appendChild(tb);
 
         const body = document.createElement("p");
         body.className = "letter-body letter-preview";
@@ -2019,18 +2082,15 @@
         more.className = "letter-more";
         more.textContent = "পুরো চিঠি পড়ুন";
 
-        const line = document.createElement("p");
-        line.className = "letter-react";
+        const line = document.createElement("div");
+        line.className = "letter-meta";
         letter._line = line;
         updateCardLine(letter);
 
-        card.append(top, title, body, line, more);
-        card.tabIndex = 0;
-        card.setAttribute("role", "button");
-        card.setAttribute("aria-label", "চিঠি পড়ুন: " + (letter.title || "শিরোনামহীন চিঠি"));
-        card.addEventListener("click", function () { openReader(letter); });
-        card.addEventListener("keydown", function (e) {
-          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openReader(letter); }
+        card.append(top, title, body, more, line);
+        card.addEventListener("click", function (e) {
+          if (e.target.closest(".card-save")) return;
+          openReader(letter);
         });
         letterGrid.appendChild(card);
       });
@@ -2182,7 +2242,113 @@
       console.error("Supabase চালু করা যায়নি:", error);
     }
 
-    // ===== ADMIN_MODULE =====
+    // ===== আইকন, অন্ধকার মোড, উক্তি =====
+    const RI = {
+      all: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+      mother: '<path d="M5 11h14v4a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5z"/><path d="M3.5 11h17"/><path d="M9.5 7.5c-.9-.9.9-1.8 0-3M14.5 7.5c-.9-.9.9-1.8 0-3"/>',
+      father: '<circle cx="7" cy="13.5" r="3.6"/><circle cx="17" cy="13.5" r="3.6"/><path d="M10.6 13.2c.9-.6 1.9-.6 2.8 0"/><path d="M3.4 13.5 4.4 9M20.6 13.5 19.6 9"/>',
+      family: '<path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/>',
+      friend: '<circle cx="9" cy="9" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9.5" r="2.4"/><path d="M16 14.2a4.6 4.6 0 0 1 5 4.8"/>',
+      love: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+      self: '<path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c3-5 6-8 10-10"/>',
+      child: '<path d="M12 3 18 9.5l-6 7.5L6 9.5z"/><path d="M12 3v14M6 9.5h12"/><path d="M12 17c-1.6 1.4 1.6 2.6 0 4.5"/>',
+      gone: '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
+      other: '<path d="M4 20l1-4L16.5 4.5a2 2 0 0 1 3 3L8 19l-4 1z"/><path d="M14.5 6.5l3 3"/>',
+      comment: '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z"/>',
+      mark: '<path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z"/>'
+    };
+    const RI_ORDER = ["mother", "father", "family", "friend", "love", "self", "child", "gone"];
+    const RC = { all: "#5F7A6B", mother: "#B5605A", father: "#46698C", family: "#A07A2E", friend: "#2F7A70", love: "#B04460", self: "#55823F", child: "#9A8222", gone: "#6A5F9A", other: "#5F7A6B" };
+    function svgIcon(key) {
+      return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + RI[key] + '</svg>';
+    }
+    function recipientKey(name) {
+      const i = RECIPIENTS.indexOf(name);
+      return i >= 0 ? RI_ORDER[i] : "other";
+    }
+    function iconSpan(key) {
+      const s = document.createElement("span");
+      s.className = "ri";
+      s.innerHTML = svgIcon(key);
+      return s;
+    }
+    function tint(el, key) {
+      el.classList.add("tint");
+      el.style.setProperty("--c", RC[key] || RC.other);
+    }
+    function setChip(el, text, rec) {
+      const k = recipientKey(rec);
+      tint(el, k);
+      el.replaceChildren(iconSpan(k), document.createTextNode(text));
+    }
+    function updateCardLine(l) {
+      const el = l._line;
+      if (!el) return;
+      el.replaceChildren();
+      const r = l.reactions || {};
+      const stat = function (key, n) {
+        const s = document.createElement("span");
+        s.className = "st";
+        s.innerHTML = svgIcon(key);
+        s.appendChild(document.createTextNode(bn(n)));
+        return s;
+      };
+      el.appendChild(stat("love", r.felt || 0));
+      if (l.allow_comments || l.comment_count > 0) el.appendChild(stat("comment", l.comment_count || 0));
+      const sp = document.createElement("span");
+      sp.className = "sp";
+      el.appendChild(sp);
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "card-save";
+      const on = getSaved().indexOf(l.id) !== -1;
+      b.classList.toggle("on", on);
+      b.setAttribute("aria-pressed", String(on));
+      b.setAttribute("aria-label", on ? "সংরক্ষণ থেকে সরান" : "চিঠিটি সংরক্ষণ করুন");
+      b.innerHTML = svgIcon("mark");
+      b.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const list = getSaved();
+        const i = list.indexOf(l.id);
+        if (i === -1) list.push(l.id); else list.splice(i, 1);
+        setSaved(list);
+        paintSaved();
+        if (showSaved) renderLetters(); else updateCardLine(l);
+      });
+      el.appendChild(b);
+    }
+
+    document.querySelectorAll("#categoryList .category-btn").forEach(function (b, i) {
+      const k = i === 0 ? "all" : (i <= RI_ORDER.length ? RI_ORDER[i - 1] : "other");
+      tint(b, k);
+      b.insertBefore(iconSpan(k), b.firstChild);
+    });
+    document.querySelectorAll("#rcpChips .rcp").forEach(function (b, i) {
+      const k = i < RI_ORDER.length ? RI_ORDER[i] : "other";
+      tint(b, k);
+      b.insertBefore(iconSpan(k), b.firstChild);
+    });
+
+    function applyTheme(t) {
+      document.documentElement.setAttribute("data-theme", t);
+      try { localStorage.setItem("chithighor_theme", t); } catch (e) {}
+    }
+    document.getElementById("themeBtn").addEventListener("click", function () {
+      applyTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
+    });
+
+    // ===== QUOTE: নিজের যাচাই করা উক্তি এখানে বসান (খালি রাখলে কার্ড দেখাবে না) =====
+    const QUOTE = { text: "করুণা করে হলেও চিঠি দিও, ভুলে গিয়ে ভুল করে একখানি চিঠি দিও।", who: "মহাদেব সাহা", };
+    function paintQuote() {
+      const sec = document.getElementById("quoteSection");
+      if (!QUOTE.text) { sec.hidden = true; return; }
+      document.getElementById("quoteText").textContent = QUOTE.text;
+      document.getElementById("quoteWho").textContent = "— " + QUOTE.who + (QUOTE.from ? ", “" + QUOTE.from + "”" : "");
+      sec.hidden = false;
+    }
+    paintQuote();
+
+    // ===== ADMIN_MODULE ===== 
     (function () {
       const $ = function (i) { return document.getElementById(i); };
       const fab = $("admFab"), panel = $("admPanel"), loginM = $("admLogin");
@@ -2252,7 +2418,7 @@
         items.forEach(function (it) {
           const c = el("div", "adm-card"), acts = el("div", "adm-acts");
           if (tab === "letters") {
-            c.appendChild(el("div", "adm-meta", "নং " + bn(it.letter_no) + " · প্রতি: " + (it.recipient || "—") + " · " + (it.author_name || "অচেনা মানুষ") + " · " + when(it.created_at) + (it.allow_comments ? " · মন্তব্য চালু" : "")));
+            c.appendChild(el("div", "adm-meta", "নং " + bn(it.letter_no) + " · প্রাপক: " + (it.recipient || "—") + " · " + (it.author_name || "অচেনা মানুষ") + " · " + when(it.created_at) + (it.allow_comments ? " · মন্তব্য চালু" : "")));
             c.appendChild(el("h4", "", it.title || "শিরোনামহীন চিঠি"));
             c.appendChild(bodyBlock(it.body || ""));
             const ok = btn("অনুমোদন দিন");
@@ -2277,7 +2443,7 @@
               const r = await db.from("letters").select("title, body, recipient, approved").eq("letter_no", it.letter_no).maybeSingle();
               peek.hidden = false; peek.replaceChildren();
               if (!r.data) { peek.textContent = "এই নম্বরের চিঠি এখন আর নেই।"; return; }
-              peek.appendChild(el("b", "", (r.data.title || "শিরোনামহীন") + " · প্রতি: " + (r.data.recipient || "—") + (r.data.approved ? " · প্রকাশিত" : " · অপেক্ষায়")));
+              peek.appendChild(el("b", "", (r.data.title || "শিরোনামহীন") + " · প্রাপক: " + (r.data.recipient || "—") + (r.data.approved ? " · প্রকাশিত" : " · অপেক্ষায়")));
               peek.appendChild(bodyBlock(r.data.body || ""));
             });
             const close = btn("রিপোর্ট বন্ধ করুন", "o");
