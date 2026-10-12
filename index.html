@@ -855,6 +855,25 @@
     .adm-panel { overscroll-behavior: contain; }
     .adm-list { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
     .adm-tabs { overscroll-behavior: contain; }
+
+    /* ---- স্মুথ লেখার ফর্ম ---- */
+    .modal-content { max-height: 92vh; max-height: 92dvh; }
+    .rcp-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .rcp { padding: 8px 16px; border: 1px solid var(--border); border-radius: 999px; background: var(--white); color: var(--green); font: inherit; font-size: 15px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .rcp.on { background: var(--green); border-color: var(--green); color: #fff; }
+    .form-group textarea#letterBody { min-height: 230px; resize: none; overflow: hidden; font-size: 17px; line-height: 1.9; }
+    .body-count { min-height: 1.4em; margin-top: 4px; font-size: 12px; color: var(--muted); text-align: right; }
+    .body-count.warn { color: var(--danger); font-weight: 600; }
+    .more-opts { margin: 4px 0 16px; }
+    .more-opts summary { cursor: pointer; color: var(--olive); font-size: 14px; padding: 6px 0; }
+    .more-opts[open] summary { margin-bottom: 10px; }
+    .submit-bar { position: sticky; bottom: 0; z-index: 2; background: var(--surface); padding: 10px 0 4px; }
+
+    /* ---- লাইন স্পেস: লেখার ও পড়ার চেহারা কাছাকাছি ---- */
+    .letter-body, .today-preview, .cm-item p, .reader-body { line-height: 1.75; }
+    .reader-body p { margin: 0 0 .85em; }
+    .reader-body p:last-child { margin-bottom: 0; }
+    .form-group textarea, .form-group textarea#letterBody, .cm-form textarea { line-height: 1.75; }
   </style>
 </head>
 
@@ -1034,66 +1053,64 @@
 
       <p class="notice">
         অনুগ্রহ করে নিজের নাম, ফোন নম্বর, ঠিকানা বা অন্য ব্যক্তির
-        ব্যক্তিগত তথ্য লিখবেন না। জমা দেওয়া চিঠি আমরা একবার দেখে নিয়ে
-        সাইটে প্রকাশ করব।
+        ব্যক্তিগত তথ্য লিখবেন না। আপনার চিঠি আমরা একবার পড়ে নিয়ে
+        চিঠিঘরে তুলে রাখব। আসল নাম বা ক্ষতিকর কিছু থাকলে চিঠি
+        প্রকাশ করা হবে না।
       </p>
 
-      <form id="letterForm">
+      <form id="letterForm" autocomplete="off">
 
         <div class="form-group">
-          <label for="letterTitle">চিঠির শিরোনাম</label>
-          <input type="text" id="letterTitle" maxlength="150"
-                 placeholder="যেমন: তোমাকে বলা হয়নি" required>
-        </div>
-
-        <div class="form-group">
-          <label for="letterRecipient">কাকে লেখা?</label>
-          <select id="letterRecipient" required>
-            <option value="">প্রাপক নির্বাচন করুন</option>
-            <option value="মা">মা</option>
-            <option value="বাবা">বাবা</option>
-            <option value="বন্ধু">বন্ধু</option>
-            <option value="প্রিয় মানুষ">প্রিয় মানুষ</option>
-            <option value="নিজেকে">নিজেকে</option>
-            <option value="শৈশবের আমি">শৈশবের আমি</option>
-            <option value="যে চলে গেছে">যে চলে গেছে</option>
-            <option value="__other">অন্য</option>
-          </select>
+          <label id="rcpLabel">প্রাপক <span style="font-weight:400;color:var(--muted)">(কাকে লিখছেন?)</span></label>
+          <div class="rcp-chips" id="rcpChips" role="radiogroup" aria-labelledby="rcpLabel">
+          <button type="button" class="rcp" role="radio" aria-checked="false" data-v="মা">মা</button>
+          <button type="button" class="rcp" role="radio" aria-checked="false" data-v="বাবা">বাবা</button>
+          <button type="button" class="rcp" role="radio" aria-checked="false" data-v="বন্ধু">বন্ধু</button>
+          <button type="button" class="rcp" role="radio" aria-checked="false" data-v="প্রিয় মানুষ">প্রিয় মানুষ</button>
+          <button type="button" class="rcp" role="radio" aria-checked="false" data-v="নিজেকে">নিজেকে</button>
+          <button type="button" class="rcp" role="radio" aria-checked="false" data-v="শৈশবের আমি">শৈশবের আমি</button>
+          <button type="button" class="rcp" role="radio" aria-checked="false" data-v="যে চলে গেছে">যে চলে গেছে</button>
+          <button type="button" class="rcp" role="radio" aria-checked="false" data-v="__other">অন্য</button>
+          </div>
+          <select id="letterRecipient" hidden tabindex="-1" aria-hidden="true"><option value=""></option><option value="মা">মা</option><option value="বাবা">বাবা</option><option value="বন্ধু">বন্ধু</option><option value="প্রিয় মানুষ">প্রিয় মানুষ</option><option value="নিজেকে">নিজেকে</option><option value="শৈশবের আমি">শৈশবের আমি</option><option value="যে চলে গেছে">যে চলে গেছে</option><option value="__other">অন্য</option></select>
           <div class="other-field" id="otherField">
             <input type="text" id="otherRecipient" maxlength="40" placeholder="যেমন: আমার শিক্ষক">
-            <p class="hint">আসল নাম লিখবেন না, শুধু সম্পর্ক লিখুন।</p>
+            <p class="hint">আসল নাম নয়, শুধু সম্পর্ক লিখুন।</p>
           </div>
         </div>
 
         <div class="form-group">
           <label for="letterBody">আপনার চিঠি</label>
-          <textarea id="letterBody" maxlength="10000"
-                    placeholder="মনের কথাগুলো লিখুন..." required></textarea>
+          <textarea id="letterBody" maxlength="10000" lang="bn" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="none"
+                    placeholder="মনের কথাগুলো লিখুন..."></textarea>
+          <p class="hint" style="margin-top:6px">বানান ভুল হলেও ক্ষতি নেই, লেখাটাই আসল।</p>
+          <p class="body-count" id="bodyCount" aria-live="polite"></p>
         </div>
 
         <p class="hint" id="draftNote" style="display:none;margin:-8px 0 16px">আগের অসম্পূর্ণ লেখাটি ফিরিয়ে আনা হয়েছে। <button type="button" class="link-btn" id="draftClear">নতুন করে শুরু করুন</button></p>
 
-
         <div class="form-group">
-          <label for="letterAuthor">ছদ্মনাম <span style="font-weight:400;color:var(--muted)">(ঐচ্ছিক)</span></label>
-          <input type="text" id="letterAuthor" maxlength="30" placeholder="যেমন: ভোরের পাখি, বৃষ্টিবিলাসী">
-          <p class="hint">আসল নাম নয়, ডাকনাম বা ছদ্মনাম লিখুন। খালি রাখলে "একজন অচেনা মানুষ" দেখাবে।</p>
+          <label for="letterTitle">চিঠির শিরোনাম <span style="font-weight:400;color:var(--muted)">(ঐচ্ছিক)</span></label>
+          <input type="text" id="letterTitle" maxlength="150" placeholder="না দিলে চিঠির শুরু থেকে নেওয়া হবে">
         </div>
 
+        <details class="more-opts" id="moreOpts">
+          <summary>আরও অপশন: ছদ্মনাম, মন্তব্য</summary>
+          <div class="form-group">
+            <label for="letterAuthor">ছদ্মনাম <span style="font-weight:400;color:var(--muted)">(ঐচ্ছিক)</span></label>
+            <input type="text" id="letterAuthor" maxlength="30" placeholder="যেমন: ভোরের পাখি, বৃষ্টিবিলাসী">
+            <p class="hint">আসল নাম নয়, ডাকনাম বা ছদ্মনাম লিখুন। খালি রাখলে "একজন অচেনা মানুষ" দেখাবে।</p>
+          </div>
+          <div class="form-group">
+            <label class="chk"><input type="checkbox" id="letterComments"> অন্যরা এই চিঠিতে ছোট মন্তব্য লিখতে পারবে</label>
+            <p class="hint">বন্ধ থাকলে কেউ মন্তব্য করতে পারবে না। চালু করলেও প্রতিটা মন্তব্য আগে আমাদের অনুমোদন পাবে।</p>
+          </div>
+        </details>
 
-        <div class="form-group">
-          <label class="chk"><input type="checkbox" id="letterComments"> অন্যরা এই চিঠিতে ছোট মন্তব্য লিখতে পারবে</label>
-          <p class="hint">বন্ধ থাকলে কেউ মন্তব্য করতে পারবে না। চালু করলেও প্রতিটা মন্তব্য আগে আমাদের অনুমোদন পাবে।</p>
+        <div class="submit-bar">
+          <p id="formStatus" class="form-message" role="status" aria-live="polite"></p>
+          <button type="submit" class="btn submit-btn" id="submitBtn">চিঠি জমা দিন</button>
         </div>
-
-
-
-        <p id="formStatus" class="form-message"
-           role="status" aria-live="polite"></p>
-
-        <button type="submit" class="btn submit-btn" id="submitBtn">
-          চিঠি জমা দিন
-        </button>
 
       </form>
 
@@ -1263,7 +1280,8 @@
 
       restoreDraft();
 
-      document.getElementById("letterTitle").focus();
+      autosize();
+      (document.getElementById("letterRecipient").value ? bodyEl : document.querySelector("#rcpChips .rcp")).focus();
     }
 
     function closeForm() {
@@ -1280,7 +1298,7 @@
       .addEventListener("click", closeForm);
 
     modal.addEventListener("click", function(event) {
-      if (event.target === modal) {
+      if (event.target === modal && !document.getElementById("letterBody").value.trim()) {
         closeForm();
       }
     });
@@ -1611,6 +1629,54 @@
       }
     });
 
+    const rcpBox = document.getElementById("rcpChips");
+    const bodyEl = document.getElementById("letterBody");
+    function syncChips() {
+      const v = document.getElementById("letterRecipient").value;
+      rcpBox.querySelectorAll(".rcp").forEach(function (b) {
+        const on = b.dataset.v === v;
+        b.classList.toggle("on", on);
+        b.setAttribute("aria-checked", String(on));
+      });
+    }
+    const formScroller = document.querySelector("#letterModal .modal-content");
+    function autosize() {
+      if (bodyEl.scrollHeight > bodyEl.clientHeight) {
+        bodyEl.style.height = (bodyEl.scrollHeight + 2) + "px";
+        return;
+      }
+      const top = formScroller.scrollTop;
+      bodyEl.style.height = "auto";
+      bodyEl.style.height = Math.max(230, bodyEl.scrollHeight + 2) + "px";
+      formScroller.scrollTop = top;
+    }
+    function bodyCounter() {
+      const n = bodyEl.value.length, c = document.getElementById("bodyCount");
+      if (n > 8000) { c.textContent = bn(n) + " / " + bn(10000); c.classList.toggle("warn", n > 9500); }
+      else { c.textContent = ""; c.classList.remove("warn"); }
+    }
+    function autoTitle(text) {
+      const line = text.replace(/\s+/g, " ").trim();
+      return line.length > 40 ? line.slice(0, 40).replace(/\s+\S*$/, "").replace(/[\s।,.!?;:\-]+$/, "") + "…" : line;
+    }
+    rcpBox.addEventListener("click", function (e) {
+      const b = e.target.closest(".rcp");
+      if (!b) return;
+      const sel = document.getElementById("letterRecipient");
+      sel.value = b.dataset.v;
+      sel.dispatchEvent(new Event("change", { bubbles: true }));
+      if (b.dataset.v === "__other") document.getElementById("otherRecipient").focus();
+      else bodyEl.focus();
+    });
+    bodyEl.addEventListener("input", function () { autosize(); bodyCounter(); });
+    document.getElementById("letterForm").addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && e.target.tagName === "INPUT" && e.target.type === "text") {
+        e.preventDefault();
+        if (e.target.id === "otherRecipient") bodyEl.focus();
+        else document.getElementById("submitBtn").focus();
+      }
+    });
+    document.getElementById("letterForm").addEventListener("reset", function () { setTimeout(syncOther, 0); });
     form.addEventListener("input", saveDraft);
     form.addEventListener("change", saveDraft);
     document.getElementById("draftClear").addEventListener("click", function () {
@@ -1672,7 +1738,7 @@
       const noEl = document.getElementById("sentNo");
       noEl.textContent = no ? "আপনার চিঠির নম্বর: " + bn(no) : "";
       document.getElementById("sentText").textContent = no
-        ? "আমরা চিঠিটা একবার দেখে নিয়ে সাইটে দেব। নম্বরটা মনে রাখুন, এই নম্বর দিয়ে খুঁজলে চিঠির অবস্থা জানতে পারবেন। এই ব্রাউজারে 'আমার চিঠি' বোতাম থেকেও দেখা যাবে।"
+        ? "আমরা একবার পড়ে নিয়ে চিঠিটা চিঠিঘরে তুলে রাখব। নম্বরটা মনে রাখুন, এই নম্বর দিয়ে খুঁজলে চিঠির অবস্থা জানতে পারবেন। এই ব্রাউজারে 'আমার চিঠি' বোতাম থেকেও দেখা যাবে।"
         : "কেউ একদিন হয়তো এটা পড়ে ভাববে, সে একা নয়।";
       const box = modal.querySelector(".modal-content");
       box.classList.remove("is-sent");
@@ -1987,6 +2053,10 @@
     const recipientSelect = document.getElementById("letterRecipient");
     const otherField = document.getElementById("otherField");
     function syncOther() {
+      syncChips();
+      autosize();
+      bodyCounter();
+      if (document.getElementById("letterAuthor").value || document.getElementById("letterComments").checked) document.getElementById("moreOpts").open = true;
       const on = recipientSelect.value === "__other";
       otherField.classList.toggle("on", on);
       document.getElementById("otherRecipient").required = on;
@@ -2050,16 +2120,15 @@
         return;
       }
 
-      const title = document.getElementById("letterTitle").value.trim();
+      let title = document.getElementById("letterTitle").value.trim();
       const author = document.getElementById("letterAuthor").value.trim();
       let recipient = recipientSelect.value;
       if (recipient === "__other") recipient = document.getElementById("otherRecipient").value.trim();
       const body = document.getElementById("letterBody").value.trim();
 
-      if (!title || !recipient || !body) {
-        showStatus("সব ঘর পূরণ করুন।", "error");
-        return;
-      }
+      if (!recipient) { showStatus("কাকে লিখছেন, সেটা বেছে নিন।", "error"); return; }
+      if (!body) { showStatus("চিঠিটা লিখুন।", "error"); return; }
+      if (!title) title = autoTitle(body);
 
       submitBtn.disabled = true;
       submitBtn.textContent = "জমা হচ্ছে...";
