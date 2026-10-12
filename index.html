@@ -83,8 +83,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(248, 250, 246, .96);
-      backdrop-filter: blur(14px);
+      background: rgba(248, 250, 246, .98);
       border-bottom: 1px solid var(--border);
     }
 
@@ -447,8 +446,7 @@
       align-items: center;
       justify-content: center;
       padding: 18px;
-      background: rgba(22, 37, 28, .65);
-      backdrop-filter: blur(5px);
+      background: rgba(22, 37, 28, .78);
     }
 
     .modal.open {
@@ -769,6 +767,94 @@
     .card-pop img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 14px; }
     .card-pop .row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
     .card-pop .hint { margin-top: 12px; }
+
+    /* ---- অনুমোদন, রিপোর্ট ---- */
+    .report-panel { width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); }
+    .report-panel[hidden] { display: none; }
+    .report-panel p { margin: 0 0 10px; font-size: 14px; color: var(--muted); }
+    .report-panel button { display: block; width: 100%; text-align: left; margin-bottom: 8px; padding: 9px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--white); color: var(--green); font: inherit; font-size: 14px; cursor: pointer; }
+    .report-panel button:last-child { margin-bottom: 0; }
+    .sent-care { font-size: 13px; color: var(--muted); margin: -8px 0 18px; }
+    .letter-card { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; }
+    .letter-card:focus:not(:focus-visible) { outline: none; }
+    .today-card, .reader-foot, .category-list { -webkit-tap-highlight-color: transparent; }
+
+    /* ---- প্রতিক্রিয়া, নির্ধারিত বার্তা, মন্তব্য ---- */
+    .letter-react { font-size: 13px; color: var(--olive); margin-top: 10px; }
+    .react-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .react-btn { display: inline-flex; gap: 8px; align-items: center; padding: 10px 18px; border: 1px solid var(--border); border-radius: 999px; background: var(--white); color: var(--green); font: inherit; font-size: 14px; cursor: pointer; }
+    .react-btn .cnt { color: var(--olive); font-weight: 600; }
+    .react-btn.on, .msg-chip.on { background: var(--surface-2); border-color: var(--olive); }
+    .msg-block { margin-top: 18px; }
+    .msg-title { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+    .msg-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .msg-chip { display: inline-flex; gap: 6px; padding: 7px 14px; border: 1px solid var(--border); border-radius: 999px; background: transparent; color: var(--green-2); font: inherit; font-size: 13px; cursor: pointer; }
+    .msg-chip .cnt { color: var(--olive); font-weight: 600; }
+    .comment-block { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .comment-block[hidden] { display: none; }
+    .cm-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .cm-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .cm-item b { display: block; font-size: 13px; color: var(--olive); }
+    .cm-item p { font-size: 15px; line-height: 1.9; }
+    .cm-form { display: grid; gap: 10px; margin-top: 14px; }
+    .cm-form input, .cm-form textarea { width: 100%; padding: 11px 13px; border: 1px solid var(--border); border-radius: 10px; background: var(--white); color: var(--green); outline: none; font: inherit; }
+    .cm-form textarea { min-height: 90px; resize: vertical; line-height: 1.9; }
+    .form-group .chk { display: flex; gap: 10px; align-items: flex-start; font-weight: 600; font-size: 14px; cursor: pointer; margin-bottom: 4px; }
+    .form-group .chk input { width: 18px; height: 18px; padding: 0; margin-top: 6px; flex: none; box-shadow: none; }
+
+    /* ---- সরল পড়ার ভিউ ---- */
+    .reader-body + .reader-sign { margin-top: 22px; text-align: right; font-size: 17px; color: var(--green-2); }
+    .reader-foot { margin-top: 24px; padding-top: 14px; }
+    .reader-actions .btn { padding: 6px 14px; font-size: 13px; }
+
+    /* ---- সংরক্ষণ (বুকমার্ক) ---- */
+    .save-btn { margin-left: auto; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--green); cursor: pointer; }
+    .save-btn:hover { background: var(--surface-2); }
+    .save-btn.on svg { fill: currentColor; }
+    #savedBtn { display: inline-flex; align-items: center; gap: 8px; }
+    #savedBtn.on { background: var(--surface-2); border-color: var(--olive); }
+    #savedBtn.on svg { fill: currentColor; }
+
+    /* ---- লাইন স্পেস, খসড়া, আমার চিঠি ---- */
+    .reader-body { white-space: normal; line-height: 1.95; }
+    .reader-body p { white-space: pre-wrap; margin: 0 0 1em; }
+    .reader-body p:last-child { margin-bottom: 0; }
+    .form-group textarea { line-height: 1.9; }
+    .link-btn { background: none; border: 0; padding: 0; color: var(--olive); text-decoration: underline; cursor: pointer; font: inherit; }
+    .mine-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .mine-item b { display: block; font-size: 16px; }
+    .mine-item .st { display: block; font-size: 13px; color: var(--olive); margin: 2px 0 8px; }
+    .mine-item button { margin-right: 8px; }
+    #mineBtn.on { background: var(--surface-2); border-color: var(--olive); font-weight: 600; }
+
+    /* ---- অ্যাডমিন (শুধু লগইন করলে দেখা যায়) ---- */
+    .adm-fab { position: fixed; left: 12px; bottom: 12px; z-index: 900; background: var(--green); color: #fff; border: 0; border-radius: 999px; padding: 11px 18px; font: inherit; font-size: 14px; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+    .adm-fab[hidden], .adm-panel[hidden] { display: none; }
+    .adm-panel { position: fixed; left: 12px; bottom: 64px; z-index: 900; width: min(440px, calc(100vw - 24px)); max-height: 72vh; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 12px 36px rgba(0,0,0,.3); overflow: hidden; }
+    .adm-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 15px; }
+    .adm-head div { display: flex; gap: 6px; }
+    .adm-tabs { display: flex; gap: 6px; padding: 10px 14px 0; overflow-x: auto; }
+    .adm-tab { white-space: nowrap; border: 1px solid var(--border); background: var(--white); color: var(--green-2); border-radius: 999px; padding: 6px 14px; font: inherit; font-size: 13px; cursor: pointer; }
+    .adm-tab.on { background: var(--green); border-color: var(--green); color: #fff; }
+    .adm-msg { padding: 6px 14px 0; font-size: 13px; min-height: 1.4em; color: var(--olive); }
+    .adm-msg.err { color: var(--danger); }
+    .adm-list { overflow: auto; padding: 8px 14px 14px; }
+    .adm-card { border: 1px solid var(--border); border-radius: 12px; padding: 11px 13px; margin-bottom: 10px; background: var(--white); }
+    .adm-meta { font-size: 12px; color: var(--olive); margin-bottom: 4px; }
+    .adm-card h4 { font-size: 16px; margin-bottom: 4px; }
+    .adm-body { white-space: pre-wrap; font-size: 14.5px; line-height: 1.9; max-height: 8.5em; overflow: hidden; }
+    .adm-body.open { max-height: none; }
+    .adm-more { background: none; border: 0; color: var(--olive); text-decoration: underline; font: inherit; font-size: 12px; cursor: pointer; padding: 0; }
+    .adm-acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .adm-btn { border: 1px solid var(--green); background: var(--green); color: #fff; border-radius: 999px; padding: 5px 13px; font: inherit; font-size: 13px; cursor: pointer; }
+    .adm-btn.o { background: transparent; color: var(--green); }
+    .adm-btn.d { background: transparent; color: var(--danger); border-color: var(--danger); }
+    .adm-btn:disabled { opacity: .5; }
+    .adm-empty { text-align: center; color: var(--muted); padding: 24px 6px; font-size: 14px; }
+    .adm-peek { margin-top: 8px; padding: 8px 10px; border-left: 3px solid var(--olive); background: var(--surface); border-radius: 6px; font-size: 14px; }
+    .adm-panel { overscroll-behavior: contain; }
+    .adm-list { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+    .adm-tabs { overscroll-behavior: contain; }
   </style>
 </head>
 
@@ -862,6 +948,8 @@
                    placeholder="চিঠির নম্বর বা শিরোনাম দিয়ে খুঁজুন" aria-label="চিঠি খুঁজুন">
           </div>
           <button type="button" class="btn btn-outline btn-sm" id="randomBtn">একটি অচেনা চিঠি পড়ুন</button>
+          <button type="button" class="btn btn-outline btn-sm" id="savedBtn" aria-pressed="false"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z"/></svg><span>সংরক্ষিত</span></button>
+          <button type="button" class="btn btn-outline btn-sm" id="mineBtn" style="display:none">আমার চিঠি</button>
         </div>
 
         <div class="category-list" id="categoryList" aria-label="চিঠির বিভাগ">
@@ -946,8 +1034,8 @@
 
       <p class="notice">
         অনুগ্রহ করে নিজের নাম, ফোন নম্বর, ঠিকানা বা অন্য ব্যক্তির
-        ব্যক্তিগত তথ্য লিখবেন না। এই সংস্করণে জমা দেওয়া চিঠি
-        প্রকাশ্যে দেখা যেতে পারে।
+        ব্যক্তিগত তথ্য লিখবেন না। জমা দেওয়া চিঠি আমরা একবার দেখে নিয়ে
+        সাইটে প্রকাশ করব।
       </p>
 
       <form id="letterForm">
@@ -983,11 +1071,21 @@
                     placeholder="মনের কথাগুলো লিখুন..." required></textarea>
         </div>
 
+        <p class="hint" id="draftNote" style="display:none;margin:-8px 0 16px">আগের অসম্পূর্ণ লেখাটি ফিরিয়ে আনা হয়েছে। <button type="button" class="link-btn" id="draftClear">নতুন করে শুরু করুন</button></p>
+
+
         <div class="form-group">
           <label for="letterAuthor">ছদ্মনাম <span style="font-weight:400;color:var(--muted)">(ঐচ্ছিক)</span></label>
           <input type="text" id="letterAuthor" maxlength="30" placeholder="যেমন: ভোরের পাখি, বৃষ্টিবিলাসী">
           <p class="hint">আসল নাম নয়, ডাকনাম বা ছদ্মনাম লিখুন। খালি রাখলে "একজন অচেনা মানুষ" দেখাবে।</p>
         </div>
+
+
+        <div class="form-group">
+          <label class="chk"><input type="checkbox" id="letterComments"> অন্যরা এই চিঠিতে ছোট মন্তব্য লিখতে পারবে</label>
+          <p class="hint">বন্ধ থাকলে কেউ মন্তব্য করতে পারবে না। চালু করলেও প্রতিটা মন্তব্য আগে আমাদের অনুমোদন পাবে।</p>
+        </div>
+
 
 
         <p id="formStatus" class="form-message"
@@ -1007,6 +1105,7 @@
         <h2>চিঠিটা ঘরে পৌঁছে গেছে।</h2>
         <p class="sent-no" id="sentNo"></p>
         <p id="sentText">কেউ একদিন হয়তো এটা পড়ে ভাববে, সে একা নয়।</p>
+        <p class="sent-care" id="sentCare">কঠিন সময় পার করছেন? কারও সঙ্গে কথা বলুন, আপনি একা নন।</p>
         <button type="button" class="btn" id="sentCloseBtn">ঠিক আছে</button>
       </div>
 
@@ -1024,16 +1123,48 @@
       </div>
       <h2 id="readerTitle"></h2>
       <div class="reader-body" id="readerBody"></div>
+      <p class="reader-sign" id="readerSign">— একজন অচেনা মানুষ</p>
+
+      <div class="react-row">
+        <button type="button" class="react-btn" data-key="felt" aria-pressed="false"><span>আমিও এমন অনুভব করেছি</span><span class="cnt"></span></button>
+        <button type="button" class="save-btn" id="saveBtn" aria-pressed="false" aria-label="চিঠিটি সংরক্ষণ করুন"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z"/></svg></button>
+      </div>
+
+      <div class="comment-block" id="commentBlock" hidden>
+        <h3 class="cm-title">মন্তব্য</h3>
+        <div id="commentList"></div>
+        <div class="cm-form">
+          <input type="text" id="cmName" maxlength="30" placeholder="ছদ্মনাম (ঐচ্ছিক)">
+          <textarea id="cmText" maxlength="300" placeholder="সদয় কিছু লিখুন..."></textarea>
+          <p class="hint">মন্তব্য অনুমোদনের পর দেখা যাবে। আসল নাম বা ব্যক্তিগত তথ্য লিখবেন না।</p>
+          <button type="button" class="btn btn-sm" id="cmSend">মন্তব্য পাঠান</button>
+          <span class="link-msg" id="cmMsg"></span>
+        </div>
+      </div>
       <div class="reader-foot">
-        <span class="reader-sign" id="readerSign">— একজন অচেনা মানুষ</span>
-        <button type="button" class="btn btn-outline btn-sm felt-btn" id="feltBtn" aria-pressed="false">আমিও এমন অনুভব করেছি</button>
         <div class="reader-actions">
           <button type="button" class="btn btn-outline btn-sm" id="copyLinkBtn">লিংক কপি করুন</button>
           <button type="button" class="btn btn-outline btn-sm" id="cardBtn">শেয়ার-কার্ড বানান</button>
+          <button type="button" class="btn btn-outline btn-sm" id="reportBtn">সমস্যা জানান</button>
+          <div class="report-panel" id="reportPanel" hidden>
+            <p>এই চিঠিতে কী সমস্যা?</p>
+            <button type="button" data-reason="আসল নাম বা ব্যক্তিগত তথ্য">আসল নাম বা ব্যক্তিগত তথ্য আছে</button>
+            <button type="button" data-reason="কাউকে আক্রমণ বা হেয়">কাউকে আক্রমণ বা হেয় করা হয়েছে</button>
+            <button type="button" data-reason="ক্ষতিকর বা সংকটের লেখা">ক্ষতিকর বা সংকটের লেখা</button>
+            <button type="button" data-reason="অন্য">অন্য সমস্যা</button>
+          </div>
         </div>
         <span class="link-msg" id="linkMsg"></span>
-        <span class="felt-note" id="feltNote"></span>
       </div>
+    </div>
+  </div>
+  <!-- আমার জমা দেওয়া চিঠি -->
+  <div class="modal" id="mineModal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="mineTitle">
+      <button type="button" class="close-btn" id="closeMineBtn" aria-label="বন্ধ করুন">×</button>
+      <h2 id="mineTitle">আমার জমা দেওয়া চিঠি</h2>
+      <p class="notice">এই তালিকা শুধু এই ব্রাউজারে আছে। ব্রাউজারের ডেটা মুছলে বা অন্য ফোনে গেলে এটা থাকবে না, তাই চিঠির নম্বরটা আলাদা করে লিখে রাখা ভালো।</p>
+      <div id="mineList"></div>
     </div>
   </div>
 
@@ -1047,6 +1178,33 @@
         <button type="button" class="btn btn-outline btn-sm" id="cardShare" hidden>শেয়ার করুন</button>
       </div>
       <p class="hint">ছবিতে লেখকের কোনো পরিচয় থাকে না। ফোনে ছবিটা চেপে ধরেও সেভ করা যায়।</p>
+    </div>
+  </div>
+
+  <button type="button" class="adm-fab" id="admFab" hidden></button>
+  <div class="adm-panel" id="admPanel" hidden>
+    <div class="adm-head"><span>অ্যাডমিন</span><div>
+      <button type="button" class="adm-btn o" id="admRefresh">রিফ্রেশ</button>
+      <button type="button" class="adm-btn o" id="admOut">লগআউট</button>
+      <button type="button" class="adm-btn o" id="admClose" aria-label="বন্ধ করুন">×</button>
+    </div></div>
+    <div class="adm-tabs" id="admTabs">
+      <button type="button" class="adm-tab on" data-t="letters">চিঠি <span></span></button>
+      <button type="button" class="adm-tab" data-t="comments">মন্তব্য <span></span></button>
+      <button type="button" class="adm-tab" data-t="reports">রিপোর্ট <span></span></button>
+    </div>
+    <p class="adm-msg" id="admMsg" role="status"></p>
+    <div class="adm-list" id="admList"></div>
+  </div>
+
+  <div class="modal" id="admLogin" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-label="অ্যাডমিন লগইন" style="max-width:380px">
+      <button type="button" class="close-btn" id="admLoginClose" aria-label="বন্ধ করুন">×</button>
+      <h2>অ্যাডমিন লগইন</h2>
+      <p class="notice" id="admDemoNote" hidden>ডেমো: যেকোনো ৬ বা তার বেশি অঙ্কের কোড দিলেই ঢোকা যাবে।</p>
+      <div class="form-group"><label for="admCode">লগইন কোড</label><input id="admCode" type="password" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="20"></div>
+      <p class="form-message error" id="admLoginMsg"></p>
+      <button type="button" class="btn submit-btn" id="admLoginBtn">লগইন</button>
     </div>
   </div>
 
@@ -1076,6 +1234,7 @@
       const q = normQuery(searchQuery);
       return allLetters.filter(function (l) {
         const r = l.recipient || l.category || "";
+        if (showSaved && getSaved().indexOf(l.id) === -1) return false;
         if (activeCategory === "অন্য") { if (RECIPIENTS.indexOf(r) !== -1) return false; }
         else if (activeCategory !== "সব চিঠি" && r !== activeCategory) return false;
         if (!q) return true;
@@ -1101,6 +1260,8 @@
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
+
+      restoreDraft();
 
       document.getElementById("letterTitle").focus();
     }
@@ -1133,23 +1294,257 @@
 
     // ---- পড়ার ভিউ ----
     const readerModal = document.getElementById("readerModal");
-    const feltBtn = document.getElementById("feltBtn");
     let currentLetter = null;
     let readerPrevFocus = null;
 
-    function getFelt() {
-      try { return JSON.parse(localStorage.getItem("chithighor_felt") || "[]"); }
+    const REACT_KEY = "chithighor_react";
+    function getMine() {
+      try { return JSON.parse(localStorage.getItem(REACT_KEY) || "{}"); }
+      catch (e) { return {}; }
+    }
+    function saveMine(o) {
+      try { localStorage.setItem(REACT_KEY, JSON.stringify(o)); } catch (e) {}
+    }
+
+    function updateCardLine(l) {
+      if (!l._line) return;
+      const r = l.reactions || {};
+      const parts = [];
+      if (r.felt > 0) parts.push(bn(r.felt) + " জন এমন অনুভব করেছেন");
+      if (l.allow_comments) parts.push("মন্তব্য চালু");
+      l._line.textContent = parts.join(" · ");
+      l._line.style.display = parts.length ? "" : "none";
+    }
+
+    function paintReact() {
+      const l = currentLetter;
+      if (!l) return;
+      const mine = getMine()[l.id] || [];
+      const r = l.reactions || {};
+      readerModal.querySelectorAll("[data-key]").forEach(function (b) {
+        const k = b.dataset.key;
+        const on = mine.indexOf(k) !== -1;
+        const c = r[k] || 0;
+        b.classList.toggle("on", on);
+        b.setAttribute("aria-pressed", String(on));
+        const cnt = b.querySelector(".cnt");
+        if (cnt) cnt.textContent = c > 0 ? bn(c) : "";
+      });
+    }
+
+    const SAVE_KEY = "chithighor_saved";
+    let showSaved = false;
+    function getSaved() {
+      try { return JSON.parse(localStorage.getItem(SAVE_KEY) || "[]"); }
       catch (e) { return []; }
     }
-    function setFelt(list) {
-      try { localStorage.setItem("chithighor_felt", JSON.stringify(list)); } catch (e) {}
+    function setSaved(list) {
+      try { localStorage.setItem(SAVE_KEY, JSON.stringify(list)); } catch (e) {}
     }
-    function paintFelt() {
-      const on = currentLetter && getFelt().indexOf(currentLetter.id) !== -1;
-      feltBtn.classList.toggle("on", !!on);
-      feltBtn.setAttribute("aria-pressed", String(!!on));
-      feltBtn.textContent = on ? "আপনি এটা অনুভব করেছেন" : "আমিও এমন অনুভব করেছি";
-      document.getElementById("feltNote").textContent = on ? "আপনি একা নন।" : "";
+    function paintSaved() {
+      const saved = getSaved();
+      const n = allLetters.filter(function (l) { return saved.indexOf(l.id) !== -1; }).length;
+      const b = document.getElementById("savedBtn");
+      b.querySelector("span").textContent = n ? "সংরক্ষিত (" + bn(n) + ")" : "সংরক্ষিত";
+      b.classList.toggle("on", showSaved);
+      b.setAttribute("aria-pressed", String(showSaved));
+    }
+    function paintSave() {
+      const on = !!currentLetter && getSaved().indexOf(currentLetter.id) !== -1;
+      const b = document.getElementById("saveBtn");
+      b.classList.toggle("on", on);
+      b.setAttribute("aria-pressed", String(on));
+      b.setAttribute("aria-label", on ? "সংরক্ষণ থেকে সরান" : "চিঠিটি সংরক্ষণ করুন");
+    }
+
+    function renderBody(text) {
+      const box = document.getElementById("readerBody");
+      box.replaceChildren();
+      text.replace(/\r\n/g, "\n").trim().split(/\n\s*\n+/).forEach(function (part) {
+        const p = document.createElement("p");
+        p.textContent = part.trim();
+        box.appendChild(p);
+      });
+    }
+
+    // ---- খসড়া নিজে থেকে সেভ ----
+    const DRAFT_KEY = "chithighor_draft";
+    const draftFields = ["letterRecipient", "otherRecipient", "letterTitle", "letterBody", "letterAuthor"];
+    let draftTimer;
+    function readDraft() {
+      try { return JSON.parse(localStorage.getItem(DRAFT_KEY) || "null"); }
+      catch (e) { return null; }
+    }
+    function saveDraft() {
+      clearTimeout(draftTimer);
+      draftTimer = setTimeout(function () {
+        const d = {};
+        draftFields.forEach(function (id) { d[id] = document.getElementById(id).value; });
+        d.comments = document.getElementById("letterComments").checked;
+        const any = d.letterTitle.trim() || d.letterBody.trim() || d.letterAuthor.trim();
+        try {
+          if (any) localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+          else localStorage.removeItem(DRAFT_KEY);
+        } catch (e) {}
+      }, 400);
+    }
+    function clearDraft() {
+      clearTimeout(draftTimer);
+      try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+    }
+    function restoreDraft() {
+      const note = document.getElementById("draftNote");
+      note.style.display = "none";
+      const d = readDraft();
+      if (!d) return;
+      draftFields.forEach(function (id) { if (d[id] != null) document.getElementById(id).value = d[id]; });
+      document.getElementById("letterComments").checked = !!d.comments;
+      syncOther();
+      note.style.display = "";
+    }
+
+    // ---- আমার জমা দেওয়া চিঠি ----
+    const MYL_KEY = "chithighor_mine";
+    const mineModal = document.getElementById("mineModal");
+    function getMyLetters() {
+      try { return JSON.parse(localStorage.getItem(MYL_KEY) || "[]"); }
+      catch (e) { return []; }
+    }
+    function setMyLetters(l) {
+      try { localStorage.setItem(MYL_KEY, JSON.stringify(l)); } catch (e) {}
+    }
+    function rememberMine(no, title) {
+      if (!no) return;
+      const list = getMyLetters().filter(function (x) { return x.no !== no; });
+      list.unshift({ no: no, title: title || "", at: Date.now() });
+      setMyLetters(list.slice(0, 50));
+      paintMineBtn();
+    }
+    const SEEN_KEY = "chithighor_seen";
+    function getSeen() {
+      try { return JSON.parse(localStorage.getItem(SEEN_KEY) || "{}"); }
+      catch (e) { return {}; }
+    }
+    function setSeen(o) {
+      try { localStorage.setItem(SEEN_KEY, JSON.stringify(o)); } catch (e) {}
+    }
+    function activity(item) {
+      const pub = allLetters.find(function (l) { return String(l.letter_no) === String(item.no); });
+      if (!pub) return null;
+      const felt = (pub.reactions && pub.reactions.felt) || 0;
+      const cm = pub.comment_count || 0;
+      const seen = getSeen()[item.no] || { felt: 0, cm: 0 };
+      return { pub: pub, felt: felt, cm: cm, nf: Math.max(0, felt - seen.felt), nc: Math.max(0, cm - seen.cm) };
+    }
+    function paintMineBtn() {
+      const list = getMyLetters();
+      const b = document.getElementById("mineBtn");
+      b.style.display = list.length ? "" : "none";
+      let fresh = 0;
+      list.forEach(function (it) { const a = activity(it); if (a) fresh += a.nf + a.nc; });
+      b.textContent = fresh ? "আমার চিঠি · নতুন " + bn(fresh) : "আমার চিঠি";
+      b.classList.toggle("on", fresh > 0);
+    }
+    function closeMine() {
+      mineModal.classList.remove("open");
+      mineModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+    function openMine() {
+      const box = document.getElementById("mineList");
+      box.replaceChildren();
+      getMyLetters().forEach(function (item) {
+        const row = document.createElement("div");
+        row.className = "mine-item";
+        const t = document.createElement("b");
+        t.textContent = (item.title || "শিরোনামহীন চিঠি") + " · নং " + bn(item.no);
+        const st = document.createElement("span");
+        st.className = "st";
+        st.textContent = "অবস্থা দেখা হচ্ছে...";
+        const act = document.createElement("div");
+        const rm = document.createElement("button");
+        rm.type = "button";
+        rm.className = "link-btn";
+        rm.textContent = "তালিকা থেকে সরান";
+        rm.addEventListener("click", function () {
+          setMyLetters(getMyLetters().filter(function (x) { return x.no !== item.no; }));
+          row.remove();
+          paintMineBtn();
+          if (!getMyLetters().length) closeMine();
+        });
+        row.append(t, st, act);
+        box.appendChild(row);
+
+        (async function () {
+          const pub = allLetters.find(function (l) { return String(l.letter_no) === String(item.no); });
+          if (pub) {
+            const a = activity(item);
+            let txt = "প্রকাশিত হয়েছে · " + bn(a.felt) + " জন এমন অনুভব করেছেন · " + bn(a.cm) + "টি মন্তব্য";
+            if (a.nf || a.nc) {
+              const parts = [];
+              if (a.nf) parts.push(bn(a.nf) + " অনুভব");
+              if (a.nc) parts.push(bn(a.nc) + " মন্তব্য");
+              txt += " · নতুন: " + parts.join(", ");
+            }
+            st.textContent = txt;
+            const seen = getSeen();
+            seen[item.no] = { felt: a.felt, cm: a.cm };
+            setSeen(seen);
+            paintMineBtn();
+            const rd = document.createElement("button");
+            rd.type = "button";
+            rd.className = "btn btn-outline btn-sm";
+            rd.textContent = "চিঠিটি পড়ুন";
+            rd.addEventListener("click", function () { closeMine(); openReader(pub); });
+            act.append(rd, rm);
+            return;
+          }
+          try {
+            const r = await db.rpc("letter_status", { p_no: item.no });
+            st.textContent = r.data === "pending" ? "অনুমোদনের অপেক্ষায় আছে"
+              : r.data === "approved" ? "প্রকাশিত হয়েছে (পেজ রিলোড করুন)"
+              : "চিঠিটি পাওয়া যায়নি (সরিয়ে ফেলা হয়ে থাকতে পারে)";
+          } catch (e) { st.textContent = "অবস্থা জানা যায়নি"; }
+          act.appendChild(rm);
+        })();
+      });
+      mineModal.classList.add("open");
+      mineModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    async function setupComments(l) {
+      const cb = document.getElementById("commentBlock");
+      cb.hidden = !l.allow_comments;
+      document.getElementById("cmMsg").textContent = "";
+      if (!l.allow_comments || !l.letter_no) return;
+      const list = document.getElementById("commentList");
+      list.textContent = "লোড হচ্ছে...";
+      try {
+        const r = await db.from("comments").select("author_name, body, created_at")
+          .eq("letter_no", l.letter_no).eq("approved", true).order("created_at", { ascending: true });
+        if (currentLetter !== l) return;
+        list.replaceChildren();
+        const rows = r.data || [];
+        if (!rows.length) {
+          const p = document.createElement("p");
+          p.className = "hint";
+          p.textContent = "এখনো কোনো মন্তব্য নেই।";
+          list.appendChild(p);
+        }
+        rows.forEach(function (c) {
+          const d = document.createElement("div");
+          d.className = "cm-item";
+          const b = document.createElement("b");
+          b.textContent = c.author_name || "একজন অচেনা মানুষ";
+          const p = document.createElement("p");
+          p.textContent = c.body;
+          d.append(b, p);
+          list.appendChild(d);
+        });
+      } catch (e) {
+        list.textContent = "মন্তব্য লোড করা যায়নি।";
+      }
     }
 
     function openReader(letter) {
@@ -1160,7 +1555,7 @@
       document.getElementById("readerNo").textContent = letter.letter_no ? "চিঠি নং " + bn(letter.letter_no) : "";
       document.getElementById("readerSign").textContent = "— " + (letter.author_name || "একজন অচেনা মানুষ");
       document.getElementById("readerTitle").textContent = letter.title || "শিরোনামহীন চিঠি";
-      document.getElementById("readerBody").textContent = letter.body || "";
+      renderBody(letter.body || "");
 
       let dateText = "";
       if (letter.created_at) {
@@ -1169,13 +1564,16 @@
       }
       document.getElementById("readerDate").textContent = dateText;
 
-      paintFelt();
+      paintReact();
+      paintSave();
+      setupComments(letter);
       readerModal.classList.add("open");
       readerModal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
       readerModal.querySelector(".modal-content").scrollTop = 0;
       document.getElementById("closeReaderBtn").focus();
       document.getElementById("linkMsg").textContent = "";
+      document.getElementById("reportPanel").hidden = true;
       if (letter.letter_no) { try { history.replaceState(null, "", "#" + letter.letter_no); } catch (e) {} }
     }
 
@@ -1184,6 +1582,7 @@
       readerModal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
       try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+      if (showSaved) renderLetters();
       if (readerPrevFocus && typeof readerPrevFocus.focus === "function") readerPrevFocus.focus();
     }
 
@@ -1193,13 +1592,69 @@
       if (e.key === "Escape" && readerModal.classList.contains("open") && !cardModal.classList.contains("open")) closeReader();
     });
 
-    feltBtn.addEventListener("click", function () {
+    readerModal.addEventListener("click", async function (e) {
+      const b = e.target.closest("[data-key]");
+      if (!b || !currentLetter) return;
+      const l = currentLetter, k = b.dataset.key;
+      const mine = getMine();
+      const arr = mine[l.id] || [];
+      const had = arr.indexOf(k) !== -1;
+      const delta = had ? -1 : 1;
+      l.reactions = Object.assign({}, l.reactions || {});
+      l.reactions[k] = Math.max(0, (l.reactions[k] || 0) + delta);
+      mine[l.id] = had ? arr.filter(function (x) { return x !== k; }) : arr.concat(k);
+      saveMine(mine);
+      paintReact();
+      updateCardLine(l);
+      if (l.letter_no) {
+        try { await db.rpc("react_letter", { p_no: l.letter_no, p_key: k, p_delta: delta }); } catch (err) {}
+      }
+    });
+
+    form.addEventListener("input", saveDraft);
+    form.addEventListener("change", saveDraft);
+    document.getElementById("draftClear").addEventListener("click", function () {
+      form.reset();
+      clearDraft();
+      syncOther();
+      document.getElementById("draftNote").style.display = "none";
+    });
+    document.getElementById("mineBtn").addEventListener("click", openMine);
+    document.getElementById("closeMineBtn").addEventListener("click", closeMine);
+    mineModal.addEventListener("click", function (e) { if (e.target === mineModal) closeMine(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && mineModal.classList.contains("open")) closeMine(); });
+
+    document.getElementById("saveBtn").addEventListener("click", function () {
       if (!currentLetter) return;
-      const list = getFelt();
+      const list = getSaved();
       const i = list.indexOf(currentLetter.id);
       if (i === -1) list.push(currentLetter.id); else list.splice(i, 1);
-      setFelt(list);
-      paintFelt();
+      setSaved(list);
+      paintSave();
+      paintSaved();
+    });
+    document.getElementById("savedBtn").addEventListener("click", function () {
+      showSaved = !showSaved;
+      paintSaved();
+      renderLetters();
+    });
+
+    document.getElementById("cmSend").addEventListener("click", async function () {
+      if (!currentLetter || !currentLetter.letter_no) return;
+      const text = document.getElementById("cmText").value.trim();
+      const msg = document.getElementById("cmMsg");
+      if (!text) { msg.textContent = "মন্তব্য লিখুন।"; return; }
+      try {
+        const r = await db.rpc("submit_comment", {
+          p_no: currentLetter.letter_no, p_body: text,
+          p_author: document.getElementById("cmName").value.trim() || null
+        });
+        if (r.error) throw r.error;
+        document.getElementById("cmText").value = "";
+        msg.textContent = "মন্তব্য পাঠানো হয়েছে। অনুমোদনের পর দেখা যাবে।";
+      } catch (err) {
+        msg.textContent = "পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন।";
+      }
     });
 
     document.getElementById("randomBtn").addEventListener("click", function () {
@@ -1217,7 +1672,7 @@
       const noEl = document.getElementById("sentNo");
       noEl.textContent = no ? "আপনার চিঠির নম্বর: " + bn(no) : "";
       document.getElementById("sentText").textContent = no
-        ? "নম্বরটা মনে রাখুন। সার্চ করে নিজের চিঠি আবার খুঁজে পাবেন।"
+        ? "আমরা চিঠিটা একবার দেখে নিয়ে সাইটে দেব। নম্বরটা মনে রাখুন, এই নম্বর দিয়ে খুঁজলে চিঠির অবস্থা জানতে পারবেন। এই ব্রাউজারে 'আমার চিঠি' বোতাম থেকেও দেখা যাবে।"
         : "কেউ একদিন হয়তো এটা পড়ে ভাববে, সে একা নয়।";
       const box = modal.querySelector(".modal-content");
       box.classList.remove("is-sent");
@@ -1278,7 +1733,7 @@
       c.textContent = "";
       if (!db || allLetters.length < COUNTER_MIN) return;
       try {
-        const res = await db.from("letters").select("id", { count: "exact", head: true });
+        const res = await db.from("letters").select("id", { count: "exact", head: true }).eq("approved", true);
         if (!res.error && res.count >= COUNTER_MIN) {
           c.textContent = "এ পর্যন্ত " + bn(res.count) + "টি চিঠি এই ঘরে জমা হয়েছে।";
         }
@@ -1287,6 +1742,8 @@
 
     function afterLoad() {
       updateCount();
+      paintSaved();
+      paintMineBtn();
       renderToday();
       openFromHash();
     }
@@ -1390,6 +1847,41 @@
     cardModal.addEventListener("click", function (e) { if (e.target === cardModal) closeCard(); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && cardModal.classList.contains("open")) closeCard(); });
 
+
+    // ---- অনুমোদনের অপেক্ষা, রিপোর্ট ----
+    let pendingTimer;
+    function checkPending() {
+      const q = normQuery(searchQuery);
+      clearTimeout(pendingTimer);
+      if (!/^\d{5,}$/.test(q) || getFiltered().length) return;
+      pendingTimer = setTimeout(async function () {
+        try {
+          const r = await db.rpc("letter_status", { p_no: parseInt(q, 10) });
+          if (r.data === "pending" && normQuery(searchQuery) === q) {
+            showEmptyState("এই নম্বরের চিঠিটা অনুমোদনের অপেক্ষায় আছে। অনুমোদন পেলেই সাইটে আসবে।");
+          }
+        } catch (e) {}
+      }, 350);
+    }
+    
+
+    document.getElementById("reportBtn").addEventListener("click", function () {
+      const p = document.getElementById("reportPanel");
+      p.hidden = !p.hidden;
+    });
+    document.getElementById("reportPanel").addEventListener("click", async function (e) {
+      const b = e.target.closest("button[data-reason]");
+      if (!b || !currentLetter || !currentLetter.letter_no) return;
+      const msg = document.getElementById("linkMsg");
+      try {
+        const r = await db.rpc("report_letter", { p_no: currentLetter.letter_no, p_reason: b.dataset.reason });
+        msg.textContent = r.error ? "জানানো যায়নি। একটু পরে আবার চেষ্টা করুন।" : "ধন্যবাদ। আমরা চিঠিটা দেখব।";
+      } catch (err) {
+        msg.textContent = "জানানো যায়নি। একটু পরে আবার চেষ্টা করুন।";
+      }
+      document.getElementById("reportPanel").hidden = true;
+    });
+
     function showStatus(message, type) {
       formStatus.textContent = message;
       formStatus.className =
@@ -1425,7 +1917,9 @@
             ? "এখনো কোনো চিঠি নেই। প্রথম চিঠিটি আপনিই লিখুন।"
             : searchQuery.trim()
               ? "এই নম্বর বা শিরোনামে কোনো চিঠি পাওয়া যায়নি।"
-              : "এই প্রাপকের জন্য এখনো কোনো চিঠি নেই।"
+              : showSaved
+                ? "এখনো কোনো চিঠি সংরক্ষণ করা হয়নি। চিঠির নিচের বুকমার্ক চিহ্নে চাপ দিন।"
+                : "এই প্রাপকের জন্য এখনো কোনো চিঠি নেই।"
         );
         return;
       }
@@ -1453,13 +1947,18 @@
 
         const body = document.createElement("p");
         body.className = "letter-body letter-preview";
-        body.textContent = letter.body || "";
+        body.textContent = (letter.body || "").replace(/\s+/g, " ");
 
         const more = document.createElement("span");
         more.className = "letter-more";
         more.textContent = "পুরো চিঠি পড়ুন";
 
-        card.append(top, title, body, more);
+        const line = document.createElement("p");
+        line.className = "letter-react";
+        letter._line = line;
+        updateCardLine(letter);
+
+        card.append(top, title, body, line, more);
         card.tabIndex = 0;
         card.setAttribute("role", "button");
         card.setAttribute("aria-label", "চিঠি পড়ুন: " + (letter.title || "শিরোনামহীন চিঠি"));
@@ -1472,7 +1971,12 @@
     }
 
     const searchInput = document.getElementById("searchInput");
-    searchInput.addEventListener("input", function () { searchQuery = searchInput.value; renderLetters(); });
+    let searchTimer;
+    searchInput.addEventListener("input", function () {
+      searchQuery = searchInput.value;
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(function () { renderLetters(); checkPending(); }, 160);
+    });
     searchInput.addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
         const list = getFiltered();
@@ -1518,7 +2022,8 @@
       try {
         const { data, error } = await db
           .from("letters")
-          .select("id, title, body, category, recipient, letter_no, author_name, created_at")
+          .select("id, title, body, category, recipient, letter_no, author_name, reactions, allow_comments, comment_count, created_at")
+          .eq("approved", true)
           .order("created_at", { ascending: false })
           .limit(100);
 
@@ -1561,11 +2066,10 @@
       showStatus("আপনার চিঠি জমা দেওয়া হচ্ছে...");
 
       try {
-        const { data: saved, error } = await db
-          .from("letters")
-          .insert([{ title: title, body: body, recipient: recipient, author_name: author || null }])
-          .select("letter_no")
-          .single();
+        const { data: savedNo, error } = await db.rpc("submit_letter", {
+          p_title: title, p_body: body, p_recipient: recipient, p_author: author || null,
+          p_comments: document.getElementById("letterComments").checked
+        });
 
         if (error) throw error;
 
@@ -1575,7 +2079,9 @@
         await loadLetters();
 
         showStatus("");
-        showSent(saved && saved.letter_no);
+        showSent(savedNo);
+        rememberMine(savedNo, title);
+        clearDraft();
 
       } catch (error) {
         console.error("চিঠি জমা দেওয়ার সমস্যা:", error);
@@ -1606,6 +2112,184 @@
     } catch (error) {
       console.error("Supabase চালু করা যায়নি:", error);
     }
+
+    // ===== ADMIN_MODULE =====
+    (function () {
+      const $ = function (i) { return document.getElementById(i); };
+      const fab = $("admFab"), panel = $("admPanel"), loginM = $("admLogin");
+      let on = false, tab = "letters", data = { letters: [], comments: [], reports: [] }, timer;
+
+      function when(t) { const d = new Date(t); return isNaN(d) ? "" : d.toLocaleString("bn-BD", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }); }
+      function say(t, err) { const m = $("admMsg"); m.textContent = t || ""; m.className = "adm-msg" + (err ? " err" : ""); }
+      function el(tag, cls, text) { const x = document.createElement(tag); if (cls) x.className = cls; if (text != null) x.textContent = text; return x; }
+      function total() { return data.letters.length + data.comments.length + data.reports.length; }
+      function paintFab() {
+        if (on) { fab.hidden = false; fab.textContent = "অ্যাডমিন (" + bn(total()) + ")"; }
+        else if (window.ADMIN_DEMO) { fab.hidden = false; fab.textContent = "ডেমো: অ্যাডমিন লগইন"; }
+        else { fab.hidden = true; }
+      }
+
+      async function load() {
+        if (!on) return;
+        try {
+          const q = await Promise.all([
+            db.from("letters").select("id, letter_no, title, body, recipient, author_name, allow_comments, created_at").eq("approved", false).order("created_at", { ascending: true }),
+            db.from("comments").select("id, letter_no, author_name, body, created_at").eq("approved", false).order("created_at", { ascending: true }),
+            db.from("reports").select("id, letter_no, reason, created_at").order("created_at", { ascending: true })
+          ]);
+          const bad = q.find(function (x) { return x.error; });
+          if (bad) throw bad.error;
+          data = { letters: q[0].data || [], comments: q[1].data || [], reports: q[2].data || [] };
+          say("");
+        } catch (e) {
+          say("লোড করা যায়নি। অ্যাডমিন হিসেবে লগইন আছে কি না আর SQL বসানো আছে কি না দেখুন।", true);
+        }
+        paintFab(); render();
+      }
+
+      function bodyBlock(text) {
+        const wrap = el("div"), b = el("div", "adm-body", text);
+        wrap.appendChild(b);
+        if (text.length > 240) {
+          const m = el("button", "adm-more", "পুরোটা পড়ুন"); m.type = "button";
+          m.addEventListener("click", function () { const o = b.classList.toggle("open"); m.textContent = o ? "কম দেখান" : "পুরোটা পড়ুন"; });
+          wrap.appendChild(m);
+        }
+        return wrap;
+      }
+      function danger(btn, label, run) {
+        let armed = false, t;
+        btn.addEventListener("click", async function () {
+          if (!armed) { armed = true; btn.textContent = "নিশ্চিত? আবার চাপুন"; t = setTimeout(function () { armed = false; btn.textContent = label; }, 3000); return; }
+          clearTimeout(t); btn.disabled = true; await run();
+        });
+      }
+      async function act(promise, after) {
+        const r = await promise;
+        if (r && r.error) { say("কাজটা হয়নি: " + r.error.message, true); return false; }
+        after(); paintFab(); render(); return true;
+      }
+      function btn(label, cls) { const b = el("button", "adm-btn" + (cls ? " " + cls : ""), label); b.type = "button"; return b; }
+      function drop(key, it) { data[key] = data[key].filter(function (x) { return x !== it; }); }
+
+      function render() {
+        document.querySelectorAll("#admTabs .adm-tab").forEach(function (b) {
+          b.classList.toggle("on", b.dataset.t === tab);
+          b.querySelector("span").textContent = "(" + bn(data[b.dataset.t].length) + ")";
+        });
+        const list = $("admList"); list.replaceChildren();
+        const items = data[tab];
+        if (!items.length) list.appendChild(el("p", "adm-empty", tab === "letters" ? "অনুমোদনের অপেক্ষায় কোনো চিঠি নেই।" : tab === "comments" ? "অপেক্ষায় কোনো মন্তব্য নেই।" : "কোনো রিপোর্ট নেই।"));
+        items.forEach(function (it) {
+          const c = el("div", "adm-card"), acts = el("div", "adm-acts");
+          if (tab === "letters") {
+            c.appendChild(el("div", "adm-meta", "নং " + bn(it.letter_no) + " · প্রতি: " + (it.recipient || "—") + " · " + (it.author_name || "অচেনা মানুষ") + " · " + when(it.created_at) + (it.allow_comments ? " · মন্তব্য চালু" : "")));
+            c.appendChild(el("h4", "", it.title || "শিরোনামহীন চিঠি"));
+            c.appendChild(bodyBlock(it.body || ""));
+            const ok = btn("অনুমোদন দিন");
+            ok.addEventListener("click", function () { ok.disabled = true; act(db.from("letters").update({ approved: true }).eq("id", it.id), function () { drop("letters", it); say("অনুমোদন হয়েছে।"); loadLetters(); }); });
+            const del = btn("মুছে দিন", "d");
+            danger(del, "মুছে দিন", function () { return act(db.from("letters").delete().eq("id", it.id), function () { drop("letters", it); say("মুছে ফেলা হয়েছে।"); }); });
+            acts.append(ok, del);
+          } else if (tab === "comments") {
+            c.appendChild(el("div", "adm-meta", "চিঠি নং " + bn(it.letter_no) + " · " + (it.author_name || "অচেনা মানুষ") + " · " + when(it.created_at)));
+            c.appendChild(bodyBlock(it.body || ""));
+            const ok = btn("অনুমোদন দিন");
+            ok.addEventListener("click", function () { ok.disabled = true; act(db.from("comments").update({ approved: true }).eq("id", it.id), function () { drop("comments", it); say("অনুমোদন হয়েছে।"); loadLetters(); }); });
+            const del = btn("মুছে দিন", "d");
+            danger(del, "মুছে দিন", function () { return act(db.from("comments").delete().eq("id", it.id), function () { drop("comments", it); say("মুছে ফেলা হয়েছে।"); }); });
+            acts.append(ok, del);
+          } else {
+            c.appendChild(el("div", "adm-meta", "চিঠি নং " + bn(it.letter_no) + " · " + when(it.created_at)));
+            c.appendChild(el("h4", "", "কারণ: " + (it.reason || "—")));
+            const peek = el("div", "adm-peek"); peek.hidden = true; c.appendChild(peek);
+            const view = btn("চিঠিটা দেখুন", "o");
+            view.addEventListener("click", async function () {
+              const r = await db.from("letters").select("title, body, recipient, approved").eq("letter_no", it.letter_no).maybeSingle();
+              peek.hidden = false; peek.replaceChildren();
+              if (!r.data) { peek.textContent = "এই নম্বরের চিঠি এখন আর নেই।"; return; }
+              peek.appendChild(el("b", "", (r.data.title || "শিরোনামহীন") + " · প্রতি: " + (r.data.recipient || "—") + (r.data.approved ? " · প্রকাশিত" : " · অপেক্ষায়")));
+              peek.appendChild(bodyBlock(r.data.body || ""));
+            });
+            const close = btn("রিপোর্ট বন্ধ করুন", "o");
+            close.addEventListener("click", function () { close.disabled = true; act(db.from("reports").delete().eq("id", it.id), function () { drop("reports", it); say("রিপোর্ট বন্ধ হয়েছে।"); }); });
+            const del = btn("চিঠি মুছে দিন", "d");
+            danger(del, "চিঠি মুছে দিন", async function () {
+              const r1 = await db.from("letters").delete().eq("letter_no", it.letter_no);
+              if (r1.error) { say("কাজটা হয়নি: " + r1.error.message, true); return; }
+              await db.from("reports").delete().eq("letter_no", it.letter_no);
+              data.reports = data.reports.filter(function (x) { return x.letter_no !== it.letter_no; });
+              say("চিঠি ও তার রিপোর্ট মুছে ফেলা হয়েছে।"); paintFab(); render(); loadLetters();
+            });
+            acts.append(view, close, del);
+          }
+          c.appendChild(acts); list.appendChild(c);
+        });
+        if (window.ADMIN_EXTRA) window.ADMIN_EXTRA(list);
+      }
+
+      function enable() {
+        on = true; paintFab(); load();
+        clearInterval(timer); timer = setInterval(function () { if (!document.hidden) load(); }, 60000);
+      }
+      function openLogin() {
+        $("admDemoNote").hidden = !window.ADMIN_DEMO;
+        $("admLoginMsg").textContent = "";
+        loginM.classList.add("open"); loginM.setAttribute("aria-hidden", "false");
+        $("admCode").focus();
+      }
+      function closeLogin() { loginM.classList.remove("open"); loginM.setAttribute("aria-hidden", "true"); }
+
+      fab.addEventListener("click", function () {
+        if (!on) { openLogin(); return; }
+        panel.hidden = !panel.hidden;
+        if (!panel.hidden) load();
+      });
+      $("admClose").addEventListener("click", function () { panel.hidden = true; });
+      $("admRefresh").addEventListener("click", load);
+      $("admOut").addEventListener("click", async function () {
+        await db.auth.signOut();
+        on = false; panel.hidden = true; data = { letters: [], comments: [], reports: [] }; paintFab(); loadLetters();
+      });
+      $("admTabs").addEventListener("click", function (e) { const b = e.target.closest(".adm-tab"); if (b) { tab = b.dataset.t; render(); } });
+      $("admLoginClose").addEventListener("click", closeLogin);
+      loginM.addEventListener("click", function (e) { if (e.target === loginM) closeLogin(); });
+      const ADMIN_EMAIL = "admin@chithighor.example";
+      let fails = 0, lockUntil = 0;
+      async function doLogin() {
+        const msg = $("admLoginMsg");
+        if (Date.now() < lockUntil) { msg.textContent = "অনেকবার ভুল হয়েছে। একটু পরে আবার চেষ্টা করুন।"; return; }
+        const code = $("admCode").value.trim();
+        if (!/^\d{6,}$/.test(code)) { msg.textContent = "কোড শুধু সংখ্যা হতে হবে (অন্তত ৬ অঙ্ক)।"; return; }
+        const r = await db.auth.signInWithPassword({ email: ADMIN_EMAIL, password: code });
+        if (r.error) {
+          fails++;
+          if (fails >= 5) { lockUntil = Date.now() + 60000; fails = 0; }
+          msg.textContent = "কোড ভুল।";
+          return;
+        }
+        fails = 0; $("admCode").value = ""; closeLogin(); enable(); panel.hidden = false; loadLetters();
+      }
+      $("admLoginBtn").addEventListener("click", doLogin);
+      $("admCode").addEventListener("keydown", function (e) { if (e.key === "Enter") doLogin(); });
+
+      // লগইনের গোপন পথ: লোগোতে ৫ বার ট্যাপ, বা ঠিকানার শেষে #admin
+      let taps = [];
+      const brand = document.querySelector(".brand");
+      if (brand) brand.addEventListener("click", function () {
+        const now = Date.now();
+        taps = taps.filter(function (t) { return now - t < 3000; }); taps.push(now);
+        if (taps.length >= 5) { taps = []; if (!on) openLogin(); }
+      });
+      function hashCheck() { if (location.hash === "#admin") { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} if (!on) openLogin(); } }
+      window.addEventListener("hashchange", hashCheck);
+
+      window.adminRefresh = function () { if (on) load(); };
+      (async function () {
+        try { const r = await db.auth.getSession(); if (r.data && r.data.session) enable(); } catch (e) {}
+        paintFab(); hashCheck();
+      })();
+    })();
 
     loadLetters();
   </script>
