@@ -929,53 +929,6 @@
     .tint .ri { color: var(--ink); }
     .category-btn.tint.active, .rcp.tint.on { background: var(--green); border-color: var(--green); }
     .category-btn.active .ri, .rcp.on .ri { color: inherit; }
-
-    /* ---- লাল হৃদয় (লাভ) ---- */
-    :root { --heart: #C0443F; }
-    :root[data-theme="dark"] { --heart: #E2706B; }
-    .react-btn .hrt { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; }
-    .react-btn.on { background: color-mix(in srgb, var(--heart) 10%, transparent); border-color: color-mix(in srgb, var(--heart) 45%, transparent); }
-    .react-btn.on .hrt { fill: var(--heart); stroke: var(--heart); }
-    .letter-meta .st.liked { color: var(--heart); }
-    .letter-meta .st.liked svg { fill: var(--heart); stroke: var(--heart); }
-    .cm-like { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; margin-top: 4px; padding: 2px 8px 2px 4px; border-radius: 999px; font-size: 13px; color: var(--olive); -webkit-tap-highlight-color: transparent; }
-    .cm-like svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; }
-    .cm-like.on { color: var(--heart); }
-    .cm-like.on svg { fill: var(--heart); stroke: var(--heart); }
-    .cm-like:hover { background: var(--surface-2); }
-    .cm-like:focus-visible { outline: 3px solid #8EAA91; outline-offset: 2px; }
-
-    /* ---- মন্তব্যের উত্তর ---- */
-    .cm-acts { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .cm-replybtn { all: unset; cursor: pointer; margin-top: 4px; font-size: 13px; color: var(--olive); text-decoration: underline; -webkit-tap-highlight-color: transparent; }
-    .cm-replybtn:focus-visible { outline: 3px solid #8EAA91; outline-offset: 2px; border-radius: 4px; }
-    .cm-replies { margin-top: 6px; }
-    .cm-reply { margin: 8px 0 0 14px; padding: 6px 0 6px 12px; border-left: 2px solid var(--border); border-bottom: 0; }
-    .cm-replyform { display: grid; gap: 8px; margin: 8px 0 4px 14px; }
-    .cm-replyform input, .cm-replyform textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--white); color: var(--green); outline: none; font: inherit; }
-    .cm-replyform textarea { min-height: 70px; resize: vertical; line-height: 1.55; }
-
-    /* ---- শুরুর বাক্য, আজকের প্রশ্ন, প্রশ্নোত্তর, মোছার ফর্ম ---- */
-    .hero-trust { margin-top: 14px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px; font-size: 13px; color: var(--olive); }
-    .qod { margin: 22px auto 0; max-width: 560px; padding: 16px 20px 18px; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); text-align: center; }
-    .qod-lbl { font-size: 12px; color: var(--olive); }
-    .qod-q { font-size: 19px; line-height: 1.6; margin: 4px 0 12px; color: var(--green); }
-    .starters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
-    .starters-lbl { width: 100%; font-size: 12px; color: var(--muted); }
-    .starter { padding: 6px 12px; border: 1px dashed var(--border); border-radius: 999px; background: transparent; color: var(--green-2); font: inherit; font-size: 13px; cursor: pointer; }
-    .starter:hover { background: var(--surface-2); }
-    .trust-mini { font-size: 12px; color: var(--muted); text-align: center; margin: 0 0 8px; }
-    .faq { max-width: 650px; margin: 0 auto 26px; text-align: left; }
-    .faq details { border: 1px solid var(--border); border-radius: 14px; background: var(--surface); margin: 0 0 10px; padding: 2px 16px; }
-    .faq summary { cursor: pointer; padding: 11px 0; font-weight: 600; font-size: 15px; color: var(--green); }
-    .faq details[open] summary { margin-bottom: 4px; }
-    .faq details p { margin: 0 0 12px; font-size: 14.5px; color: var(--muted); line-height: 1.8; max-width: none; text-align: left; }
-    .delform { display: grid; gap: 8px; margin: 4px 0 8px; }
-    .delform input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--white); color: var(--green); font: inherit; outline: none; }
-    .sent-code { font-size: 14px; background: var(--surface-2); border-radius: 10px; padding: 10px 12px; margin: 0 0 14px; line-height: 1.8; }
-    .sent-code b { user-select: all; letter-spacing: 1px; }
-    .cm-reportbox { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 2px; }
-    .cm-reportbox button { padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; background: transparent; color: var(--muted); font: inherit; font-size: 12px; cursor: pointer; }
   </style>
 </head>
 
@@ -1049,14 +1002,6 @@
         </div>
 
         <p class="hero-note">আপনার অনুভূতি, আপনার ভাষায়।</p>
-        <div class="hero-trust" aria-label="লিখতে কী লাগে">
-          <span>নাম লাগবে না</span><span>লগইন লাগবে না</span><span>২ মিনিটেই হয়ে যায়</span>
-        </div>
-        <div class="qod" id="qod">
-          <span class="qod-lbl">আজকের প্রশ্ন</span>
-          <p class="qod-q" id="qodQ"></p>
-          <button type="button" class="btn btn-outline btn-sm" id="qodBtn">এই প্রশ্নে লিখুন</button>
-        </div>
         <p class="hero-count" id="heroCount"></p>
 
       </div>
@@ -1147,40 +1092,6 @@
           একটি চিঠিই মনে করিয়ে দেয়—আপনি একা নন।
         </p>
 
-        <div class="faq">
-          <details>
-            <summary>চিঠি কীভাবে প্রকাশ হয়?</summary>
-            <p>আপনার চিঠি জমা দিলে আমরা একবার পড়ে নিই। আসল নাম, ফোন নম্বর বা কাউকে আঘাত করার মতো কিছু থাকলে সেটা প্রকাশ করা হয় না। ঠিক থাকলে চিঠিটা সবার জন্য চিঠিঘরে তুলে রাখা হয়।</p>
-          </details>
-          <details>
-            <summary>আমার পরিচয় কি জানা যাবে?</summary>
-            <p>আমরা আপনার নাম, ইমেইল বা ফোন নম্বর চাই না। ছদ্মনাম দেওয়া সম্পূর্ণ ঐচ্ছিক। তবে মনে রাখবেন, প্রকাশিত চিঠি যে কেউ পড়তে পারে, তাই চিঠির ভেতরে এমন কিছু লিখবেন না, যা থেকে আপনাকে চেনা যায়।</p>
-          </details>
-          <details>
-            <summary>আমি কি আমার চিঠি সরাতে পারব?</summary>
-            <p>পারবেন। চিঠি জমা দেওয়ার পর আপনাকে একটা চিঠির নম্বর আর একটা মুছে ফেলার কোড দেখানো হয়। কোডটা লিখে রাখুন, সেটা আর দেখানো হয় না। নিচের ঘরে নম্বর ও কোড দিলে চিঠিটা মুছে যাবে। একই ফোন থেকে লিখে থাকলে "আমার চিঠি" তালিকা থেকেও মোছা যায়।</p>
-            <div class="delform">
-              <input type="text" id="delNo" inputmode="numeric" placeholder="চিঠির নম্বর" autocomplete="off">
-              <input type="text" id="delCode" placeholder="মুছে ফেলার কোড" autocomplete="off" autocapitalize="none" spellcheck="false">
-              <button type="button" class="btn btn-outline btn-sm" id="delBtn">চিঠি মুছুন</button>
-              <span class="link-msg" id="delMsg"></span>
-            </div>
-            <p>কোড হারিয়ে ফেললে আমরা চিঠির মালিক যাচাই করতে পারি না, তাই কোডটা সাবধানে রাখুন।</p>
-          </details>
-          <details>
-            <summary>মন্তব্য ও উত্তর কীভাবে চলে?</summary>
-            <p>লেখক চাইলে চিঠিতে মন্তব্য চালু থাকে। দয়া করে সদয় হোন, আর মন্তব্যে লিংক বা ফোন নম্বর দেবেন না। আপত্তিকর কিছু দেখলে "জানান" চাপুন, আমরা সরিয়ে দেব।</p>
-          </details>
-          <details>
-            <summary>নমুনা চিঠি কী?</summary>
-            <p>চিঠিঘর শুরুতে ফাঁকা না দেখানোর জন্য কিছু নমুনা চিঠি রাখা হয়েছিল। সেগুলো আমাদের লেখা, কোনো আসল মানুষের নয়। আসল চিঠি জমলে ওগুলো সরিয়ে দেওয়া হবে।</p>
-          </details>
-          <details>
-            <summary>কঠিন সময় পার করছেন?</summary>
-            <p>কোনো চিঠিই আপনার কষ্টের বিকল্প নয়। নিজের ক্ষতির কথা ভাবলে এখনই কোনো বিশ্বস্ত মানুষের সঙ্গে বা আপনার এলাকার জরুরি সহায়তা সেবার সঙ্গে কথা বলুন। আপনি একা নন।</p>
-          </details>
-        </div>
-
         <button type="button" class="btn" onclick="openForm()">
           আপনার কথাটি লিখুন ↗
         </button>
@@ -1243,7 +1154,6 @@
 
         <div class="form-group">
           <label for="letterBody">আপনার চিঠি</label>
-          <div class="starters" id="starters"><span class="starters-lbl">কীভাবে শুরু করবেন বুঝতে পারছেন না? একটা বেছে নিন:</span></div>
           <textarea id="letterBody" maxlength="10000" lang="bn" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="none"
                     placeholder="মনের কথাগুলো লিখুন..."></textarea>
           <p class="hint" style="margin-top:6px">বানান ভুল হলেও ক্ষতি নেই, লেখাটাই আসল।</p>
@@ -1266,12 +1176,11 @@
           </div>
           <div class="form-group">
             <label class="chk"><input type="checkbox" id="letterComments"> অন্যরা এই চিঠিতে ছোট মন্তব্য লিখতে পারবে</label>
-            <p class="hint">চালু থাকলে সবাই ছোট মন্তব্য ও উত্তর লিখতে পারবে। আপত্তিকর কিছু দেখলে আমরা সরিয়ে দেব।</p>
+            <p class="hint">বন্ধ থাকলে কেউ মন্তব্য করতে পারবে না। চালু করলেও প্রতিটা মন্তব্য আগে আমাদের অনুমোদন পাবে।</p>
           </div>
         </details>
 
         <div class="submit-bar">
-          <p class="trust-mini">নাম, ইমেইল বা ফোন নম্বর লাগে না।</p>
           <p id="formStatus" class="form-message" role="status" aria-live="polite"></p>
           <button type="submit" class="btn submit-btn" id="submitBtn">চিঠি জমা দিন</button>
         </div>
@@ -1285,7 +1194,6 @@
         </div>
         <h2>চিঠিটা ঘরে পৌঁছে গেছে।</h2>
         <p class="sent-no" id="sentNo"></p>
-        <p class="sent-code" id="sentCode" hidden></p>
         <p id="sentText">কেউ একদিন হয়তো এটা পড়ে ভাববে, সে একা নয়।</p>
         <p class="sent-care" id="sentCare">কঠিন সময় পার করছেন? কারও সঙ্গে কথা বলুন, আপনি একা নন।</p>
         <button type="button" class="btn" id="sentCloseBtn">ঠিক আছে</button>
@@ -1308,7 +1216,7 @@
       <p class="reader-sign" id="readerSign">— একজন অচেনা মানুষ</p>
 
       <div class="react-row">
-        <button type="button" class="react-btn" data-key="felt" aria-pressed="false"><svg class="hrt" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span>আমিও এমন অনুভব করেছি</span><span class="cnt"></span></button>
+        <button type="button" class="react-btn" data-key="felt" aria-pressed="false"><span>আমিও এমন অনুভব করেছি</span><span class="cnt"></span></button>
         <button type="button" class="save-btn" id="saveBtn" aria-pressed="false" aria-label="চিঠিটি সংরক্ষণ করুন"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z"/></svg></button>
       </div>
 
@@ -1318,7 +1226,7 @@
         <div class="cm-form">
           <input type="text" id="cmName" maxlength="30" placeholder="ছদ্মনাম (ঐচ্ছিক)">
           <textarea id="cmText" maxlength="300" placeholder="সদয় কিছু লিখুন..."></textarea>
-          <p class="hint">আসল নাম, লিংক বা ফোন নম্বর লিখবেন না।</p>
+          <p class="hint">মন্তব্য অনুমোদনের পর দেখা যাবে। আসল নাম বা ব্যক্তিগত তথ্য লিখবেন না।</p>
           <button type="button" class="btn btn-sm" id="cmSend">মন্তব্য পাঠান</button>
           <span class="link-msg" id="cmMsg"></span>
         </div>
@@ -1450,7 +1358,6 @@
     }
 
     function closeForm() {
-      bodyEl.placeholder = DEFAULT_PH;
       modal.classList.remove("open");
       modal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
@@ -1588,10 +1495,10 @@
     function setMyLetters(l) {
       try { localStorage.setItem(MYL_KEY, JSON.stringify(l)); } catch (e) {}
     }
-    function rememberMine(no, title, code) {
+    function rememberMine(no, title) {
       if (!no) return;
       const list = getMyLetters().filter(function (x) { return x.no !== no; });
-      list.unshift({ no: no, title: title || "", code: code || null, at: Date.now() });
+      list.unshift({ no: no, title: title || "", at: Date.now() });
       setMyLetters(list.slice(0, 50));
       paintMineBtn();
     }
@@ -1647,22 +1554,6 @@
           paintMineBtn();
           if (!getMyLetters().length) closeMine();
         });
-        if (item.code) {
-          const dl = document.createElement("button");
-          dl.type = "button"; dl.className = "link-btn"; dl.textContent = "চিঠিটি মুছুন";
-          let armed = false, tm;
-          dl.addEventListener("click", async function () {
-            if (!armed) { armed = true; dl.textContent = "নিশ্চিত? আবার চাপুন"; tm = setTimeout(function () { armed = false; dl.textContent = "চিঠিটি মুছুন"; }, 3500); return; }
-            clearTimeout(tm); dl.disabled = true;
-            const ok = await deleteMyLetter(item.no, item.code);
-            if (ok === true) {
-              setMyLetters(getMyLetters().filter(function (x) { return x.no !== item.no; }));
-              row.remove(); paintMineBtn(); loadLetters();
-              if (!getMyLetters().length) closeMine();
-            } else { dl.disabled = false; dl.textContent = "চিঠিটি মুছুন"; st.textContent = ok === false ? "মোছা যায়নি (কোড মেলেনি)" : "এখন মোছা যায়নি"; }
-          });
-          act.appendChild(dl);
-        }
         row.append(t, st, act);
         box.appendChild(row);
 
@@ -1704,72 +1595,6 @@
       document.body.style.overflow = "hidden";
     }
 
-    const CMLIKE_KEY = "chithighor_cmlike";
-    function getCmLikes() {
-      try { return JSON.parse(localStorage.getItem(CMLIKE_KEY) || "[]"); }
-      catch (e) { return []; }
-    }
-    function setCmLikes(l) {
-      try { localStorage.setItem(CMLIKE_KEY, JSON.stringify(l)); } catch (e) {}
-    }
-    function commentLikeBtn(c) {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "cm-like";
-      let n = c.likes || 0;
-      function paint() {
-        const on = getCmLikes().indexOf(c.id) !== -1;
-        b.classList.toggle("on", on);
-        b.setAttribute("aria-pressed", String(on));
-        b.setAttribute("aria-label", on ? "লাভ তুলে নিন" : "মন্তব্যে লাভ দিন");
-        b.innerHTML = svgIcon("love") + (n > 0 ? "<span>" + bn(n) + "</span>" : "");
-      }
-      b.addEventListener("click", async function () {
-        const list = getCmLikes();
-        const i = list.indexOf(c.id);
-        const delta = i === -1 ? 1 : -1;
-        if (i === -1) list.push(c.id); else list.splice(i, 1);
-        setCmLikes(list);
-        n = Math.max(0, n + delta);
-        paint();
-        try { await db.rpc("like_comment", { p_id: c.id, p_delta: delta }); } catch (e) {}
-      });
-      paint();
-      return b;
-    }
-
-    function replyForm(l, parent) {
-      const f = document.createElement("div");
-      f.className = "cm-replyform";
-      f.hidden = true;
-      const nm = document.createElement("input");
-      nm.type = "text"; nm.maxLength = 30; nm.placeholder = "ছদ্মনাম (ঐচ্ছিক)";
-      const tx = document.createElement("textarea");
-      tx.maxLength = 300; tx.placeholder = "উত্তর লিখুন...";
-      const send = document.createElement("button");
-      send.type = "button"; send.className = "btn btn-sm"; send.textContent = "উত্তর পাঠান";
-      const msg = document.createElement("span");
-      msg.className = "link-msg";
-      send.addEventListener("click", async function () {
-        const text = tx.value.trim();
-        if (!text) { msg.textContent = "উত্তর লিখুন।"; return; }
-        if (badComment(text)) { msg.textContent = BAD_MSG; return; }
-        send.disabled = true;
-        try {
-          const r = await db.rpc("submit_comment", { p_no: l.letter_no, p_body: text, p_author: nm.value.trim() || null, p_parent: parent.id });
-          if (r.error) throw r.error;
-          tx.value = "";
-          if (r.data === true) { msg.textContent = "উত্তর যোগ হয়েছে।"; setupComments(l); }
-          else { msg.textContent = "উত্তর পাঠানো হয়েছে। অনুমোদনের পর দেখা যাবে।"; }
-        } catch (err) {
-          msg.textContent = String((err && err.message) || "").indexOf("not allowed") !== -1 ? BAD_MSG : "পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন।";
-        }
-        send.disabled = false;
-      });
-      f.append(nm, tx, send, msg);
-      return f;
-    }
-
     async function setupComments(l) {
       const cb = document.getElementById("commentBlock");
       cb.hidden = !l.allow_comments;
@@ -1778,7 +1603,7 @@
       const list = document.getElementById("commentList");
       list.textContent = "লোড হচ্ছে...";
       try {
-        const r = await db.from("comments").select("id, author_name, body, likes, parent_id, created_at")
+        const r = await db.from("comments").select("author_name, body, created_at")
           .eq("letter_no", l.letter_no).eq("approved", true).order("created_at", { ascending: true });
         if (currentLetter !== l) return;
         list.replaceChildren();
@@ -1789,39 +1614,14 @@
           p.textContent = "এখনো কোনো মন্তব্য নেই।";
           list.appendChild(p);
         }
-        const tops = rows.filter(function (c) { return !c.parent_id; });
-        const kids = {};
         rows.forEach(function (c) {
-          if (c.parent_id) (kids[c.parent_id] = kids[c.parent_id] || []).push(c);
-        });
-        const item = function (c, isReply) {
           const d = document.createElement("div");
-          d.className = "cm-item" + (isReply ? " cm-reply" : "");
+          d.className = "cm-item";
           const b = document.createElement("b");
           b.textContent = c.author_name || "একজন অচেনা মানুষ";
           const p = document.createElement("p");
           p.textContent = c.body;
-          const acts = document.createElement("div");
-          acts.className = "cm-acts";
-          acts.appendChild(commentLikeBtn(c));
-          const rp = commentReportBtn(c);
-          acts.appendChild(rp.btn);
-          d.append(b, p, acts, rp.box);
-          return d;
-        };
-        tops.forEach(function (c) {
-          const d = item(c, false);
-          const rb = document.createElement("button");
-          rb.type = "button";
-          rb.className = "cm-replybtn";
-          rb.textContent = "উত্তর দিন";
-          d.querySelector(".cm-acts").appendChild(rb);
-          const box = document.createElement("div");
-          box.className = "cm-replies";
-          (kids[c.id] || []).forEach(function (k) { box.appendChild(item(k, true)); });
-          const rf = replyForm(l, c);
-          rb.addEventListener("click", function () { rf.hidden = !rf.hidden; if (!rf.hidden) rf.querySelector("textarea").focus(); });
-          d.append(box, rf);
+          d.append(b, p);
           list.appendChild(d);
         });
       } catch (e) {
@@ -1837,7 +1637,7 @@
       document.getElementById("readerNo").textContent = letter.letter_no ? "চিঠি নং " + bn(letter.letter_no) : "";
       document.getElementById("readerSign").textContent = "— " + (letter.author_name || "একজন অচেনা মানুষ");
       document.getElementById("readerTitle").textContent = letter.title || "শিরোনামহীন চিঠি";
-      renderBody(letter.body || "");
+      renderBody(letter.body || ""); 
 
       let dateText = "";
       if (letter.created_at) {
@@ -1932,7 +1732,7 @@
       if (b.dataset.v === "__other") document.getElementById("otherRecipient").focus();
       else bodyEl.focus();
     });
-    bodyEl.addEventListener("input", function () { autosize(); bodyCounter(); toggleStarters(); });
+    bodyEl.addEventListener("input", function () { autosize(); bodyCounter(); });
     document.getElementById("letterForm").addEventListener("keydown", function (e) {
       if (e.key === "Enter" && e.target.tagName === "INPUT" && e.target.type === "text") {
         e.preventDefault();
@@ -1975,7 +1775,6 @@
       const text = document.getElementById("cmText").value.trim();
       const msg = document.getElementById("cmMsg");
       if (!text) { msg.textContent = "মন্তব্য লিখুন।"; return; }
-      if (badComment(text)) { msg.textContent = BAD_MSG; return; }
       try {
         const r = await db.rpc("submit_comment", {
           p_no: currentLetter.letter_no, p_body: text,
@@ -1983,10 +1782,9 @@
         });
         if (r.error) throw r.error;
         document.getElementById("cmText").value = "";
-        if (r.data === true) { setupComments(currentLetter); msg.textContent = "মন্তব্য যোগ হয়েছে।"; }
-        else { msg.textContent = "মন্তব্য পাঠানো হয়েছে। অনুমোদনের পর দেখা যাবে।"; }
+        msg.textContent = "মন্তব্য পাঠানো হয়েছে। অনুমোদনের পর দেখা যাবে।";
       } catch (err) {
-        msg.textContent = String((err && err.message) || "").indexOf("not allowed") !== -1 ? BAD_MSG : "পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন।";
+        msg.textContent = "পাঠানো যায়নি। একটু পরে আবার চেষ্টা করুন।";
       }
     });
 
@@ -2001,14 +1799,7 @@
 
     document.getElementById("sentCloseBtn").addEventListener("click", closeForm);
 
-    function showSent(no, code) {
-      const ce = document.getElementById("sentCode");
-      if (code) {
-        ce.replaceChildren(document.createTextNode("চিঠি মুছে ফেলার কোড: "));
-        const cb = document.createElement("b"); cb.textContent = code; ce.appendChild(cb);
-        ce.appendChild(document.createTextNode("। এটা লিখে রাখুন, আর কখনো দেখানো হবে না।"));
-        ce.hidden = false;
-      } else { ce.hidden = true; }
+    function showSent(no) {
       const noEl = document.getElementById("sentNo");
       noEl.textContent = no ? "আপনার চিঠির নম্বর: " + bn(no) : "";
       document.getElementById("sentText").textContent = no
@@ -2331,7 +2122,6 @@
       syncChips();
       autosize();
       bodyCounter();
-      toggleStarters();
       if (document.getElementById("letterAuthor").value || document.getElementById("letterComments").checked) document.getElementById("moreOpts").open = true;
       const on = recipientSelect.value === "__other";
       otherField.classList.toggle("on", on);
@@ -2411,14 +2201,12 @@
       showStatus("আপনার চিঠি জমা দেওয়া হচ্ছে...");
 
       try {
-        const { data: res, error } = await db.rpc("submit_letter", {
+        const { data: savedNo, error } = await db.rpc("submit_letter", {
           p_title: title, p_body: body, p_recipient: recipient, p_author: author || null,
           p_comments: document.getElementById("letterComments").checked
         });
 
         if (error) throw error;
-        const savedNo = (res && typeof res === "object") ? res.no : res;
-        const delCode = (res && typeof res === "object") ? res.code : null;
 
         form.reset();
         syncOther();
@@ -2426,8 +2214,8 @@
         await loadLetters();
 
         showStatus("");
-        showSent(savedNo, delCode);
-        rememberMine(savedNo, title, delCode);
+        showSent(savedNo);
+        rememberMine(savedNo, title);
         clearDraft();
 
       } catch (error) {
@@ -2511,10 +2299,7 @@
         s.appendChild(document.createTextNode(bn(n)));
         return s;
       };
-      const likedByMe = (getMine()[l.id] || []).indexOf("felt") !== -1;
-      const heart = stat("love", r.felt || 0);
-      if (likedByMe) heart.classList.add("liked");
-      el.appendChild(heart);
+      el.appendChild(stat("love", r.felt || 0));
       if (l.allow_comments || l.comment_count > 0) el.appendChild(stat("comment", l.comment_count || 0));
       const sp = document.createElement("span");
       sp.className = "sp";
@@ -2559,7 +2344,7 @@
     });
 
     // ===== QUOTE: নিজের যাচাই করা উক্তি এখানে বসান (খালি রাখলে কার্ড দেখাবে না) =====
-    const QUOTE = { text: "", who: "", from: "" };
+    const QUOTE = { text: "করুণা করে হলেও চিঠি দিও, ভুলে গিয়ে ভুল করে একখানি চিঠি দিও।", who: "মহাদেব সাহা", };
     function paintQuote() {
       const sec = document.getElementById("quoteSection");
       if (!QUOTE.text) { sec.hidden = true; return; }
@@ -2569,103 +2354,16 @@
     }
     paintQuote();
 
-    // ===== শুরুর বাক্য, আজকের প্রশ্ন, মোছা, মন্তব্য সুরক্ষা =====
-    const LINK_RE = /(https?:\/\/|www\.|\b[a-z0-9-]+\.(com|net|org|xyz|info|bd|co|me|io|ly)\b|t\.me\/|wa\.me\/)/i;
-    const PHONE_RE = /([0-9০-৯][\s\-]*){9,}/;
-    const BAD_MSG = "মন্তব্যে লিংক বা ফোন নম্বর দেওয়া যাবে না।";
-    function badComment(t) { return LINK_RE.test(t) || PHONE_RE.test(t); }
-
-    const STARTERS = ["তোমাকে বলতে পারিনি যে...", "যদি আরেকবার দেখা হতো...", "আজ খুব মনে পড়ছে...", "তোমার কাছে ক্ষমা চাওয়ার ছিল...", "ধন্যবাদ বলা হয়নি..."];
-    const DEFAULT_PH = bodyEl.placeholder;
-    (function () {
-      const box = document.getElementById("starters");
-      STARTERS.forEach(function (s) {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "starter";
-        b.textContent = s;
-        b.addEventListener("click", function () {
-          bodyEl.value = s + " ";
-          bodyEl.dispatchEvent(new Event("input", { bubbles: true }));
-          bodyEl.focus();
-          const n = bodyEl.value.length;
-          bodyEl.setSelectionRange(n, n);
-        });
-        box.appendChild(b);
-      });
-    })();
-    function toggleStarters() { document.getElementById("starters").hidden = !!bodyEl.value.trim(); }
-
-    const QUESTIONS = ["আজ কাকে একটা না-বলা কথা বলতে চাও?", "এমন কোন কথাটা আছে, যেটা বলার আগেই সুযোগ হারিয়ে গেছে?", "ছোটবেলার কোন স্মৃতিটা আজও তোমার সঙ্গে হাঁটে?", "কার কাছে ক্ষমা চাওয়ার আছে, অথচ চাওয়া হয়নি?", "কাকে একটা ধন্যবাদ বলা হয়নি?", "পাঁচ মিনিটের জন্য কারও সঙ্গে আবার দেখা হলে কার সঙ্গে হতো?", "নিজেকে আজ কী বলতে চাও?", "কোন গন্ধ, গান বা জায়গা কাউকে মনে করিয়ে দেয়?", "কোন কথাটা সবাইকে বলো 'ঠিক আছি', অথচ আসলে ঠিক নেই?", "কাকে ক্ষমা করে দিতে পারলে মনটা হালকা হতো?", "তোমার সবচেয়ে কঠিন বিদায়ের কথা লেখো।", "যে মানুষটা চলে গেছে, তাকে আজ কী জানাতে চাও?", "কাকে নিয়ে গর্ব হয়, অথচ কখনো বলা হয়নি?", "পুরোনো বন্ধুকে একটা চিঠি লিখলে কী লিখতে?", "কোন সিদ্ধান্তটা অন্যরকম হলে জীবন কেমন হতো?", "ভবিষ্যতের তোমাকে একটা কথা বলো।", "বাড়ির কোন মানুষটার কথা আজ খুব মনে পড়ছে?", "কোন ছোট্ট জিনিসের জন্য আজ কৃতজ্ঞ?", "কাকে একটা চিঠি লিখবে ভেবেও লেখা হয়নি?", "ছেলেবেলার তুমি এখন কী শুনলে খুশি হতো?", "এই সপ্তাহে কোন কথাটা মনে মনে চেপে রেখেছ?"];
-    (function () {
-      const q = QUESTIONS[Math.floor(Date.now() / 86400000) % QUESTIONS.length];
-      document.getElementById("qodQ").textContent = q;
-      document.getElementById("qodBtn").addEventListener("click", function () {
-        openForm();
-        bodyEl.placeholder = q;
-      });
-    })();
-
-    async function deleteMyLetter(no, code) {
-      try {
-        const r = await db.rpc("delete_my_letter", { p_no: no, p_code: code });
-        if (r.error) throw r.error;
-        return r.data === true;
-      } catch (e) { return null; }
-    }
-    (function () {
-      const btn = document.getElementById("delBtn"), msg = document.getElementById("delMsg");
-      let armed = false, t;
-      btn.addEventListener("click", async function () {
-        const no = parseInt(normQuery(document.getElementById("delNo").value), 10);
-        const code = document.getElementById("delCode").value.trim();
-        if (!no || !code) { msg.textContent = "চিঠির নম্বর ও কোড দুটোই দিন।"; return; }
-        if (!armed) {
-          armed = true; btn.textContent = "নিশ্চিত? আবার চাপুন";
-          t = setTimeout(function () { armed = false; btn.textContent = "চিঠি মুছুন"; }, 3500);
-          return;
-        }
-        clearTimeout(t); armed = false; btn.textContent = "চিঠি মুছুন"; btn.disabled = true;
-        const ok = await deleteMyLetter(no, code);
-        btn.disabled = false;
-        if (ok === true) {
-          msg.textContent = "চিঠিটা মুছে ফেলা হয়েছে।";
-          setMyLetters(getMyLetters().filter(function (x) { return x.no !== no; }));
-          paintMineBtn(); loadLetters();
-          document.getElementById("delCode").value = "";
-        } else if (ok === false) { msg.textContent = "নম্বর বা কোড মেলেনি।"; }
-        else { msg.textContent = "এখন মোছা যায়নি। একটু পরে আবার চেষ্টা করুন।"; }
-      });
-    })();
-
-    function commentReportBtn(c) {
-      const b = document.createElement("button");
-      b.type = "button"; b.className = "cm-replybtn"; b.textContent = "জানান";
-      const box = document.createElement("div");
-      box.className = "cm-reportbox"; box.hidden = true;
-      ["আসল নাম বা ব্যক্তিগত তথ্য", "আক্রমণ বা হেয়", "স্প্যাম বা লিংক"].forEach(function (reason) {
-        const x = document.createElement("button");
-        x.type = "button"; x.textContent = reason;
-        x.addEventListener("click", async function () {
-          box.textContent = "ধন্যবাদ। আমরা দেখব।";
-          try { await db.rpc("report_comment", { p_id: c.id, p_reason: reason }); } catch (e) {}
-        });
-        box.appendChild(x);
-      });
-      b.addEventListener("click", function () { box.hidden = !box.hidden; });
-      return { btn: b, box: box };
-    }
-
-    // ===== ADMIN_MODULE =====
+    // ===== ADMIN_MODULE ===== 
     (function () {
       const $ = function (i) { return document.getElementById(i); };
       const fab = $("admFab"), panel = $("admPanel"), loginM = $("admLogin");
-      let modOn = false, on = false, tab = "letters", data = { letters: [], comments: [], reports: [] }, timer;
+      let on = false, tab = "letters", data = { letters: [], comments: [], reports: [] }, timer;
 
       function when(t) { const d = new Date(t); return isNaN(d) ? "" : d.toLocaleString("bn-BD", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }); }
       function say(t, err) { const m = $("admMsg"); m.textContent = t || ""; m.className = "adm-msg" + (err ? " err" : ""); }
       function el(tag, cls, text) { const x = document.createElement(tag); if (cls) x.className = cls; if (text != null) x.textContent = text; return x; }
-      function total() { return data.letters.length + data.comments.filter(function (c) { return !c.approved; }).length + data.reports.length; }
+      function total() { return data.letters.length + data.comments.length + data.reports.length; }
       function paintFab() {
         if (on) { fab.hidden = false; fab.textContent = "অ্যাডমিন (" + bn(total()) + ")"; }
         else if (window.ADMIN_DEMO) { fab.hidden = false; fab.textContent = "ডেমো: অ্যাডমিন লগইন"; }
@@ -2677,14 +2375,12 @@
         try {
           const q = await Promise.all([
             db.from("letters").select("id, letter_no, title, body, recipient, author_name, allow_comments, created_at").eq("approved", false).order("created_at", { ascending: true }),
-            db.from("comments").select("id, letter_no, author_name, body, parent_id, approved, created_at").order("created_at", { ascending: false }).limit(60),
-            db.from("reports").select("id, letter_no, comment_id, reason, created_at").order("created_at", { ascending: true }),
-            db.from("site_settings").select("value").eq("key", "moderate_comments").maybeSingle()
+            db.from("comments").select("id, letter_no, author_name, body, created_at").eq("approved", false).order("created_at", { ascending: true }),
+            db.from("reports").select("id, letter_no, reason, created_at").order("created_at", { ascending: true })
           ]);
-          const bad = q.slice(0, 3).find(function (x) { return x.error; });
+          const bad = q.find(function (x) { return x.error; });
           if (bad) throw bad.error;
           data = { letters: q[0].data || [], comments: q[1].data || [], reports: q[2].data || [] };
-          modOn = !!(q[3] && q[3].data && q[3].data.value === "true");
           say("");
         } catch (e) {
           say("লোড করা যায়নি। অ্যাডমিন হিসেবে লগইন আছে কি না আর SQL বসানো আছে কি না দেখুন।", true);
@@ -2717,30 +2413,14 @@
       function btn(label, cls) { const b = el("button", "adm-btn" + (cls ? " " + cls : ""), label); b.type = "button"; return b; }
       function drop(key, it) { data[key] = data[key].filter(function (x) { return x !== it; }); }
 
-      function modCard() {
-        const c = el("div", "adm-card");
-        c.appendChild(el("div", "adm-meta", "মন্তব্য অনুমোদন: " + (modOn ? "চালু (নতুন মন্তব্য আগে আপনার কাছে আসবে)" : "বন্ধ (মন্তব্য সঙ্গে সঙ্গে প্রকাশ হয়)")));
-        const b = btn(modOn ? "অনুমোদন বন্ধ করুন" : "অনুমোদন চালু করুন", "o");
-        b.addEventListener("click", async function () {
-          b.disabled = true;
-          const r = await db.from("site_settings").update({ value: modOn ? "false" : "true" }).eq("key", "moderate_comments");
-          if (r.error) { say("বদলানো যায়নি: " + r.error.message, true); b.disabled = false; return; }
-          modOn = !modOn; say("সেটিং বদলেছে।"); paintFab(); render();
-        });
-        c.appendChild(b);
-        return c;
-      }
-
       function render() {
         document.querySelectorAll("#admTabs .adm-tab").forEach(function (b) {
           b.classList.toggle("on", b.dataset.t === tab);
-          const cnt = b.dataset.t === "comments" ? data.comments.filter(function (c) { return !c.approved; }).length : data[b.dataset.t].length;
-          b.querySelector("span").textContent = "(" + bn(cnt) + ")";
+          b.querySelector("span").textContent = "(" + bn(data[b.dataset.t].length) + ")";
         });
         const list = $("admList"); list.replaceChildren();
         const items = data[tab];
-        if (tab === "comments") list.appendChild(modCard());
-        if (!items.length) list.appendChild(el("p", "adm-empty", tab === "letters" ? "অনুমোদনের অপেক্ষায় কোনো চিঠি নেই।" : tab === "comments" ? "কোনো মন্তব্য নেই।" : "কোনো রিপোর্ট নেই।"));
+        if (!items.length) list.appendChild(el("p", "adm-empty", tab === "letters" ? "অনুমোদনের অপেক্ষায় কোনো চিঠি নেই।" : tab === "comments" ? "অপেক্ষায় কোনো মন্তব্য নেই।" : "কোনো রিপোর্ট নেই।"));
         items.forEach(function (it) {
           const c = el("div", "adm-card"), acts = el("div", "adm-acts");
           if (tab === "letters") {
@@ -2753,35 +2433,14 @@
             danger(del, "মুছে দিন", function () { return act(db.from("letters").delete().eq("id", it.id), function () { drop("letters", it); say("মুছে ফেলা হয়েছে।"); }); });
             acts.append(ok, del);
           } else if (tab === "comments") {
-            c.appendChild(el("div", "adm-meta", "চিঠি নং " + bn(it.letter_no) + " · " + (it.author_name || "অচেনা মানুষ") + " · " + when(it.created_at) + (it.parent_id ? " · উত্তর" : "") + (it.approved ? "" : " · অপেক্ষায়")));
+            c.appendChild(el("div", "adm-meta", "চিঠি নং " + bn(it.letter_no) + " · " + (it.author_name || "অচেনা মানুষ") + " · " + when(it.created_at)));
             c.appendChild(bodyBlock(it.body || ""));
             const ok = btn("অনুমোদন দিন");
             ok.addEventListener("click", function () { ok.disabled = true; act(db.from("comments").update({ approved: true }).eq("id", it.id), function () { drop("comments", it); say("অনুমোদন হয়েছে।"); loadLetters(); }); });
             const del = btn("মুছে দিন", "d");
             danger(del, "মুছে দিন", function () { return act(db.from("comments").delete().eq("id", it.id), function () { drop("comments", it); say("মুছে ফেলা হয়েছে।"); }); });
-            if (!it.approved) acts.append(ok);
-            acts.append(del);
+            acts.append(ok, del);
           } else {
-            if (it.comment_id) {
-              c.appendChild(el("div", "adm-meta", "মন্তব্য নিয়ে অভিযোগ · চিঠি নং " + bn(it.letter_no) + " · " + when(it.created_at)));
-              c.appendChild(el("h4", "", "কারণ: " + (it.reason || "—")));
-              const pk = el("div", "adm-peek"); pk.hidden = true; c.appendChild(pk);
-              const vw = btn("মন্তব্যটা দেখুন", "o");
-              vw.addEventListener("click", async function () {
-                const r = await db.from("comments").select("author_name, body").eq("id", it.comment_id).maybeSingle();
-                pk.hidden = false; pk.replaceChildren();
-                if (!r.data) { pk.textContent = "মন্তব্যটা এখন আর নেই।"; return; }
-                pk.appendChild(el("b", "", r.data.author_name || "অচেনা মানুষ"));
-                pk.appendChild(bodyBlock(r.data.body || ""));
-              });
-              const cl = btn("রিপোর্ট বন্ধ করুন", "o");
-              cl.addEventListener("click", function () { cl.disabled = true; act(db.from("reports").delete().eq("id", it.id), function () { drop("reports", it); say("রিপোর্ট বন্ধ হয়েছে।"); }); });
-              const dc = btn("মন্তব্য মুছুন", "d");
-              danger(dc, "মন্তব্য মুছুন", function () { return act(db.from("comments").delete().eq("id", it.comment_id), function () { drop("reports", it); say("মন্তব্য মুছে ফেলা হয়েছে।"); loadLetters(); }); });
-              acts.append(vw, cl, dc);
-              c.appendChild(acts); list.appendChild(c);
-              return;
-            }
             c.appendChild(el("div", "adm-meta", "চিঠি নং " + bn(it.letter_no) + " · " + when(it.created_at)));
             c.appendChild(el("h4", "", "কারণ: " + (it.reason || "—")));
             const peek = el("div", "adm-peek"); peek.hidden = true; c.appendChild(peek);
